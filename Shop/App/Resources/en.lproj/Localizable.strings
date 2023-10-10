@@ -1,0 +1,113 @@
+/* 
+  Localizable.strings
+  Showcase
+
+  Created by Anatoli Petrosyants on 27.02.23.
+  
+*/
+
+// Base
+"base.showcase" = "Showcase";
+"base.continue" = "Continue";
+"base.save" = "Save";
+"base.logout" = "Logout";
+"base.done" = "Done";
+"base.cancel" = "Cancel";
+"base.close" = "Close";
+"base.attention" = "Attention";
+"base.are.you.sure" = "Are you sure?";
+"base.successfully.saved" = "Successfully saved!";
+"base.oops" = "Oops, Something went wrong";
+"base.email.placeholder" = "smith@some.email";
+
+// Onboarding
+"onboarding.title1" = "Get healthy and live peacefully";
+"onboarding.description1" = "Living a happier, more satisfied life is within reach.";
+"onboarding.title2" = "Predict weather";
+"onboarding.description2" = "Predict weather trends and conditions with current solar activity.";
+"onboarding.title3" = "Get air quality information";
+"onboarding.description3" = "Immediate, accurate air quality data to help you create a healthier environment.";
+"onboarding.get.started" = "Get Started";
+
+// Login Options
+"loginOptions.title" = "Welcome";
+"loginOptions.description" = "Please join to explore the Showcase project developed by";
+"loginOptions.login.email" = "Login with email";
+"loginOptions.login.phone" = "Login with phone";
+
+// Login
+"login.title" = "Login with email";
+"login.forgot.password" = "Forgot Password";
+
+// Forgot Password
+"forgotPassword.title" = "Forgot Password";
+"forgotPassword.changePassword" = "Change Password";
+
+// Developed By
+"developedBy.title" = "Developed By";
+
+// Account
+"account.title" = "Account";
+"account.section.personal" = "Personal Information";
+"account.section.personal.first.name" = "First Name";
+"account.section.personal.last.name" = "Last Name";
+"account.section.personal.birthDate" = "Birth Date";
+"account.section.personal.gender" = "Gender";
+
+"account.section.city" = "City Information";
+"account.section.city.placeholder" = "Choose City";
+"account.section.city.footer" = "Cities provided by Firestore API. Please add or edit them by tapping the row above.";
+
+"account.section.contact" = "Contact Information";
+"account.section.contact.email" = "Email";
+"account.section.contact.phone" = "Phone";
+"account.section.contact.linkedin" = "LinkedIn Account";
+"account.section.contact.upwork" = "Upwork Account";
+
+"account.section.additional" = "Additional Information";
+"account.section.additional.about.me" = "About Me";
+"account.section.additional.supported.version" = "Supported Version";
+"account.section.additional.app.version" = "App Version";
+
+"account.section.settings" = "Account Settings";
+"account.section.settings.enable.notifications" = "Enable Notifications";
+
+// Sidebar
+"sidebar.title" = "Menu";
+"sidebar.item.healthKit" = "HealthKit";
+"sidebar.item.camera" = "Camera";
+"sidebar.item.chooseCountry" = "Choose Country";
+"sidebar.item.map" = "Map";
+"sidebar.item.inAppMessages" = "In-App Messages";
+"sidebar.item.darkMode" = "Dark Mode";
+"sidebar.item.shareApp" = "Share App";
+"sidebar.item.appSettings" = "App Settings";
+"sidebar.item.rateUs" = "Rate Us";
+"sidebar.item.contactUs" = "Contact Us";
+"sidebar.item.videoPlayer" = "Video Player";
+
+// Product
+"product.toolbar.item.menu" = "Menu";
+"product.toolbar.item.refresh" = "Refresh Products";
+"product.announcement.title" = "Announcement";
+"product.details.view.photos" = "View Photos";
+"product.details.reviews" = "Reviews";
+"product.details.photos" = "Photos";
+
+// Search
+"search.title" = "Search";
+"search.products.input.placeholder" = "Search Products";
+
+// Basket
+"basket.title" = "Basket";
+"basket.subtotal" = "Subtotal";
+"basket.top.picks" = "Top Picks";
+"basket.checkout.title" = "Checkout";
+"basket.checkout.shipping.address" = "Shipping Address";
+"basket.checkout.select.payment.method" = "Select a Payment Method";
+"basket.add.products.title" = "Add Products";
+"basket.add.products.empty" = "Your Showcase basket is empty";
+"basket.add.products.top.picks" = "Please add a product or choose from top picks";
+
+// Add more localized strings here...
+
