@@ -1,14 +1,9 @@
-# Shop Application with TCA
+# Taxi Application with TCA
 
 Welcome to the Shop Application project, a showcase of building a shopping app using The Composable Architecture (TCA). This project demonstrates the power of TCA, Core Data integration, and networking capabilities by fetching data from [fakestoreapi.com](https://fakestoreapi.com).
 
 ## Features
 
-- **Products List:** Browse a wide range of products with details and prices.
-- **Wishlist:** Add your favorite products to the wishlist for later.
-- **Basket:** Keep track of the items you want to purchase.
-- **Notifications:** Receive notifications about new products and promotions.
-- **Account:** Manage your user account and settings.
 
 ## Technologies Used
 
