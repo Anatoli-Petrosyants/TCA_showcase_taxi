@@ -1,0 +1,58 @@
+/* 
+  Localizable.strings
+  Showcase
+
+  Created by Anatoli Petrosyants on 27.02.23.
+  
+*/
+
+// Base
+"base.showcase" = "Showcase";
+"base.continue" = "Continue";
+"base.save" = "Save";
+"base.logout" = "Logout";
+"base.done" = "Done";
+"base.cancel" = "Cancel";
+"base.close" = "Close";
+"base.attention" = "Attention";
+"base.are.you.sure" = "Are you sure?";
+"base.successfully.saved" = "Successfully saved!";
+"base.oops" = "Oops, Something went wrong";
+"base.email.placeholder" = "smith@some.email";
+
+// Onboarding
+"onboarding.title1" = "Get healthy and live peacefully";
+"onboarding.description1" = "Living a happier, more satisfied life is within reach.";
+"onboarding.title2" = "Predict weather";
+"onboarding.description2" = "Predict weather trends and conditions with current solar activity.";
+"onboarding.title3" = "Get air quality information";
+"onboarding.description3" = "Immediate, accurate air quality data to help you create a healthier environment.";
+"onboarding.get.started" = "Get Started";
+
+// Login Options
+"loginOptions.title" = "Welcome";
+"loginOptions.description" = "Please join to explore the Showcase project developed by";
+"loginOptions.login.email" = "Login with email";
+"loginOptions.login.phone" = "Login with phone";
+
+// Login
+"login.title" = "Login with email";
+"login.forgot.password" = "Forgot Password";
+
+// Forgot Password
+"forgotPassword.title" = "Forgot Password";
+"forgotPassword.changePassword" = "Change Password";
+
+// Developed By
+"developedBy.title" = "Developed By";
+
+// Sidebar
+"sidebar.item.darkMode" = "Dark Mode";
+"sidebar.item.shareApp" = "Share App";
+"sidebar.item.appSettings" = "App Settings";
+"sidebar.item.rateUs" = "Rate Us";
+"sidebar.item.contactUs" = "Contact Us";
+"sidebar.item.videoPlayer" = "Video Player";
+
+// Add more localized strings here...
+
