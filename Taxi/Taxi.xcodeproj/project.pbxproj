@@ -12,6 +12,7 @@
 		A91606A72AD5668200E581A4 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91606A62AD5668200E581A4 /* MapView.swift */; };
 		A91606AA2AD5674F00E581A4 /* SettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91606A92AD5674F00E581A4 /* SettingsFeature.swift */; };
 		A91606AC2AD5675600E581A4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91606AB2AD5675600E581A4 /* SettingsView.swift */; };
+		A91606AF2AD6C65200E581A4 /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91606AE2AD6C65100E581A4 /* MapViewRepresentable.swift */; };
 		A91D5A512AC17E8300A76E57 /* OnboardingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D5A502AC17E8300A76E57 /* OnboardingTests.swift */; };
 		A91F587629E67C2C008C0F35 /* EmailLoginFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F587529E67C2C008C0F35 /* EmailLoginFeature.swift */; };
 		A91F587829E67C35008C0F35 /* EmailLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F587729E67C35008C0F35 /* EmailLoginView.swift */; };
@@ -189,6 +190,7 @@
 		A91606A62AD5668200E581A4 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		A91606A92AD5674F00E581A4 /* SettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFeature.swift; sourceTree = "<group>"; };
 		A91606AB2AD5675600E581A4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A91606AE2AD6C65100E581A4 /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
 		A91D5A4E2AC17E8300A76E57 /* TaxiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaxiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A91D5A502AC17E8300A76E57 /* OnboardingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTests.swift; sourceTree = "<group>"; };
 		A91F587529E67C2C008C0F35 /* EmailLoginFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginFeature.swift; sourceTree = "<group>"; };
@@ -764,6 +766,7 @@
 				A9947EED2A179D9B00FC7FB8 /* SFSafariViewRepresentable.swift */,
 				A9947EEF2A179DBF00FC7FB8 /* LottieViewRepresentable.swift */,
 				A9947EF12A179DD900FC7FB8 /* ActivityViewRepresentable.swift */,
+				A91606AE2AD6C65100E581A4 /* MapViewRepresentable.swift */,
 			);
 			path = Representables;
 			sourceTree = "<group>";
@@ -1170,6 +1173,7 @@
 				A91F587829E67C35008C0F35 /* EmailLoginView.swift in Sources */,
 				A9947EEE2A179D9B00FC7FB8 /* SFSafariViewRepresentable.swift in Sources */,
 				A94A87362AA1FF8400168BC1 /* LoginOptionsView.swift in Sources */,
+				A91606AF2AD6C65200E581A4 /* MapViewRepresentable.swift in Sources */,
 				A95E758B29ACA1540081A170 /* Logger.swift in Sources */,
 				A91F587629E67C2C008C0F35 /* EmailLoginFeature.swift in Sources */,
 				A9FAD6B92A54180A003A46F5 /* CoreData+Convertible.swift in Sources */,
