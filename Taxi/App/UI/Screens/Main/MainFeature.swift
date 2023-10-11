@@ -12,16 +12,42 @@ struct MainFeature: Reducer {
     
     struct State: Equatable {
         var sidebar = SidebarFeature.State()
+        var map = MapFeature.State()
+        
+        var path = StackState<Path.State>()
     }
     
     enum Action: Equatable {
-        case sidebar(SidebarFeature.Action)
+        enum ViewAction: Equatable {
+            case onViewLoad
+            case onMenuTap
+        }
         
         enum Delegate: Equatable {
             case didLogout
         }
         
+        case view(ViewAction)
         case delegate(Delegate)
+        case sidebar(SidebarFeature.Action)
+        case map(MapFeature.Action)
+        case path(StackAction<Path.State, Path.Action>)
+    }
+    
+    struct Path: Reducer {
+        enum State: Equatable {
+            case settings(SettingsFeature.State)
+        }
+
+        enum Action: Equatable {
+            case settings(SettingsFeature.Action)
+        }
+
+        var body: some Reducer<State, Action> {
+            Scope(state: /State.settings, action: /Action.settings) {
+                SettingsFeature()
+            }
+        }
     }
     
     var body: some Reducer<State, Action> {
@@ -29,9 +55,24 @@ struct MainFeature: Reducer {
             SidebarFeature()
         }
         
+        Scope(state: \.map, action: /Action.map) {
+            MapFeature()
+        }
+        
         Reduce { state, action in
             switch action {
+            // view actions
+            case let .view(viewAction):
+                switch viewAction {
+                case .onViewLoad:
+                    return .none
+
+                case .onMenuTap:
+                    state.sidebar.isVisible.toggle()
+                    return .none
+                }
                 
+            // sidebar actions
             case let .sidebar(.delegate(.didSidebarTapped(type))):
                 switch type {
                 case .logout:
@@ -41,9 +82,16 @@ struct MainFeature: Reducer {
                     return .none
                 }
                 
-            case .sidebar, .delegate:
+            // path actions
+            case .path:
+                return .none
+                
+            case .sidebar, .map, .delegate:
                 return .none
             }
+        }
+        .forEach(\.path, action: /Action.path) {
+            Path()
         }
     }
 }

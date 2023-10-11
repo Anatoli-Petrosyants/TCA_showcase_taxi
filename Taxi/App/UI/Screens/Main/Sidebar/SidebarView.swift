@@ -37,7 +37,7 @@ extension SidebarView: View {
                 }
                 .background(.black.opacity(0.6))
                 .opacity(viewStore.isVisible ? 1 : 0)
-                .animation(.easeInOut.delay(0.1), value: viewStore.isVisible)
+                .animation(.spring(), value: viewStore.isVisible)
                 .onTapGesture {                                        
                     viewStore.send(.onDismiss)
                 }

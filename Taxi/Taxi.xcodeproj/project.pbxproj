@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		A90110102A4434A800DD08C4 /* UserDefaultsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A901100F2A4434A800DD08C4 /* UserDefaultsClient.swift */; };
+		A91606A52AD5667A00E581A4 /* MapFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91606A42AD5667A00E581A4 /* MapFeature.swift */; };
+		A91606A72AD5668200E581A4 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91606A62AD5668200E581A4 /* MapView.swift */; };
+		A91606AA2AD5674F00E581A4 /* SettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91606A92AD5674F00E581A4 /* SettingsFeature.swift */; };
+		A91606AC2AD5675600E581A4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91606AB2AD5675600E581A4 /* SettingsView.swift */; };
 		A91D5A512AC17E8300A76E57 /* OnboardingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D5A502AC17E8300A76E57 /* OnboardingTests.swift */; };
 		A91F587629E67C2C008C0F35 /* EmailLoginFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F587529E67C2C008C0F35 /* EmailLoginFeature.swift */; };
 		A91F587829E67C35008C0F35 /* EmailLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F587729E67C35008C0F35 /* EmailLoginView.swift */; };
@@ -181,6 +185,10 @@
 
 /* Begin PBXFileReference section */
 		A901100F2A4434A800DD08C4 /* UserDefaultsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsClient.swift; sourceTree = "<group>"; };
+		A91606A42AD5667A00E581A4 /* MapFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFeature.swift; sourceTree = "<group>"; };
+		A91606A62AD5668200E581A4 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		A91606A92AD5674F00E581A4 /* SettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFeature.swift; sourceTree = "<group>"; };
+		A91606AB2AD5675600E581A4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A91D5A4E2AC17E8300A76E57 /* TaxiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaxiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A91D5A502AC17E8300A76E57 /* OnboardingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTests.swift; sourceTree = "<group>"; };
 		A91F587529E67C2C008C0F35 /* EmailLoginFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginFeature.swift; sourceTree = "<group>"; };
@@ -356,6 +364,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A91606A82AD5668600E581A4 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				A91606A42AD5667A00E581A4 /* MapFeature.swift */,
+				A91606A62AD5668200E581A4 /* MapView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		A91606AD2AD5675A00E581A4 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A91606A92AD5674F00E581A4 /* SettingsFeature.swift */,
+				A91606AB2AD5675600E581A4 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		A91D5A4F2AC17E8300A76E57 /* AppTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,6 +407,7 @@
 				A92A229F29F8EEC50034469C /* MainFeature.swift */,
 				A92A229D29F8EAAD0034469C /* MainView.swift */,
 				A96BF14A2A6A700700B14247 /* Sidebar */,
+				A91606A82AD5668600E581A4 /* Map */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -512,6 +539,7 @@
 				A96BF1532A6AAAA500B14247 /* SidebarLogic.swift */,
 				A96BF1462A6A6FFB00B14247 /* SidebarFeature.swift */,
 				A96BF1482A6A700300B14247 /* SidebarView.swift */,
+				A91606AD2AD5675A00E581A4 /* Settings */,
 			);
 			path = Sidebar;
 			sourceTree = "<group>";
@@ -1069,8 +1097,10 @@
 				A930CDB229E5414E00AF73E3 /* LoadingView.swift in Sources */,
 				A9A0CB8F29D6CABE0048A649 /* CTAButtonStyle.swift in Sources */,
 				A9DED5CB29AC9FC6003EFA02 /* Configuration.swift in Sources */,
+				A91606AA2AD5674F00E581A4 /* SettingsFeature.swift in Sources */,
 				A9FE005A29C875EE00B5F868 /* View+Extensions.swift in Sources */,
 				A9F665982A54302700D4FB8A /* Account.swift in Sources */,
+				A91606AC2AD5675600E581A4 /* SettingsView.swift in Sources */,
 				A96FEB632A9E13E7008DC5BC /* JoinView.swift in Sources */,
 				A930CDAC29E41FEB00AF73E3 /* AppFeature.swift in Sources */,
 				A92A229E29F8EAAD0034469C /* MainView.swift in Sources */,
@@ -1091,6 +1121,8 @@
 				A930CDA029E41C3A00AF73E3 /* AppView.swift in Sources */,
 				A9AA22CC2A8F9BF90073E070 /* FirestoreClient.swift in Sources */,
 				A9F53F6D2A8B783A005D6182 /* View+DismissKeyboardOnTap.swift in Sources */,
+				A91606A52AD5667A00E581A4 /* MapFeature.swift in Sources */,
+				A91606A72AD5668200E581A4 /* MapView.swift in Sources */,
 				A9DED5B329AC93E6003EFA02 /* Colors.swift in Sources */,
 				A9BEED4129D2DAA2007ADC33 /* Color+Extensions.swift in Sources */,
 				A9A0CBA329D6F1B50048A649 /* Onboarding.swift in Sources */,

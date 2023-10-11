@@ -25,32 +25,44 @@ extension MainView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            ZStack {
-                Text("Main")
-                
-                SidebarView(
-                    store: self.store.scope(
-                        state: \.sidebar,
-                        action: MainFeature.Action.sidebar
+            NavigationStackStore(
+                self.store.scope(state: \.path, action: { .path($0) })
+            ) {
+                ZStack(alignment: .topLeading) {
+                    MapView(
+                        store: self.store.scope(
+                            state: \.map,
+                            action: MainFeature.Action.map
+                        )
                     )
-                )
-                .ignoresSafeArea()
+                    .ignoresSafeArea()
+                    
+                    Button {
+                        viewStore.send(.view(.onMenuTap))
+                    } label: {
+                        Image(systemName: "line.3.horizontal")
+                            .tint(Color.black)
+                    }
+                    .padding()
+
+                    SidebarView(
+                        store: self.store.scope(
+                            state: \.sidebar,
+                            action: MainFeature.Action.sidebar
+                        )
+                    )
+                    .ignoresSafeArea()
+                }
+            } destination: {
+                switch $0 {
+                case .settings:
+                    CaseLet(/MainFeature.Path.State.settings,
+                             action: MainFeature.Path.Action.settings,
+                             then: SettingsView.init(store:)
+                    )
+                }
             }
         }
     }
 }
 
-#if DEBUG
-// MARK: - Previews
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView(
-            store:
-                Store(initialState: MainFeature.State(), reducer: {
-                    MainFeature()
-                })
-        )
-    }
-}
-#endif
