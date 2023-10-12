@@ -28,23 +28,28 @@ extension MainView: View {
             NavigationStackStore(
                 self.store.scope(state: \.path, action: { .path($0) })
             ) {
-                ZStack(alignment: .topLeading) {
-                    MapView(
-                        store: self.store.scope(
-                            state: \.map,
-                            action: MainFeature.Action.map
+                ZStack {
+                    ZStack(alignment: .topLeading) {
+                        Color.clear
+                        
+                        MapView(
+                            store: self.store.scope(
+                                state: \.map,
+                                action: MainFeature.Action.map
+                            )
                         )
-                    )
-                    .ignoresSafeArea()
-                    
-                    Button {
-                        viewStore.send(.view(.onMenuTap))
-                    } label: {
-                        Image(systemName: "line.3.horizontal")
-                            .tint(Color.black)
+                        .ignoresSafeArea()
+                        
+                        Button {
+                            viewStore.send(.view(.onMenuTap))
+                        } label: {
+                            Image(systemName: "line.3.horizontal")
+                                .tint(Color.black)
+                        }
+                        .padding()
+                        .background(.red)
                     }
-                    .padding()
-
+                    
                     SidebarView(
                         store: self.store.scope(
                             state: \.sidebar,
@@ -53,6 +58,33 @@ extension MainView: View {
                     )
                     .ignoresSafeArea()
                 }
+                
+//                ZStack {
+//                    MapView(
+//                        store: self.store.scope(
+//                            state: \.map,
+//                            action: MainFeature.Action.map
+//                        )
+//                    )
+//                    .ignoresSafeArea()
+//
+//                    Button {
+//                        viewStore.send(.view(.onMenuTap))
+//                    } label: {
+//                        Image(systemName: "line.3.horizontal")
+//                            .tint(Color.black)
+//                    }
+//                    .padding()
+//                    .background(.red)
+//
+//                    SidebarView(
+//                        store: self.store.scope(
+//                            state: \.sidebar,
+//                            action: MainFeature.Action.sidebar
+//                        )
+//                    )
+//                    .ignoresSafeArea()
+//                }
             } destination: {
                 switch $0 {
                 case .settings:

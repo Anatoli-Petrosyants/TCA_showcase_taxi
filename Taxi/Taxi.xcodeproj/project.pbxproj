@@ -13,6 +13,7 @@
 		A91606AA2AD5674F00E581A4 /* SettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91606A92AD5674F00E581A4 /* SettingsFeature.swift */; };
 		A91606AC2AD5675600E581A4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91606AB2AD5675600E581A4 /* SettingsView.swift */; };
 		A91606AF2AD6C65200E581A4 /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91606AE2AD6C65100E581A4 /* MapViewRepresentable.swift */; };
+		A91606B32AD803CA00E581A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A91606B22AD803CA00E581A4 /* GoogleService-Info.plist */; };
 		A91D5A512AC17E8300A76E57 /* OnboardingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D5A502AC17E8300A76E57 /* OnboardingTests.swift */; };
 		A91F587629E67C2C008C0F35 /* EmailLoginFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F587529E67C2C008C0F35 /* EmailLoginFeature.swift */; };
 		A91F587829E67C35008C0F35 /* EmailLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F587729E67C35008C0F35 /* EmailLoginView.swift */; };
@@ -112,7 +113,6 @@
 		A9A5237A29C342440073177C /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5237929C342440073177C /* CircularProgressView.swift */; };
 		A9AA22BA2A8DE77E0073E070 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A9AA22B92A8DE77E0073E070 /* ComposableArchitecture */; };
 		A9AA22C82A8F96900073E070 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A9AA22C72A8F96900073E070 /* FirebaseFirestoreSwift */; };
-		A9AA22CA2A8F9B460073E070 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9AA22C92A8F9B460073E070 /* GoogleService-Info.plist */; };
 		A9AA22CC2A8F9BF90073E070 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */; };
 		A9ABFB3B2AA5FADC0093EBF3 /* UserNotificationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ABFB3A2AA5FADC0093EBF3 /* UserNotificationClient.swift */; };
 		A9ABFB3D2AA607F10093EBF3 /* RemoteNotificationsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ABFB3C2AA607F10093EBF3 /* RemoteNotificationsClient.swift */; };
@@ -191,6 +191,7 @@
 		A91606A92AD5674F00E581A4 /* SettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFeature.swift; sourceTree = "<group>"; };
 		A91606AB2AD5675600E581A4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A91606AE2AD6C65100E581A4 /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
+		A91606B22AD803CA00E581A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A91D5A4E2AC17E8300A76E57 /* TaxiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaxiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A91D5A502AC17E8300A76E57 /* OnboardingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTests.swift; sourceTree = "<group>"; };
 		A91F587529E67C2C008C0F35 /* EmailLoginFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginFeature.swift; sourceTree = "<group>"; };
@@ -284,7 +285,6 @@
 		A9A0CBA829D6F2BB0048A649 /* onboarding_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_2.json; sourceTree = "<group>"; };
 		A9A0CBB629D6FB2D0048A649 /* onboarding_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_1.json; sourceTree = "<group>"; };
 		A9A5237929C342440073177C /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
-		A9AA22C92A8F9B460073E070 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		A9ABFB3A2AA5FADC0093EBF3 /* UserNotificationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationClient.swift; sourceTree = "<group>"; };
 		A9ABFB3C2AA607F10093EBF3 /* RemoteNotificationsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNotificationsClient.swift; sourceTree = "<group>"; };
@@ -852,7 +852,7 @@
 			isa = PBXGroup;
 			children = (
 				A9AF260D2A78E8D400631158 /* Showcase.entitlements */,
-				A9AA22C92A8F9B460073E070 /* GoogleService-Info.plist */,
+				A91606B22AD803CA00E581A4 /* GoogleService-Info.plist */,
 				A9AF26042A77997900631158 /* Taxi-Info.plist */,
 				A9DED5A829AC7FA7003EFA02 /* Preview Assets.xcassets */,
 				A9DED5A529AC7FA7003EFA02 /* Assets.xcassets */,
@@ -1068,7 +1068,7 @@
 				A9DED5A929AC7FA7003EFA02 /* Preview Assets.xcassets in Resources */,
 				A9A0CBB729D6FB2D0048A649 /* onboarding_1.json in Resources */,
 				A9A0CBAB29D6F2BB0048A649 /* onboarding_2.json in Resources */,
-				A9AA22CA2A8F9B460073E070 /* GoogleService-Info.plist in Resources */,
+				A91606B32AD803CA00E581A4 /* GoogleService-Info.plist in Resources */,
 				A9DED5C229AC9683003EFA02 /* LaunchScreen.storyboard in Resources */,
 				A9DED5A629AC7FA7003EFA02 /* Assets.xcassets in Resources */,
 			);
