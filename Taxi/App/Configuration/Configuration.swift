@@ -34,6 +34,7 @@ protocol ShowcaseConfiguration {
     var deviceNotificationToken: String { get }
     var timezoneOffset: String { get }
     var apiVersion: String { get }
+    var mapKey: String { get }
 }
 
 public class Configuration {
@@ -179,5 +180,9 @@ extension Configuration: ShowcaseConfiguration {
     
     var apiVersion: String {
         return config["api_version"] as! String
-    }    
+    }
+    
+    var mapKey: String {
+        return config["map_key"] as! String
+    }
 }

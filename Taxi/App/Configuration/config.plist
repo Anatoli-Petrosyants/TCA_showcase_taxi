@@ -10,6 +10,8 @@
 		<string>i</string>
 		<key>clientId</key>
 		<string>showcase</string>
+		<key>map_key</key>
+		<string>AIzaSyBe0bLs5Yz62GF2K9MIzgB_1N3NS9frL5o</string>
 	</dict>
 	<key>Development</key>
 	<dict>
