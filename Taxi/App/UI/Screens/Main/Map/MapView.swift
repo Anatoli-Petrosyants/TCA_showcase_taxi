@@ -15,6 +15,12 @@ import SDWebImageSwiftUI
 
 struct MapView {
     let store: StoreOf<MapFeature>
+    
+//    @State private var region = MKCoordinateRegion(
+//        center: CLLocationCoordinate2D(latitude: 40.183974823578815,
+//                                       longitude: 44.51509883139478),
+//        span: MKCoordinateSpan(latitudeDelta: 0.001,
+//                               longitudeDelta: 0.001))
 }
 
 // MARK: - Views
@@ -27,12 +33,12 @@ extension MapView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            GeometryReader { geometry in
-                ZStack {
-                    MapViewRepresentable()                    
-                }
-                .frame(width: geometry.size.width, height: geometry.size.height)
-            }
+//            MapViewRepresentable()
+            
+            Text("asas")
         }
     }
 }
+
+
+// https://github.com/googlemaps-samples/maps-sdk-for-ios-samples/issues/58
