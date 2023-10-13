@@ -6,112 +6,99 @@
 //
 
 import SwiftUI
-import MapKit
+import GoogleMaps
+import CoreLocation
+import GoogleMapsUtils
 
-//struct MapViewRepresentable: UIViewRepresentable {
-//
-//    func makeUIView(context: Context) -> some UIView {
-//        Log.info("MapViewRepresentable makeUIView")
-//
-//        let mapView = MKMapView(frame: .zero)
-//        mapView.delegate = context.coordinator
-//        mapView.isRotateEnabled = false
-//        mapView.showsUserLocation = true
-//        mapView.userTrackingMode = .follow
-//        mapView.isZoomEnabled = true
-//        // mapView.cameraZoomRange
-//        mapView.mapType = .hybridFlyover
-//
-//        let configuration = MKStandardMapConfiguration(elevationStyle: .realistic, emphasisStyle: .default)
-//        configuration.showsTraffic = true
-//        mapView.preferredConfiguration = configuration
-//
-//        return mapView
-//    }
-//
-//    func updateUIView(_ uiView: UIViewType, context: Context) {
-//        Log.info("MapViewRepresentable updateUIView")
-//    }
-//
-//    func makeCoordinator() -> MapCoordinator {
-//        return MapCoordinator(self)
-//    }
-//}
-//
-//extension MapViewRepresentable {
-//
-//    class MapCoordinator: NSObject, MKMapViewDelegate {
-//
-//        let mapView : MapViewRepresentable
-//        var userLocationCoordinate : CLLocationCoordinate2D?
-//
-//        init(_ mapView: MapViewRepresentable) {
-//            self.mapView = mapView
-//        }
-//
-//        // MARK: - MKMapViewDelegate
-//
-////        func mapViewWillStartLoadingMap(_ mapView: MKMapView) {
-////            Log.info("mapViewWill StartLoadingMap")
-////        }
-////
-////        func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-////            Log.info("mapViewDid FinishLoadingMap")
-////        }
-////
-////        func mapViewDidFailLoadingMap(_ mapView: MKMapView, withError error: Error) {
-////            Log.info("mapViewDid FailLoadingMap")
-////        }
-//
-//        func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-//            Log.info("mapView didUpdate userLocation \(userLocation)")
-//        }
-//    }
-//}
+struct GoogleMapViewRepresentable: UIViewRepresentable {
+     
+    typealias UIViewType = GMSMapView
+    private let mapView : GMSMapView
 
+    init() {
+        mapView = GMSMapView.map(withFrame: CGRect.zero, camera: .defaultCamera)
+        mapView.isMyLocationEnabled = true
+        mapView.isTrafficEnabled = true
+        mapView.isBuildingsEnabled = true
+        mapView.settings.rotateGestures = false
+        mapView.settings.tiltGestures = false
+        mapView.settings.myLocationButton = true
+    }
+    
+    /// Creates a `UIView` instance to be presented.
+    func makeUIView(context: Self.Context) -> UIViewType {
+        Log.info("GoogleMapViewRepresentable makeUIView")
+        mapView.delegate = context.coordinator
+        return mapView
+    }
 
+    /// Updates the presented `UIView` (and coordinator) to the latest
+    /// configuration.
+    func updateUIView(_ mapView: UIViewType , context: Self.Context) {
+        Log.info("GoogleMapViewRepresentable updateUIView")
+    }
+       
+    func update(cameraPosition: GMSCameraPosition) -> some View {
+        mapView.animate(to: cameraPosition)
+        return self
+    }
+    
+    func update(zoom level: Float) -> some View {
+        mapView.animate(toZoom: level)
+        return self
+    }
+    
+    func makeCoordinator() -> GoogleMapCoordinator {
+        return GoogleMapCoordinator(self)
+    }
+}
 
-//extension MapViewRepresentable {
-//
-//    class MapCoordinator: NSObject, MKMapViewDelegate {
-//
-//        // MARK: - Properties
-//
-//        let parent : MapViewRepresentable
-//        var currentUserRegion : MKCoordinateRegion?
-//
-//        // MARK: - Lifecycle
-//        init(parent: MapViewRepresentable) {
-//            self.parent = parent
-//            super.init()
-//        }
-//
-//        // MARK: - MKMapViewDelegate
-//        func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-////            let userRegion = MKCoordinateRegion(
-////                center: CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude,
-////                                               longitude: userLocation.coordinate.longitude),
-////                span: MKCoordinateSpan(latitudeDelta: 0.07,
-////                                       longitudeDelta: 0.07))
-////
-////            Log.debug("userRegion \(userRegion)")
-////
-////            self.currentUserRegion = userRegion
-////
-////            parent.mapView.setRegion(userRegion, animated: true)
-//        }
-//
-//        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//            return nil
-//        }
-//
-////        func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-////            let polyLine = MKPolylineRenderer(overlay: overlay)
-////            polyLine.strokeColor = UIColor(Color.theme.goldBackgroundColor.opacity(0.92))
-////            polyLine.lineWidth = 7
-////            return polyLine
-////        }
-//
-//        // MARK: - Helpers
-//    }
-//}
+extension GoogleMapViewRepresentable {
+
+    class GoogleMapCoordinator: NSObject, GMSMapViewDelegate {
+
+        let parent : GoogleMapViewRepresentable
+
+        init(_ parent: GoogleMapViewRepresentable) {
+            self.parent = parent
+        }
+
+        // MARK: - MKMapViewDelegate
+        
+        func mapViewSnapshotReady(_ mapView: GMSMapView) {
+            Log.info("mapViewSnapshotReady")
+        }
+        
+        func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
+            // gesture If YES, this is occurring due to a user gesture.
+            Log.info("willMove gesture \(gesture)")
+        }
+        
+        func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+            Log.info("didChange position \(position)")
+        }
+        
+        func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+            Log.info("idleAt position \(position)")
+            
+            let projection = mapView.projection.visibleRegion()
+            
+            Log.info("idleAt projection \(projection)")
+        }
+
+        func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+            Log.info("didTapAt coordinate \(coordinate)")
+        }
+        
+        func mapView(_ mapView: GMSMapView, didTapMyLocation location: CLLocationCoordinate2D) {
+            Log.info("didTapMyLocation")
+        }
+    }
+}
+
+extension GMSCameraPosition {
+
+    static let defaultCamera = GMSCameraPosition.camera(withLatitude: 40.183974823578815,
+                                                        longitude: 44.51509883139478,
+                                                        zoom: 17.0)
+}

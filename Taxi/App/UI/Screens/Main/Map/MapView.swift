@@ -33,9 +33,13 @@ extension MapView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-//            MapViewRepresentable()
             
-            Text("asas")
+            ZStack {
+                GoogleMapViewRepresentable()
+                
+                Image(systemName: "mappin")
+                    .font(.system(size: 40))
+            }
         }
     }
 }

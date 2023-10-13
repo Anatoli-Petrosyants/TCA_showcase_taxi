@@ -7,4 +7,5 @@ platform :ios, '14.0'
 
 target 'Taxi' do
   pod 'GoogleMaps'
+  pod 'Google-Maps-iOS-Utils'
 end

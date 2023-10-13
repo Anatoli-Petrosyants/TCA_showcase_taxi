@@ -1,4 +1,23 @@
 PODS:
+  - Google-Maps-iOS-Utils (4.1.0):
+    - Google-Maps-iOS-Utils/Clustering (= 4.1.0)
+    - Google-Maps-iOS-Utils/Geometry (= 4.1.0)
+    - Google-Maps-iOS-Utils/GeometryUtils (= 4.1.0)
+    - Google-Maps-iOS-Utils/Heatmap (= 4.1.0)
+    - Google-Maps-iOS-Utils/QuadTree (= 4.1.0)
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Clustering (4.1.0):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Geometry (4.1.0):
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/GeometryUtils (4.1.0):
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Heatmap (4.1.0):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/QuadTree (4.1.0):
+    - GoogleMaps
   - GoogleMaps (7.0.0):
     - GoogleMaps/Maps (= 7.0.0)
   - GoogleMaps/Base (7.0.0)
@@ -6,15 +25,18 @@ PODS:
     - GoogleMaps/Base
 
 DEPENDENCIES:
+  - Google-Maps-iOS-Utils
   - GoogleMaps
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - Google-Maps-iOS-Utils
     - GoogleMaps
 
 SPEC CHECKSUMS:
+  Google-Maps-iOS-Utils: 3343332b18dfd5be8f1f44edd7d481ace3da4d9a
   GoogleMaps: 6e9c923ca035989709fcb5771544fda4cc5fa2a4
 
-PODFILE CHECKSUM: 5087ea1e5026d5b646476d6b23e9288da3eacb27
+PODFILE CHECKSUM: b09d2625ecb009d05ef923319b156b000f714a19
 
 COCOAPODS: 1.13.0

@@ -379,7 +379,6 @@
 				6B326BCA5DE228C3D0F5E504 /* Pods-Taxi.qa.xcconfig */,
 				1B1D612DE996858965D802DF /* Pods-Taxi.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -1476,7 +1475,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6B326BCA5DE228C3D0F5E504 /* Pods-Taxi.qa.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = App/Resources/Showcase.entitlements;
@@ -1634,7 +1632,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D47348E658D6630352BE8F94 /* Pods-Taxi.development.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = App/Resources/Showcase.entitlements;
@@ -1674,7 +1671,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1B1D612DE996858965D802DF /* Pods-Taxi.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = App/Resources/Showcase.entitlements;
