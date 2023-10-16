@@ -34,11 +34,18 @@ extension MapView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             ZStack {
-                GoogleMapViewRepresentable()
+                GoogleMapViewRepresentable(
+                    mapViewIdleAtPosition: { position in
+                        Log.debug("mapViewIdleAtPosition \(position)")
+                    },
+                    mapViewWillMove: { gesture in
+                        Log.debug("mapViewWillMove \(gesture)")
+                    }
+                )
                 
                 Image(systemName: "mappin")
                     .font(.system(size: 40))
-                    .position(x: UIScreen.main.bounds.size.width / 2, y: 200)
+                    .position(x: UIScreen.main.bounds.size.width / 2, y: 300)
             }
         }
     }

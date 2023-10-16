@@ -72,3 +72,8 @@ public func ==(lhs: MKCoordinateRegion, rhs: MKCoordinateRegion) -> Bool {
 //public func ==(lhs: MKCoordinateSpan, rhs: MKCoordinateSpan) -> Bool {
 //    return lhs.latitudeDelta == rhs.latitudeDelta && lhs.longitudeDelta == rhs.longitudeDelta
 //}
+
+
+// let projection = mapView.projection
+// let centerPoint = CGPoint(x: UIScreen.main.bounds.size.width / 2, y: 200)
+// Log.info("idleAt projection \(projection.coordinate(for: centerPoint))")

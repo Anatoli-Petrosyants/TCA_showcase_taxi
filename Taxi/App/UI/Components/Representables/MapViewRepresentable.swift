@@ -11,11 +11,15 @@ import CoreLocation
 import GoogleMapsUtils
 
 struct GoogleMapViewRepresentable: UIViewRepresentable {
+    
+    var mapViewIdleAtPosition: (GMSCameraPosition) -> ()
+    var mapViewWillMove: (Bool) -> ()
      
     typealias UIViewType = GMSMapView
     private let mapView : GMSMapView
 
-    init() {
+    init(mapViewIdleAtPosition: @escaping (GMSCameraPosition) -> (),
+         mapViewWillMove: @escaping (Bool) -> ()) {
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: .defaultCamera)
         mapView.isMyLocationEnabled = true
         mapView.isTrafficEnabled = true
@@ -23,11 +27,13 @@ struct GoogleMapViewRepresentable: UIViewRepresentable {
         mapView.settings.rotateGestures = false
         mapView.settings.tiltGestures = false
         mapView.settings.myLocationButton = true
+        
+        self.mapViewIdleAtPosition = mapViewIdleAtPosition
+        self.mapViewWillMove = mapViewWillMove
     }
     
     /// Creates a `UIView` instance to be presented.
     func makeUIView(context: Self.Context) -> UIViewType {
-        Log.info("GoogleMapViewRepresentable makeUIView")
         mapView.delegate = context.coordinator
         return mapView
     }
@@ -35,7 +41,7 @@ struct GoogleMapViewRepresentable: UIViewRepresentable {
     /// Updates the presented `UIView` (and coordinator) to the latest
     /// configuration.
     func updateUIView(_ mapView: UIViewType , context: Self.Context) {
-        Log.info("GoogleMapViewRepresentable updateUIView")
+        
     }
        
     func update(cameraPosition: GMSCameraPosition) -> some View {
@@ -71,7 +77,8 @@ extension GoogleMapViewRepresentable {
         
         func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
             // gesture If YES, this is occurring due to a user gesture.
-//            Log.info("willMove gesture \(gesture)")
+            // Log.info("willMove gesture \(gesture)")
+            self.parent.mapViewWillMove(gesture)
         }
         
         func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
@@ -79,14 +86,8 @@ extension GoogleMapViewRepresentable {
         }
         
         func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-            Log.info("idleAt position \(position.target)")
-            
-            let projection = mapView.projection
-            let centerPoint = CGPoint(x: UIScreen.main.bounds.size.width / 2, y: 200)
-            Log.info("idleAt projection \(projection.coordinate(for: centerPoint))")
-            
-//            let projection = mapView.projection.visibleRegion()
-//            Log.info("idleAt projection \(projection)")
+            // Log.info("idleAt position \(position.target)")
+            self.parent.mapViewIdleAtPosition(position)
         }
 
         func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
