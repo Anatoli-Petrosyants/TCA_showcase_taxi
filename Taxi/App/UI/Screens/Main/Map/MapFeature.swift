@@ -77,3 +77,11 @@ public func ==(lhs: MKCoordinateRegion, rhs: MKCoordinateRegion) -> Bool {
 // let projection = mapView.projection
 // let centerPoint = CGPoint(x: UIScreen.main.bounds.size.width / 2, y: 200)
 // Log.info("idleAt projection \(projection.coordinate(for: centerPoint))")
+
+// https://github.com/googlemaps-samples/maps-sdk-for-ios-samples/issues/58
+
+//    @State private var region = MKCoordinateRegion(
+//        center: CLLocationCoordinate2D(latitude: 40.183974823578815,
+//                                       longitude: 44.51509883139478),
+//        span: MKCoordinateSpan(latitudeDelta: 0.001,
+//                               longitudeDelta: 0.001))

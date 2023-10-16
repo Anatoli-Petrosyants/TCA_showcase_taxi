@@ -16,11 +16,7 @@ import SDWebImageSwiftUI
 struct MapView {
     let store: StoreOf<MapFeature>
     
-//    @State private var region = MKCoordinateRegion(
-//        center: CLLocationCoordinate2D(latitude: 40.183974823578815,
-//                                       longitude: 44.51509883139478),
-//        span: MKCoordinateSpan(latitudeDelta: 0.001,
-//                               longitudeDelta: 0.001))
+    @State private var moving: Bool = true
 }
 
 // MARK: - Views
@@ -37,19 +33,24 @@ extension MapView: View {
                 GoogleMapViewRepresentable(
                     mapViewIdleAtPosition: { position in
                         Log.debug("mapViewIdleAtPosition \(position)")
+                        
+                        withAnimation {
+                            moving = false
+                        }
                     },
                     mapViewWillMove: { gesture in
                         Log.debug("mapViewWillMove \(gesture)")
+                        
+                        withAnimation {
+                            moving = true
+                        }
                     }
                 )
                 
-                Image(systemName: "mappin")
-                    .font(.system(size: 40))
-                    .position(x: UIScreen.main.bounds.size.width / 2, y: 300)
+                ChooseAddressPinView()
+                    .position(x: UIScreen.main.bounds.size.width / 2,
+                              y: moving ? 285 : 300)
             }
         }
     }
 }
-
-
-// https://github.com/googlemaps-samples/maps-sdk-for-ios-samples/issues/58
