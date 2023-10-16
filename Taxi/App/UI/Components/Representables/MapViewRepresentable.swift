@@ -26,7 +26,7 @@ struct GoogleMapViewRepresentable: UIViewRepresentable {
         mapView.isBuildingsEnabled = true
         mapView.settings.rotateGestures = false
         mapView.settings.tiltGestures = false
-        mapView.settings.myLocationButton = true
+        // mapView.settings.myLocationButton = true
         
         self.mapViewIdleAtPosition = mapViewIdleAtPosition
         self.mapViewWillMove = mapViewWillMove

@@ -29,7 +29,7 @@ extension MapView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            ZStack {
+            ZStack(alignment: .bottomTrailing) {
                 GoogleMapViewRepresentable(
                     mapViewIdleAtPosition: { position in
                         Log.debug("mapViewIdleAtPosition \(position)")
@@ -39,8 +39,6 @@ extension MapView: View {
                         }
                     },
                     mapViewWillMove: { gesture in
-                        Log.debug("mapViewWillMove \(gesture)")
-                        
                         withAnimation {
                             moving = true
                         }
@@ -50,6 +48,12 @@ extension MapView: View {
                 ChooseAddressPinView()
                     .position(x: UIScreen.main.bounds.size.width / 2,
                               y: moving ? 285 : 300)
+                
+                CurrentLocationButton(didTap: {
+                    Log.debug("CurrentLocationButton didTap")
+                })
+                .opacity(moving ? 0 : 1.0)
+                .offset(x: -20, y: -20)
             }
         }
     }

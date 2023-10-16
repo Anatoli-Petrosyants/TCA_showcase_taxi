@@ -75,6 +75,7 @@
 		A988F0D629B60B470059F9BB /* ErrorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988F0D529B60B470059F9BB /* ErrorModifier.swift */; };
 		A988F0D829B60D170059F9BB /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988F0D729B60D170059F9BB /* AppError.swift */; };
 		A98931CB2ADD193B00317BC7 /* ChooseAddressPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98931CA2ADD193B00317BC7 /* ChooseAddressPinView.swift */; };
+		A98931CD2ADD1AED00317BC7 /* CurrentLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98931CC2ADD1AED00317BC7 /* CurrentLocationButton.swift */; };
 		A98DD15E2A9F31DA00B39EDC /* Localization+LoginOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DD15D2A9F31DA00B39EDC /* Localization+LoginOptions.swift */; };
 		A98DD1612A9F545100B39EDC /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = A98DD1602A9F545100B39EDC /* iPhoneNumberField */; };
 		A990E5042A4194820004F4F9 /* Showcase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E5032A4194820004F4F9 /* Showcase.swift */; };
@@ -256,6 +257,7 @@
 		A988F0D529B60B470059F9BB /* ErrorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModifier.swift; sourceTree = "<group>"; };
 		A988F0D729B60D170059F9BB /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		A98931CA2ADD193B00317BC7 /* ChooseAddressPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAddressPinView.swift; sourceTree = "<group>"; };
+		A98931CC2ADD1AED00317BC7 /* CurrentLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationButton.swift; sourceTree = "<group>"; };
 		A98DD15D2A9F31DA00B39EDC /* Localization+LoginOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+LoginOptions.swift"; sourceTree = "<group>"; };
 		A990E5032A4194820004F4F9 /* Showcase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Showcase.swift; sourceTree = "<group>"; };
 		A990E5052A41970B0004F4F9 /* ProgressViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewWrapper.swift; sourceTree = "<group>"; };
@@ -620,6 +622,7 @@
 			isa = PBXGroup;
 			children = (
 				A98931CA2ADD193B00317BC7 /* ChooseAddressPinView.swift */,
+				A98931CC2ADD1AED00317BC7 /* CurrentLocationButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1210,6 +1213,7 @@
 				A9AF26032A73E8A500631158 /* UIApplicationClient.swift in Sources */,
 				A92E6AC72ABACF2F00186F8D /* String+CardBrands.swift in Sources */,
 				A990E5332A41BCC90004F4F9 /* NoNetworkView.swift in Sources */,
+				A98931CD2ADD1AED00317BC7 /* CurrentLocationButton.swift in Sources */,
 				A98DD15E2A9F31DA00B39EDC /* Localization+LoginOptions.swift in Sources */,
 				A9DED5B129AC93BE003EFA02 /* Fonts.swift in Sources */,
 				A9A0CB7129D41F000048A649 /* MapAnnotationData.swift in Sources */,
