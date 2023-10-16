@@ -33,12 +33,12 @@ extension MapView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            
             ZStack {
                 GoogleMapViewRepresentable()
                 
                 Image(systemName: "mappin")
                     .font(.system(size: 40))
+                    .position(x: UIScreen.main.bounds.size.width / 2, y: 200)
             }
         }
     }

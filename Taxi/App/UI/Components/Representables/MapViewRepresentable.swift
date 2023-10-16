@@ -66,32 +66,35 @@ extension GoogleMapViewRepresentable {
         // MARK: - MKMapViewDelegate
         
         func mapViewSnapshotReady(_ mapView: GMSMapView) {
-            Log.info("mapViewSnapshotReady")
+//            Log.info("mapViewSnapshotReady")
         }
         
         func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
             // gesture If YES, this is occurring due to a user gesture.
-            Log.info("willMove gesture \(gesture)")
+//            Log.info("willMove gesture \(gesture)")
         }
         
         func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-            Log.info("didChange position \(position)")
+//            Log.info("didChange position \(position)")
         }
         
         func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-            Log.info("idleAt position \(position)")
+            Log.info("idleAt position \(position.target)")
             
-            let projection = mapView.projection.visibleRegion()
+            let projection = mapView.projection
+            let centerPoint = CGPoint(x: UIScreen.main.bounds.size.width / 2, y: 200)
+            Log.info("idleAt projection \(projection.coordinate(for: centerPoint))")
             
-            Log.info("idleAt projection \(projection)")
+//            let projection = mapView.projection.visibleRegion()
+//            Log.info("idleAt projection \(projection)")
         }
 
         func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-            Log.info("didTapAt coordinate \(coordinate)")
+//            Log.info("didTapAt coordinate \(coordinate)")
         }
         
         func mapView(_ mapView: GMSMapView, didTapMyLocation location: CLLocationCoordinate2D) {
-            Log.info("didTapMyLocation")
+//            Log.info("didTapMyLocation")
         }
     }
 }
