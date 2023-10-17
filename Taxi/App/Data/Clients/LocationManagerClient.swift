@@ -16,6 +16,8 @@ struct LocationManagerClient {
     var authorizationStatus: @Sendable () -> CLAuthorizationStatus
     // Start updating the device's location
     var startUpdatingLocation: @Sendable () -> Void
+    // Stop updating the device's location
+    var stopUpdatingLocation: @Sendable () -> Void
     // Provide a stream of delegate events
     var delegate: @Sendable () -> AsyncStream<DelegateEvent>
     
@@ -57,6 +59,7 @@ extension LocationManagerClient: DependencyKey {
             requestAuthorization: { manager.requestWhenInUseAuthorization() },
             authorizationStatus: { manager.authorizationStatus },
             startUpdatingLocation: { manager.startUpdatingLocation() },
+            stopUpdatingLocation: { manager.stopUpdatingLocation() },
             delegate: {
                 AsyncStream { continuation in
                     let delegate = Delegate(continuation: continuation)

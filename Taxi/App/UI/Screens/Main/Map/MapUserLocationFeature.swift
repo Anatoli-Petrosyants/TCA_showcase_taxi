@@ -20,8 +20,6 @@ struct MapUserLocationFeature<State>: Reducer {
         case let .internal(internalAction):
             switch internalAction {
             case let .locationManager(.didUpdateLocations(locations)):
-                Log.info("didUpdateLocations \(locations)")
-                
                 guard let location = locations.last else {
                     return .none
                 }
@@ -31,20 +29,25 @@ struct MapUserLocationFeature<State>: Reducer {
                     return .none
                 }
                 
-                return .send(.internal(.lastLocation(location)))
+                locationManagerClient.stopUpdatingLocation()
+                return .send(.internal(.lastUserLocation(location)))
                 
             case let .locationManager(.didChangeAuthorization(status)):
                 Log.info("didChangeAuthorization \(status.description)")
 
                 switch status {
                 case .notDetermined:
-                    locationManagerClient.requestAuthorization()
+                    // locationManagerClient.requestAuthorization()
                     return .none
 
                 case .denied, .restricted:
+                    /*
+                    // #dev show alert to open settings. A.P.
                     return .run { _ in
                         _ = await self.openURL(URL(string: UIApplication.openSettingsURLString)!, [:])
                     }
+                    */
+                    return .none
 
                 case .authorizedAlways, .authorizedWhenInUse:
                     locationManagerClient.startUpdatingLocation()
@@ -55,10 +58,10 @@ struct MapUserLocationFeature<State>: Reducer {
                 }
                 
             case let .locationManager(.didFailWithError(error)):
-                Log.debug("didFailWithError \(error.localizedDescription)")
+                Log.error("didFailWithError \(error.localizedDescription)")
                 return .none
                 
-            case .lastLocation:
+            case .lastUserLocation:
                 return .none
             }
             

@@ -12,18 +12,18 @@ import CoreLocation
 struct MapFeature: Reducer {
     
     struct State: Equatable {
-        var lastLocation: CLLocation? = nil
+        @BindingState var userLocation: CLLocation? = nil
     }
     
     enum Action: Equatable {
-        enum ViewAction: Equatable {
+        enum ViewAction: BindableAction, Equatable {
             case onViewLoad
-            case onLocationButtonTap
+            case binding(BindingAction<State>)
         }
         
         enum InternalAction: Equatable {
             case locationManager(LocationManagerClient.DelegateEvent)
-            case lastLocation(CLLocation)
+            case lastUserLocation(CLLocation)
         }
         
         case view(ViewAction)
@@ -34,6 +34,8 @@ struct MapFeature: Reducer {
     @Dependency(\.applicationClient.open) var openURL
     
     var body: some ReducerOf<Self> {
+        BindingReducer(action: /Action.view)
+        
         Reduce { state, action in
             switch action {
             // view actions
@@ -51,10 +53,13 @@ struct MapFeature: Reducer {
                         }
                     }
                     
-                case .onLocationButtonTap:
-                    Log.debug("onLocationButtonTap")
+                case .binding:
                     return .none
                 }
+                
+            case let .internal(.lastUserLocation(location)):
+                state.userLocation = location
+                return .none
                 
             case .internal:
                 return .none

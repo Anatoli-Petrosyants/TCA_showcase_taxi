@@ -393,8 +393,8 @@
 		A91606A82AD5668600E581A4 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				A91606A42AD5667A00E581A4 /* MapFeature.swift */,
 				A9637D2C2ADEA893006DBFAC /* MapUserLocationFeature.swift */,
+				A91606A42AD5667A00E581A4 /* MapFeature.swift */,
 				A91606A62AD5668200E581A4 /* MapView.swift */,
 				A98931C92ADD192C00317BC7 /* Views */,
 			);
