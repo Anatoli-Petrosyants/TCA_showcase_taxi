@@ -15,12 +15,12 @@ struct CurrentLocationButton: View {
         Button {
             didTap()
         } label: {
-            Image(systemName: "location.fill")
+            Image(systemName: "location")
                 .renderingMode(.template)
                 .foregroundColor(Color.black)
                 .font(.system(size: 20))
                 .padding(12)
-                .background(Color.yellow)
+                .background(Color.white)
                 .clipShape(Circle())
                 .shadow(color: Color.black01, radius: 4)
         }
