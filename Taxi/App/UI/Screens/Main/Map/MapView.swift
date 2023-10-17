@@ -7,9 +7,6 @@
 
 import SwiftUI
 import ComposableArchitecture
-import MapKit
-import CoreLocationUI
-import SDWebImageSwiftUI
 
 // MARK: - MapView
 
@@ -25,6 +22,7 @@ extension MapView: View {
     
     var body: some View {
         content
+            .onLoad { self.store.send(.view(.onViewLoad)) }
     }
     
     @ViewBuilder private var content: some View {
@@ -45,8 +43,8 @@ extension MapView: View {
                                 .padding(.top, 150)
                 }
                 
-                CurrentLocationButton(didTap: {
-                    Log.debug("CurrentLocationButton didTap")
+                CurrentLocationButton(didTap: {                    
+                    viewStore.send(.view(.onLocationButtonTap))
                 })
                 .opacity(moving ? 0 : 1.0)
                 .animation(.linear(duration: 0.1), value: moving)

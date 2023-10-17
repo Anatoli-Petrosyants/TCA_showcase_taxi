@@ -21,7 +21,7 @@ struct GoogleMapViewRepresentable: UIViewRepresentable {
     init(mapViewIdleAtPosition: @escaping (GMSCameraPosition) -> (),
          mapViewWillMove: @escaping (Bool) -> ()) {
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: .defaultCamera)
-        mapView.isMyLocationEnabled = true
+        // mapView.isMyLocationEnabled = true
         mapView.isTrafficEnabled = true
         mapView.isBuildingsEnabled = true
         mapView.settings.rotateGestures = false

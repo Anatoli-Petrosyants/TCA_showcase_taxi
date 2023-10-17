@@ -7,72 +7,187 @@
 
 import SwiftUI
 import ComposableArchitecture
-import MapKit
 import CoreLocation
 
 struct MapFeature: Reducer {
     
     struct State: Equatable {
-        var mapRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(
-            latitude: 40.1872,
-            longitude: 44.5152
-        ), span: MKCoordinateSpan(
-            latitudeDelta: 12,
-            longitudeDelta: 12
-        ))
         
-//        var annotations: [MapAnnotationData] = MapAnnotationData.mockedData
-        
-        var annotations: [MapAnnotationData] = [MapAnnotationData(name: "Yerevan",
-                                                                  path: "https://picsum.photos/id/235/400/400",
-                                                                  coordinate: CLLocationCoordinate2D(latitude: .random(in: 30...45),
-                                                                                                                    longitude: .random(in: 43...50)))]
-        
-        static func == (lhs: MapFeature.State, rhs: MapFeature.State) -> Bool {
-            return (lhs.mapRegion.center.latitude == rhs.mapRegion.center.latitude) &&
-                   (lhs.mapRegion.center.longitude == rhs.mapRegion.center.longitude)
+    }
+    
+    enum Action: Equatable {
+        enum ViewAction: Equatable {
+            case onViewLoad
+            case onLocationButtonTap
         }
+        
+        enum InternalAction: Equatable {
+            case locationManager(LocationManagerClient.DelegateEvent)
+        }
+        
+        case view(ViewAction)
+        case `internal`(InternalAction)
     }
     
-    enum Action: BindableAction, Equatable {
-        case mapRegionChanged(MKCoordinateRegion)
-        case binding(BindingAction<State>)
-    }
+    @Dependency(\.locationManagerClient) var locationManagerClient
+    @Dependency(\.applicationClient.open) var openURL
     
-    var body: some Reducer<State, Action> {
+    var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case let .mapRegionChanged(region):
-                state.mapRegion = region
-                return .none
+            // view actions
+            case let .view(viewAction):
+                switch viewAction {
+                case .onViewLoad:
+                    Log.debug("onViewLoad")
+                    let userLocationsEventStream = self.locationManagerClient.delegate()
+                    return .run { send in
+                        await withThrowingTaskGroup(of: Void.self) { group in
+                            group.addTask {
+                                for await event in userLocationsEventStream {
+                                    await send(.internal(.locationManager(event)))
+                                }
+                            }
+                        }
+                    }
+                    
+                case .onLocationButtonTap:
+                    Log.debug("onLocationButtonTap")
+                    return .none
+                }
                 
-            case .binding:
-                return .none
+                
+            case let .internal(internalAction):
+                switch internalAction {
+                case let .locationManager(.didUpdateLocations(locations)):
+                    Log.debug("didUpdateLocations \(locations)")
+                    return .none
+                    
+                case let .locationManager(.didChangeAuthorization(status)):
+                    Log.debug("didChangeAuthorization \(status.description)")
+
+                    switch status {
+                    case .notDetermined:
+                        locationManagerClient.requestAuthorization()
+                        return .none
+
+                    case .denied, .restricted:
+                        return .run { _ in
+                            _ = await self.openURL(URL(string: UIApplication.openSettingsURLString)!, [:])
+                        }
+
+                    case .authorizedAlways, .authorizedWhenInUse:
+                        locationManagerClient.startUpdatingLocation()
+                        return .none
+
+                    default:
+                        return .none
+                    }
+                    
+                case let .locationManager(.didFailWithError(error)):
+                    Log.debug("didFailWithError \(error.localizedDescription)")
+                    return .none
+                }
             }
         }
-        
-        BindingReducer()
     }
 }
 
-extension MKCoordinateRegion: Equatable {}
-
-public func ==(lhs: MKCoordinateRegion, rhs: MKCoordinateRegion) -> Bool {
-    return lhs.center.latitude == rhs.center.latitude && lhs.center.longitude == rhs.center.longitude
-}
-
-//extension CLLocationCoordinate2D: Equatable {}
+//struct MapFeature: Reducer {
 //
-//public func ==(lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
-//    return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
+//    struct State: Equatable {
+//
+//    }
+//
+//    enum Action: BindableAction, Equatable {
+//        enum ViewAction: Equatable {
+//            case onViewLoad
+//            case onLocationButtonTap
+//        }
+//
+//        enum InternalAction: Equatable {
+//            case requestLocation
+//            case locationManager(LocationManagerClient.DelegateEvent)
+//        }
+//
+//        case view(ViewAction)
+//        case binding(BindingAction<State>)
+//        case `internal`(InternalAction)
+//    }
+//
+//    @Dependency(\.locationManagerClient) var locationManagerClient
+//    @Dependency(\.applicationClient.open) var openURL
+//
+//    var body: some Reducer<State, Action> {
+//        BindingReducer()
+//
+//        Reduce { state, action in
+//            switch action {
+//            // view actions
+//            case let .view(viewAction):
+//                switch viewAction {
+//                case .onViewLoad:
+//                    Log.debug("isLocationEnabled: \(locationManagerClient.authorizationStatus())")
+//
+////                    let userLocationsEventStream = self.locationManagerClient.delegate()
+////                    return .run { send in
+////                        await withThrowingTaskGroup(of: Void.self) { group in
+////                            group.addTask {
+////                                for await event in userLocationsEventStream {
+////                                    await send(.internal(.locationManager(event)))
+////                                }
+////                            }
+////                        }
+////                    }
+//
+//                    return .none
+//
+//                case .onLocationButtonTap:
+//                    Log.debug("onLocationButtonTap")
+//                    return .send(.internal(.requestLocation))
+//                }
+//
+//            // internal actions
+//            case let .internal(internalAction):
+//                Log.debug("internal \(internalAction)")
+//                return .none
+//
+////                switch internalAction {
+////                case .requestLocation:
+////
+//                    let status = locationManagerClient.authorizationStatus()
+//                    Log.debug("requestLocation status \(status)")
+////
+////                    switch status {
+////                    case .notDetermined:
+////                        locationManagerClient.requestAuthorization()
+////                        return .none
+////
+////                    case .restricted, .denied:
+////                        return .run { _ in
+////                            _ = await self.openURL(URL(string: UIApplication.openSettingsURLString)!, [:])
+////                        }
+////
+////                    case .authorizedWhenInUse, .authorizedAlways:
+////                        locationManagerClient.requestLocation()
+////                        return .none
+////
+////                    default:
+////                        return .none
+////                    }
+////
+////                case let .locationManager(.didUpdateLocations(locations)):
+////                    Log.debug("locations \(locations)")
+////                    return .none
+////
+////                }
+//
+//            case .binding:
+//                return .none
+//            }
+//        }
+//    }
 //}
-//
-//extension MKCoordinateSpan: Equatable {}
-//
-//public func ==(lhs: MKCoordinateSpan, rhs: MKCoordinateSpan) -> Bool {
-//    return lhs.latitudeDelta == rhs.latitudeDelta && lhs.longitudeDelta == rhs.longitudeDelta
-//}
-
 
 // let projection = mapView.projection
 // let centerPoint = CGPoint(x: UIScreen.main.bounds.size.width / 2, y: 200)

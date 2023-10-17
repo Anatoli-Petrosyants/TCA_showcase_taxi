@@ -19,7 +19,6 @@ struct MainFeature: Reducer {
     
     enum Action: Equatable {
         enum ViewAction: Equatable {
-            case onViewLoad
             case onMenuTap
         }
         
@@ -64,9 +63,6 @@ struct MainFeature: Reducer {
             // view actions
             case let .view(viewAction):
                 switch viewAction {
-                case .onViewLoad:
-                    return .none
-
                 case .onMenuTap:
                     state.sidebar.isVisible.toggle()
                     return .none
