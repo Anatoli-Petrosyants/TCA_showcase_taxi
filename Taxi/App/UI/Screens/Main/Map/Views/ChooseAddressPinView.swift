@@ -7,14 +7,13 @@
 
 import SwiftUI
 
-struct ChooseAddressPinView: View {
-
+struct ChooseAddressPinView: View {    
     var body: some View {
-        VStack(spacing: 2) {
+        VStack(spacing: 0) {
             ChooseAddressPinContentView()
             
             Rectangle()
-                .frame(width: 3, height: 22)
+                .frame(width: 2.5, height: 22)
                 .foregroundColor(Color.black)
         }
     }
@@ -23,19 +22,17 @@ struct ChooseAddressPinView: View {
 struct ChooseAddressPinContentView: View {
     
     var body: some View {
-        VStack {
+        
+        ZStack {
+            Circle()
+                .fill(Color.black)
+            
             Image(systemName: "location.fill")
                 .renderingMode(.template)
-                .foregroundColor(Color.black)
-                .font(.system(size: 18))
-                .padding(10)
+                .foregroundColor(Color.yellow)
+                .font(.system(size: 14))
         }
-        .background(Color.yellow)
-        .cornerRadius(12)
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.white, lineWidth: 3)
-        )
         .shadow(color: Color.black01, radius: 1)
+        .frame(width: 36, height: 36)
     }
 }

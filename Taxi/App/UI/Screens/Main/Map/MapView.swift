@@ -29,32 +29,42 @@ extension MapView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            ZStack(alignment: .bottomTrailing) {
+            ZStack(alignment: .top) {
                 GoogleMapViewRepresentable(
                     mapViewIdleAtPosition: { position in
-                        Log.debug("mapViewIdleAtPosition \(position)")
-                        
-                        withAnimation {
-                            moving = false
-                        }
+                        moving = false
                     },
                     mapViewWillMove: { gesture in
-                        withAnimation {
-                            moving = true
-                        }
+                        moving = true
                     }
                 )
                 
-                ChooseAddressPinView()
-                    .position(x: UIScreen.main.bounds.size.width / 2,
-                              y: moving ? 285 : 300)
-                
-                CurrentLocationButton(didTap: {
-                    Log.debug("CurrentLocationButton didTap")
-                })
-                .opacity(moving ? 0 : 1.0)
-                .offset(x: -20, y: -20)
+                // #dev To align the text at the bottom of the ZStack,
+                // you need to use the .frame and .alignment modifiers. A.P.
+                ZStack {
+                    ChooseAddressPinView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                        .offset(y: moving ? -10 : 0.0)
+                    
+                    Ellipse()
+                        .frame(width: 7, height: 6)
+                        .foregroundColor(Color.black)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                        .opacity(moving ? 1.0 : 0.0)
+                }
+                .animation(.linear(duration: 0.1), value: moving)
+                .frame(width: 100, height: 150)
+                .padding(.top, 150)
             }
+            .ignoresSafeArea()
+            
+            
+////                CurrentLocationButton(didTap: {
+////                    Log.debug("CurrentLocationButton didTap")
+////                })
+////                .opacity(moving ? 0 : 1.0)
+////                .offset(x: -20, y: -20)
+//            }
         }
     }
 }
