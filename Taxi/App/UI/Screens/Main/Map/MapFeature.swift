@@ -8,6 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 import CoreLocation
+import GoogleMaps
 
 struct MapFeature: Reducer {
     
@@ -18,10 +19,13 @@ struct MapFeature: Reducer {
     enum Action: Equatable {
         enum ViewAction: BindableAction, Equatable {
             case onViewLoad
+            case onLocationButtonTap
+            case onMapViewIdleAtPosition(GMSCameraPosition)
             case binding(BindingAction<State>)
         }
         
         enum InternalAction: Equatable {
+            case updateLocation
             case locationManager(LocationManagerClient.DelegateEvent)
             case lastUserLocation(CLLocation)
         }
@@ -53,6 +57,14 @@ struct MapFeature: Reducer {
                         }
                     }
                     
+                case .onLocationButtonTap:
+                    return .send(.internal(.updateLocation))
+                    
+                case let .onMapViewIdleAtPosition(position):
+                    let target = position.target
+                    Log.info("onMapViewIdleAtPosition \(target.latitude), \(target.longitude)")
+                    return .none
+                    
                 case .binding:
                     return .none
                 }
@@ -69,10 +81,3 @@ struct MapFeature: Reducer {
         MapUserLocationFeature()
     }
 }
-
-
-// let projection = mapView.projection
-// let centerPoint = CGPoint(x: UIScreen.main.bounds.size.width / 2, y: 200)
-// Log.info("idleAt projection \(projection.coordinate(for: centerPoint))")
-
-// https://github.com/googlemaps-samples/maps-sdk-for-ios-samples/issues/58

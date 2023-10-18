@@ -16,6 +16,8 @@ struct MapView {
     
     @State private var moving: Bool = true
     
+    @State private var isPresented = true
+    
     struct ViewState: Equatable {
         @BindingViewState var userLocation: CLLocation?
     }
@@ -37,6 +39,7 @@ extension MapView: View {
                     GoogleMapViewRepresentable(
                         userLocation: viewStore.$userLocation,
                         mapViewIdleAtPosition: { position in
+                            viewStore.send(.onMapViewIdleAtPosition(position))
                             moving = false
                         },
                         mapViewWillMove: { gesture in
@@ -45,16 +48,25 @@ extension MapView: View {
                     )
                                         
                     ChooseAddressPinView(moving: $moving)
-                                .frame(width: 100, height: 150)
-                                .padding(.top, 150)
+                                .frame(width: 100, height: 100)
+                                .padding(.top, UIScreen.main.bounds.size.height / 2 - 92)
                 }
                 
-//                CurrentLocationButton(didTap: {                    
+//                VStack(spacing: 10) {
+//                    CurrentLocationButton(moving: $moving, didTap: {
+//                        viewStore.send(.onLocationButtonTap)
+//                    })
+//                }
+                
+//                CurrentLocationButton(moving: $moving, didTap: {
 //                    viewStore.send(.onLocationButtonTap)
 //                })
-//                .opacity(moving ? 0 : 1.0)
-//                .animation(.linear(duration: 0.1), value: moving)
 //                .offset(x: -20, y: -20)
+                
+                CurrentLocationButton(moving: $moving, didTap: {
+                    isPresented = true
+                })
+                .offset(x: -20, y: -20)
             }
             .ignoresSafeArea()
         }
@@ -68,3 +80,4 @@ extension BindingViewStore<MapFeature.State> {
         MapView.ViewState(userLocation: self.$userLocation)
     }
 }
+

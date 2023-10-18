@@ -11,13 +11,13 @@ import GoogleMapsUtils
 import CoreLocation
 
 struct GoogleMapViewRepresentable: UIViewRepresentable {
+    typealias UIViewType = GMSMapView
     
     @Binding var userLocation: CLLocation?
     
     var mapViewIdleAtPosition: (GMSCameraPosition) -> ()
     var mapViewWillMove: (Bool) -> ()
-     
-    typealias UIViewType = GMSMapView
+         
     private let mapView : GMSMapView
 
     init(userLocation: Binding<CLLocation?>,
@@ -25,11 +25,14 @@ struct GoogleMapViewRepresentable: UIViewRepresentable {
          mapViewWillMove: @escaping (Bool) -> ()) {
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: .defaultCamera)
         mapView.isMyLocationEnabled = true
-        mapView.isTrafficEnabled = true
+        // mapView.isTrafficEnabled = true
         mapView.isBuildingsEnabled = true
         mapView.settings.rotateGestures = false
         mapView.settings.tiltGestures = false
-        mapView.settings.myLocationButton = true
+        // mapView.settings.myLocationButton = true
+        
+//        let edgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 10)
+//        mapView.padding = edgeInsets
         
         self._userLocation = userLocation
         self.mapViewIdleAtPosition = mapViewIdleAtPosition
