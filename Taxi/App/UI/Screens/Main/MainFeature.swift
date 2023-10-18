@@ -13,7 +13,6 @@ struct MainFeature: Reducer {
     struct State: Equatable {
         var sidebar = SidebarFeature.State()
         var map = MapFeature.State()
-        
         var path = StackState<Path.State>()
     }
     

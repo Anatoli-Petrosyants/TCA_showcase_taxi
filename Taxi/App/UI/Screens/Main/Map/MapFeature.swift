@@ -14,6 +14,8 @@ struct MapFeature: Reducer {
     
     struct State: Equatable {
         @BindingState var userLocation: CLLocation? = nil
+        
+        var pickupSpot = PickupSpotFeature.State()
     }
     
     enum Action: Equatable {
@@ -32,6 +34,7 @@ struct MapFeature: Reducer {
         
         case view(ViewAction)
         case `internal`(InternalAction)
+        case pickupSpot(PickupSpotFeature.Action)
     }
     
     @Dependency(\.locationManagerClient) var locationManagerClient
@@ -39,6 +42,10 @@ struct MapFeature: Reducer {
     
     var body: some ReducerOf<Self> {
         BindingReducer(action: /Action.view)
+        
+        Scope(state: \.pickupSpot, action: /Action.pickupSpot) {
+            PickupSpotFeature()
+        }
         
         Reduce { state, action in
             switch action {
@@ -73,7 +80,7 @@ struct MapFeature: Reducer {
                 state.userLocation = location
                 return .none
                 
-            case .internal:
+            case .internal, .pickupSpot:
                 return .none
             }
         }

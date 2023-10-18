@@ -14,6 +14,8 @@ extension Color {
     static let black05 = Color("black").opacity(0.5)
         
     static let white = Color("white")
+    static let white07 = Color("white").opacity(0.7)
+    
     static let gray = Color("gray")
     static let green = Color("green")
     static let red = Color("red")

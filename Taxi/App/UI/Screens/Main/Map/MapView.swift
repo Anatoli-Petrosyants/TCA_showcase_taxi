@@ -50,23 +50,19 @@ extension MapView: View {
                                 .padding(.top, UIScreen.main.bounds.size.height / 2 - 92)
                 }
                 
-//                VStack(spacing: 10) {
-//                    CurrentLocationButton(moving: $moving, didTap: {
-//                        viewStore.send(.onLocationButtonTap)
-//                    })
-//                }
-                
-//                CurrentLocationButton(moving: $moving, didTap: {
-//                    viewStore.send(.onLocationButtonTap)
-//                })
-//                .offset(x: -20, y: -20)
-                
                 CurrentLocationButton(moving: $moving, didTap: {
                     viewStore.send(.onLocationButtonTap)
                 })
                 .offset(x: -10, y: -210)
                 
-                BottomSheetView(moving: $moving)
+                PickupSpotBottomSheetView(content: {
+                    PickupSpotView(
+                        store: self.store.scope(
+                            state: \.pickupSpot,
+                            action: MapFeature.Action.pickupSpot
+                        )
+                    )
+                }, moving: $moving)
             }
             .ignoresSafeArea()
         }
@@ -78,33 +74,6 @@ extension MapView: View {
 extension BindingViewStore<MapFeature.State> {
     var view: MapView.ViewState {
         MapView.ViewState(userLocation: self.$userLocation)
-    }
-}
-
-struct BottomSheetView: View {
-
-    @Binding var moving: Bool
-    
-    var body: some View {
-        ZStack(alignment: .bottom) {
-            if !moving {
-                VStack {
-                    Text("Select service")
-                        .font(.title3Bold)
-                        .foregroundColor(.white)
-                }
-                .frame(maxWidth: .infinity)
-                .frame(maxHeight: 200)
-                .background(.black)
-                // .cornerRadius(16, corners: .topLeft)
-                .cornerRadius(32, corners: .topRight)
-                .transition(.opacity.combined(with: .move(edge: .bottom)))
-            }
-        }
-        .shadow(color: Color.black01, radius: 20)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-        .ignoresSafeArea()
-        .animation(.easeInOut(duration: 0.2), value: !moving)
     }
 }
 
