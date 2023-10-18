@@ -20,10 +20,10 @@ struct ChooseAddressPinView: View {
                     Circle()
                         .fill(Color.black)
 
-                    Image(systemName: "location.fill")
+                    Image(systemName: "square.fill")
                         .renderingMode(.template)
-                        .foregroundColor(Color.yellow)
-                        .font(.system(size: 14))
+                        .foregroundColor(Color.white)
+                        .font(.system(size: 8))
                 }
                 .shadow(color: Color.black.opacity(0.1), radius: 1)
                 .frame(width: 36, height: 36)

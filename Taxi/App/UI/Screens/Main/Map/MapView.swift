@@ -16,8 +16,6 @@ struct MapView {
     
     @State private var moving: Bool = true
     
-    @State private var isPresented = true
-    
     struct ViewState: Equatable {
         @BindingViewState var userLocation: CLLocation?
     }
@@ -64,9 +62,11 @@ extension MapView: View {
 //                .offset(x: -20, y: -20)
                 
                 CurrentLocationButton(moving: $moving, didTap: {
-                    isPresented = true
+                    viewStore.send(.onLocationButtonTap)
                 })
-                .offset(x: -20, y: -20)
+                .offset(x: -10, y: -210)
+                
+                BottomSheetView(moving: $moving)
             }
             .ignoresSafeArea()
         }
@@ -78,6 +78,33 @@ extension MapView: View {
 extension BindingViewStore<MapFeature.State> {
     var view: MapView.ViewState {
         MapView.ViewState(userLocation: self.$userLocation)
+    }
+}
+
+struct BottomSheetView: View {
+
+    @Binding var moving: Bool
+    
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            if !moving {
+                VStack {
+                    Text("Select service")
+                        .font(.title3Bold)
+                        .foregroundColor(.white)
+                }
+                .frame(maxWidth: .infinity)
+                .frame(maxHeight: 200)
+                .background(.black)
+                // .cornerRadius(16, corners: .topLeft)
+                .cornerRadius(32, corners: .topRight)
+                .transition(.opacity.combined(with: .move(edge: .bottom)))
+            }
+        }
+        .shadow(color: Color.black01, radius: 20)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+        .ignoresSafeArea()
+        .animation(.easeInOut(duration: 0.2), value: !moving)
     }
 }
 
