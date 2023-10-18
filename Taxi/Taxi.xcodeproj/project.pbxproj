@@ -59,6 +59,8 @@
 		A9637D2B2ADE732F006DBFAC /* LocationManagerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D2A2ADE732F006DBFAC /* LocationManagerClient.swift */; };
 		A9637D2D2ADEA893006DBFAC /* MapUserLocationFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D2C2ADEA893006DBFAC /* MapUserLocationFeature.swift */; };
 		A9637D2F2ADFC4C2006DBFAC /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D2E2ADFC4C2006DBFAC /* RoundedCornerShape.swift */; };
+		A9637D312ADFCFAB006DBFAC /* PickupSpotFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D302ADFCFAB006DBFAC /* PickupSpotFeature.swift */; };
+		A9637D332ADFCFB1006DBFAC /* PickupSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D322ADFCFB1006DBFAC /* PickupSpotView.swift */; };
 		A96BF1472A6A6FFB00B14247 /* SidebarFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BF1462A6A6FFB00B14247 /* SidebarFeature.swift */; };
 		A96BF1492A6A700300B14247 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BF1482A6A700300B14247 /* SidebarView.swift */; };
 		A96BF14D2A6A996300B14247 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = A96BF14C2A6A996300B14247 /* PopupView */; };
@@ -245,6 +247,8 @@
 		A9637D2A2ADE732F006DBFAC /* LocationManagerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerClient.swift; sourceTree = "<group>"; };
 		A9637D2C2ADEA893006DBFAC /* MapUserLocationFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUserLocationFeature.swift; sourceTree = "<group>"; };
 		A9637D2E2ADFC4C2006DBFAC /* RoundedCornerShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerShape.swift; sourceTree = "<group>"; };
+		A9637D302ADFCFAB006DBFAC /* PickupSpotFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupSpotFeature.swift; sourceTree = "<group>"; };
+		A9637D322ADFCFB1006DBFAC /* PickupSpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupSpotView.swift; sourceTree = "<group>"; };
 		A96BF1462A6A6FFB00B14247 /* SidebarFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarFeature.swift; sourceTree = "<group>"; };
 		A96BF1482A6A700300B14247 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		A96BF14E2A6AA50C00B14247 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -438,6 +442,7 @@
 				A92A229D29F8EAAD0034469C /* MainView.swift */,
 				A96BF14A2A6A700700B14247 /* Sidebar */,
 				A91606A82AD5668600E581A4 /* Map */,
+				A9637D342ADFCFB6006DBFAC /* PickupSpot */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -561,6 +566,15 @@
 				A94A87352AA1FF8400168BC1 /* LoginOptionsView.swift */,
 			);
 			path = LoginOptions;
+			sourceTree = "<group>";
+		};
+		A9637D342ADFCFB6006DBFAC /* PickupSpot */ = {
+			isa = PBXGroup;
+			children = (
+				A9637D302ADFCFAB006DBFAC /* PickupSpotFeature.swift */,
+				A9637D322ADFCFB1006DBFAC /* PickupSpotView.swift */,
+			);
+			path = PickupSpot;
 			sourceTree = "<group>";
 		};
 		A96BF14A2A6A700700B14247 /* Sidebar */ = {
@@ -1188,6 +1202,7 @@
 				A91606AA2AD5674F00E581A4 /* SettingsFeature.swift in Sources */,
 				A9FE005A29C875EE00B5F868 /* View+Extensions.swift in Sources */,
 				A9F665982A54302700D4FB8A /* Account.swift in Sources */,
+				A9637D332ADFCFB1006DBFAC /* PickupSpotView.swift in Sources */,
 				A91606AC2AD5675600E581A4 /* SettingsView.swift in Sources */,
 				A96FEB632A9E13E7008DC5BC /* JoinView.swift in Sources */,
 				A930CDAC29E41FEB00AF73E3 /* AppFeature.swift in Sources */,
@@ -1220,6 +1235,7 @@
 				A990E50C2A419A7C0004F4F9 /* NavigationBarModifier.swift in Sources */,
 				A93B200A2AAAF5A900E05DD1 /* MoyaError+Extenstions.swift in Sources */,
 				A93B20152AAB082F00E05DD1 /* APIEndpoint.swift in Sources */,
+				A9637D312ADFCFAB006DBFAC /* PickupSpotFeature.swift in Sources */,
 				A9AF26032A73E8A500631158 /* UIApplicationClient.swift in Sources */,
 				A92E6AC72ABACF2F00186F8D /* String+CardBrands.swift in Sources */,
 				A990E5332A41BCC90004F4F9 /* NoNetworkView.swift in Sources */,
