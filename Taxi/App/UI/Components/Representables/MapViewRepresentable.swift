@@ -11,6 +11,9 @@ import GoogleMapsUtils
 import CoreLocation
 
 struct GoogleMapViewRepresentable: UIViewRepresentable {
+    
+    static let topPadding: CGFloat = 200.0
+    
     typealias UIViewType = GMSMapView
     
     @Binding var userLocation: CLLocation?
@@ -31,8 +34,11 @@ struct GoogleMapViewRepresentable: UIViewRepresentable {
         mapView.settings.tiltGestures = false
         // mapView.settings.myLocationButton = true
         
-//        let edgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 10)
-//        mapView.padding = edgeInsets
+        let edgeInsets = UIEdgeInsets(top: 0,
+                                      left: 0,
+                                      bottom: GoogleMapViewRepresentable.topPadding,
+                                      right: 0)
+        mapView.padding = edgeInsets
         
         self._userLocation = userLocation
         self.mapViewIdleAtPosition = mapViewIdleAtPosition
@@ -48,7 +54,7 @@ struct GoogleMapViewRepresentable: UIViewRepresentable {
     /// Updates the presented `UIView` (and coordinator) to the latest configuration.
     func updateUIView(_ mapView: UIViewType , context: Self.Context) {
         if let location = userLocation {
-            mapView.animate(to: location.toCamera)
+            mapView.animate(toLocation: location.coordinate)
         }
     }
     

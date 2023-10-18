@@ -44,16 +44,16 @@ extension MapView: View {
                             moving = true
                         }
                     )
-                                        
+
                     ChooseAddressPinView(moving: $moving)
                                 .frame(width: 100, height: 100)
-                                .padding(.top, UIScreen.main.bounds.size.height / 2 - 92)
+                                .padding(.top, (UIScreen.main.bounds.size.height - GoogleMapViewRepresentable.topPadding) / 2 - 92)
                 }
                 
                 CurrentLocationButton(moving: $moving, didTap: {
                     viewStore.send(.onLocationButtonTap)
                 })
-                .offset(x: -10, y: -210)
+                .offset(x: -10, y: -250)
                 
                 PickupSpotBottomSheetView(content: {
                     PickupSpotView(

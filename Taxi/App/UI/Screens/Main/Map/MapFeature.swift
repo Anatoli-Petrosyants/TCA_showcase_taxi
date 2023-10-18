@@ -14,7 +14,7 @@ struct MapFeature: Reducer {
     
     struct State: Equatable {
         @BindingState var userLocation: CLLocation? = nil
-        
+
         var pickupSpot = PickupSpotFeature.State()
     }
     
@@ -70,6 +70,7 @@ struct MapFeature: Reducer {
                 case let .onMapViewIdleAtPosition(position):
                     let target = position.target
                     Log.info("onMapViewIdleAtPosition \(target.latitude), \(target.longitude)")
+                    // state.pickupSpot.address = "\(target.latitude), \(target.longitude)"
                     return .none
                     
                 case .binding:

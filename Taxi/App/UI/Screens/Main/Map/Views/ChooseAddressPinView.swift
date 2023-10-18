@@ -18,7 +18,7 @@ struct ChooseAddressPinView: View {
             VStack(spacing: 0) {
                 ZStack {
                     Circle()
-                        .fill(Color.black)
+                        .fill(Color.darkGray)
 
                     Image(systemName: "square.fill")
                         .renderingMode(.template)
@@ -30,14 +30,14 @@ struct ChooseAddressPinView: View {
 
                 Rectangle()
                     .frame(width: 2.5, height: 22)
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color.darkGray)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .offset(y: moving ? -10 : 0.0)
 
             Ellipse()
                 .frame(width: 7, height: 6)
-                .foregroundColor(Color.black)
+                .foregroundColor(Color.darkGray)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                 .opacity(moving ? 1.0 : 0.0)
         }

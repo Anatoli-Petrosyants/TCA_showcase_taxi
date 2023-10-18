@@ -21,7 +21,7 @@ struct CurrentLocationButton: View {
                 .foregroundColor(Color.white)
                 .font(.system(size: 20))
                 .padding(12)
-                .background(Color.black)
+                .background(Color.darkGray)
                 .clipShape(Circle())
                 .shadow(color: Color.black01, radius: 4)
         }

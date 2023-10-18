@@ -23,34 +23,58 @@ extension PickupSpotView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in            
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
             VStack(spacing: 0) {
-                Text("Set your pickup spot")
-                    .font(.subheadlineBold)
-                    .foregroundColor(Color.white07)
-                    .padding()
+                VStack {
+                    Spacer()
+                    Text("Set your pickup spot")
+                        .font(.subheadline)
+                        .foregroundColor(Color.white08)
+                    Spacer()
+                    Divider()
+                        .frame(height: 2)
+                        .overlay(Color.white01)
+                }
+                .frame(maxWidth: .infinity, maxHeight: 50)
+                .padding([.leading, .trailing], 4)
                 
-                Divider()
-                    .frame(height: 2)
-                    .overlay(.gray)
-                
-                Spacer()
+                VStack {
+                    HStack {
+                        Text("Yerevan")
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(2)
+                            .font(.subheadlineBold)
+                            .foregroundColor(Color.white08)
+                        Spacer()
+                        Button {
+                            // #dev send search action
+                        } label: {
+                            Text("Search")
+                                .font(.subheadline)
+                                .foregroundColor(Color.white)
+                                .padding(8)
+                        }
+                        .background(Color.white03)
+                        .clipShape(Capsule())
+                    }
+                    .padding([.leading, .trailing], 16)
+                }
+                .frame(maxWidth: .infinity, maxHeight: 80)
                 
                 Button("Confirm pickup", action: {
-                    
+                    // #dev confirm pickup action
                 })
-                .font(.headlineBold)
                 .frame(minWidth: 200, maxWidth: .infinity, minHeight: 52)
+                .background(Color.white08)
                 .foregroundColor(Color.black)
-                .background(Color.white07)
+                .font(.headlineBold)
                 .clipShape(Capsule())
-                .padding()
-                .padding(.bottom, 10)
+                .padding([.leading, .trailing], 16)
+                
+                Spacer()
             }
-            .frame(maxWidth: .infinity)
-            .frame(maxHeight: 200)
-            .background(.black)
-            .transition(.opacity.combined(with: .move(edge: .bottom)))
+            .frame(maxWidth: .infinity, maxHeight: 240)
+            .background(Color.darkGray)
         }
     }
 }
@@ -61,12 +85,11 @@ struct PickupSpotBottomSheetView<Content: View>: View {
     @Binding var moving: Bool
 
     var body: some View {
-        ZStack(alignment: .bottom) {
+        ZStack(alignment: .top) {
             if !moving {
                 content()
-                    .frame(maxWidth: .infinity)
-                    .frame(maxHeight: 200)
-                    .background(.black)
+                    // .cornerRadius(8, corners: .topLeft)
+                    // .cornerRadius(8, corners: .topRight)
                     .transition(.opacity.combined(with: .move(edge: .bottom)))
             }
         }
