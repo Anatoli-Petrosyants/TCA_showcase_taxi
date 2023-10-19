@@ -61,6 +61,7 @@
 		A9637D2F2ADFC4C2006DBFAC /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D2E2ADFC4C2006DBFAC /* RoundedCornerShape.swift */; };
 		A9637D312ADFCFAB006DBFAC /* PickupSpotFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D302ADFCFAB006DBFAC /* PickupSpotFeature.swift */; };
 		A9637D332ADFCFB1006DBFAC /* PickupSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D322ADFCFB1006DBFAC /* PickupSpotView.swift */; };
+		A9637D362AE10F2A006DBFAC /* UIViewRepresented.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D352AE10F2A006DBFAC /* UIViewRepresented.swift */; };
 		A96BF1472A6A6FFB00B14247 /* SidebarFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BF1462A6A6FFB00B14247 /* SidebarFeature.swift */; };
 		A96BF1492A6A700300B14247 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BF1482A6A700300B14247 /* SidebarView.swift */; };
 		A96BF14D2A6A996300B14247 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = A96BF14C2A6A996300B14247 /* PopupView */; };
@@ -249,6 +250,7 @@
 		A9637D2E2ADFC4C2006DBFAC /* RoundedCornerShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerShape.swift; sourceTree = "<group>"; };
 		A9637D302ADFCFAB006DBFAC /* PickupSpotFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupSpotFeature.swift; sourceTree = "<group>"; };
 		A9637D322ADFCFB1006DBFAC /* PickupSpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupSpotView.swift; sourceTree = "<group>"; };
+		A9637D352AE10F2A006DBFAC /* UIViewRepresented.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewRepresented.swift; sourceTree = "<group>"; };
 		A96BF1462A6A6FFB00B14247 /* SidebarFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarFeature.swift; sourceTree = "<group>"; };
 		A96BF1482A6A700300B14247 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		A96BF14E2A6AA50C00B14247 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -815,6 +817,7 @@
 		A9947EE32A179CDF00FC7FB8 /* Representables */ = {
 			isa = PBXGroup;
 			children = (
+				A9637D352AE10F2A006DBFAC /* UIViewRepresented.swift */,
 				A9947EED2A179D9B00FC7FB8 /* SFSafariViewRepresentable.swift */,
 				A9947EEF2A179DBF00FC7FB8 /* LottieViewRepresentable.swift */,
 				A9947EF12A179DD900FC7FB8 /* ActivityViewRepresentable.swift */,
@@ -1222,6 +1225,7 @@
 				A9637D2B2ADE732F006DBFAC /* LocationManagerClient.swift in Sources */,
 				A94A87342AA1FF7E00168BC1 /* LoginOptionsFeature.swift in Sources */,
 				A930CDA229E41DAD00AF73E3 /* OnboardingView.swift in Sources */,
+				A9637D362AE10F2A006DBFAC /* UIViewRepresented.swift in Sources */,
 				A930CDA029E41C3A00AF73E3 /* AppView.swift in Sources */,
 				A9AA22CC2A8F9BF90073E070 /* FirestoreClient.swift in Sources */,
 				A9F53F6D2A8B783A005D6182 /* View+DismissKeyboardOnTap.swift in Sources */,

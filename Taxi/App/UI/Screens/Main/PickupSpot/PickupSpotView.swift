@@ -36,11 +36,11 @@ extension PickupSpotView: View {
                         .overlay(Color.white01)
                 }
                 .frame(maxWidth: .infinity, maxHeight: 50)
-                .padding([.leading, .trailing], 4)
+                // .padding([.leading, .trailing], 8)
                 
                 VStack {
                     HStack {
-                        Text("Yerevan")
+                        Text(viewStore.address)
                             .multilineTextAlignment(.leading)
                             .lineLimit(2)
                             .font(.subheadlineBold)

@@ -11,7 +11,7 @@ import ComposableArchitecture
 struct PickupSpotFeature: Reducer {
     
     struct State: Equatable {
-        var address: String = ""
+        var address: String = "Move the map"
     }
     
     enum Action: Equatable {
