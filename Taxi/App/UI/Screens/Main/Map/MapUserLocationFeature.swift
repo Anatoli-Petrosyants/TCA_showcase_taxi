@@ -20,7 +20,7 @@ struct MapUserLocationFeature<State>: Reducer {
         case let .internal(internalAction):
             switch internalAction {
             case .updateLocation:
-                Log.info("locationManager updateLocation")
+                // Log.info("locationManager updateLocation")
                 locationManagerClient.startUpdatingLocation()
                 return .none
                 
@@ -34,13 +34,13 @@ struct MapUserLocationFeature<State>: Reducer {
                     return .none
                 }
                 
-                Log.info("locationManager didUpdateLocation \(location.coordinate)")
+                // Log.info("locationManager didUpdateLocation \(location.coordinate)")
                 
                 locationManagerClient.stopUpdatingLocation()
                 return .send(.internal(.lastUserLocation(location)))
                 
             case let .locationManager(.didChangeAuthorization(status)):
-                Log.info("locationManager didChangeAuthorization \(status.description)")
+                // Log.info("locationManager didChangeAuthorization \(status.description)")
 
                 switch status {
                 case .notDetermined:
@@ -57,7 +57,7 @@ struct MapUserLocationFeature<State>: Reducer {
                     return .none
 
                 case .authorizedAlways, .authorizedWhenInUse:
-                    Log.info("locationManager updateLocation")
+                    // Log.info("locationManager updateLocation")
                     locationManagerClient.startUpdatingLocation()
                     return .none
 
@@ -69,7 +69,7 @@ struct MapUserLocationFeature<State>: Reducer {
                 Log.error("locationManager didFailWithError \(error.localizedDescription)")
                 return .none
                 
-            case .lastUserLocation:
+            default:
                 return .none
             }
             

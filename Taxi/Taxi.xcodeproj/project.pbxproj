@@ -62,6 +62,8 @@
 		A9637D312ADFCFAB006DBFAC /* PickupSpotFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D302ADFCFAB006DBFAC /* PickupSpotFeature.swift */; };
 		A9637D332ADFCFB1006DBFAC /* PickupSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D322ADFCFB1006DBFAC /* PickupSpotView.swift */; };
 		A9637D362AE10F2A006DBFAC /* UIViewRepresented.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D352AE10F2A006DBFAC /* UIViewRepresented.swift */; };
+		A9637D382AE13347006DBFAC /* GooglePlacesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D372AE13347006DBFAC /* GooglePlacesClient.swift */; };
+		A9637D3A2AE1394E006DBFAC /* GooglePlacesFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D392AE1394E006DBFAC /* GooglePlacesFeature.swift */; };
 		A96BF1472A6A6FFB00B14247 /* SidebarFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BF1462A6A6FFB00B14247 /* SidebarFeature.swift */; };
 		A96BF1492A6A700300B14247 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BF1482A6A700300B14247 /* SidebarView.swift */; };
 		A96BF14D2A6A996300B14247 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = A96BF14C2A6A996300B14247 /* PopupView */; };
@@ -251,6 +253,8 @@
 		A9637D302ADFCFAB006DBFAC /* PickupSpotFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupSpotFeature.swift; sourceTree = "<group>"; };
 		A9637D322ADFCFB1006DBFAC /* PickupSpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupSpotView.swift; sourceTree = "<group>"; };
 		A9637D352AE10F2A006DBFAC /* UIViewRepresented.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewRepresented.swift; sourceTree = "<group>"; };
+		A9637D372AE13347006DBFAC /* GooglePlacesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesClient.swift; sourceTree = "<group>"; };
+		A9637D392AE1394E006DBFAC /* GooglePlacesFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesFeature.swift; sourceTree = "<group>"; };
 		A96BF1462A6A6FFB00B14247 /* SidebarFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarFeature.swift; sourceTree = "<group>"; };
 		A96BF1482A6A700300B14247 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		A96BF14E2A6AA50C00B14247 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -401,6 +405,7 @@
 		A91606A82AD5668600E581A4 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				A9637D392AE1394E006DBFAC /* GooglePlacesFeature.swift */,
 				A9637D2C2ADEA893006DBFAC /* MapUserLocationFeature.swift */,
 				A91606A42AD5667A00E581A4 /* MapFeature.swift */,
 				A91606A62AD5668200E581A4 /* MapView.swift */,
@@ -775,6 +780,7 @@
 				A9ABFB3C2AA607F10093EBF3 /* RemoteNotificationsClient.swift */,
 				A9DD83EA2AA9BC5700FD9927 /* UserKeychainClient.swift */,
 				A9637D2A2ADE732F006DBFAC /* LocationManagerClient.swift */,
+				A9637D372AE13347006DBFAC /* GooglePlacesClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -1202,6 +1208,7 @@
 				A930CDB229E5414E00AF73E3 /* LoadingView.swift in Sources */,
 				A9A0CB8F29D6CABE0048A649 /* CTAButtonStyle.swift in Sources */,
 				A9DED5CB29AC9FC6003EFA02 /* Configuration.swift in Sources */,
+				A9637D382AE13347006DBFAC /* GooglePlacesClient.swift in Sources */,
 				A91606AA2AD5674F00E581A4 /* SettingsFeature.swift in Sources */,
 				A9FE005A29C875EE00B5F868 /* View+Extensions.swift in Sources */,
 				A9F665982A54302700D4FB8A /* Account.swift in Sources */,
@@ -1309,6 +1316,7 @@
 				A988F0A629B5C22B0059F9BB /* Blocks.swift in Sources */,
 				A94A63BE2A938E0C0068903C /* Codable+Extensions.swift in Sources */,
 				A9637D2D2ADEA893006DBFAC /* MapUserLocationFeature.swift in Sources */,
+				A9637D3A2AE1394E006DBFAC /* GooglePlacesFeature.swift in Sources */,
 				A93B20042AAAF0DA00E05DD1 /* JSONDecoder+Extensions.swift in Sources */,
 				A990E5482A42D9D40004F4F9 /* Localization+DevelopedBy.swift in Sources */,
 				A990E5232A41BA3E0004F4F9 /* Bundle+Extensions.swift in Sources */,

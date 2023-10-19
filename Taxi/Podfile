@@ -6,6 +6,7 @@ inhibit_all_warnings!
 platform :ios, '14.0'
 
 target 'Taxi' do
+  pod 'GooglePlaces'
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
 end

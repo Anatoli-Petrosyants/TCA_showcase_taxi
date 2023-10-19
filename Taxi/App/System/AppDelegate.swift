@@ -11,6 +11,7 @@ import ComposableArchitecture
 import FirebaseCore
 import FirebaseFirestore
 import GoogleMaps
+import GooglePlaces
 
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -23,8 +24,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {        
         FirebaseApp.configure()
+        
         GMSServices.provideAPIKey(Configuration.current.mapKey)
-        // GMSPlacesClient.provideAPIKey("YOUR_API_KEY")
+        GMSServices.setMetalRendererEnabled(true)
+        
+        GMSPlacesClient.provideAPIKey(Configuration.current.mapKey)
+        
         self.store.send(.appDelegate(.didFinishLaunching))
         return true
     }

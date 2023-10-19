@@ -76,8 +76,6 @@ struct AppFeature: Reducer {
                     
                     return .run { send in
                         completionHandler(.banner)
-                        
-                        let notification = Notification(title: "Test", description: "Description", type: .checkout)
                     }
                     
                 case let .userNotifications(.didReceiveResponse(response, completionHandler)):

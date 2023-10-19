@@ -8,7 +8,6 @@
 struct LoginEmailRequest: Encodable {
     let username: String
     let password: String
-
     
     init(username: String, password: String) {
         self.username = username

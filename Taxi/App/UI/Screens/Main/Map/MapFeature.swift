@@ -29,6 +29,8 @@ struct MapFeature: Reducer {
             case updateLocation
             case locationManager(LocationManagerClient.DelegateEvent)
             case lastUserLocation(CLLocation)
+            
+            case placesResponse(TaskResult<GooglePlacesResponse>)
         }
         
         case view(ViewAction)
@@ -86,5 +88,6 @@ struct MapFeature: Reducer {
         }
         
         MapUserLocationFeature()
+        GooglePlacesFeature()
     }
 }
