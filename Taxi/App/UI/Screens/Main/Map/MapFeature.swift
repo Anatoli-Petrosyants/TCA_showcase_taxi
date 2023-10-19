@@ -28,18 +28,25 @@ struct MapFeature: Reducer {
         enum InternalAction: Equatable {
             case updateLocation
             case locationManager(LocationManagerClient.DelegateEvent)
-            case lastUserLocation(CLLocation)
-            
-            case placesResponse(TaskResult<GooglePlacesResponse>)
+            case geocodeResponse(TaskResult<GoogleGeocoderResponse>)
+        }
+        
+        enum InternalResponseAction: Equatable {
+            case location(CLLocation)
+            case geocode(GoogleGeocoderResponse)
         }
         
         case view(ViewAction)
         case `internal`(InternalAction)
+        case internalResponse(InternalResponseAction)
         case pickupSpot(PickupSpotFeature.Action)
     }
     
     @Dependency(\.locationManagerClient) var locationManagerClient
     @Dependency(\.applicationClient.open) var openURL
+    @Dependency(\.googleGeocoderClient) var googleGeocoderClient
+    
+    private enum CancelID { case place }
     
     var body: some ReducerOf<Self> {
         BindingReducer(action: /Action.view)
@@ -69,17 +76,32 @@ struct MapFeature: Reducer {
                     return .send(.internal(.updateLocation))
                     
                 case let .onMapViewIdleAtPosition(position):
-                    let target = position.target
                     state.userLocation = nil
-                    state.pickupSpot.address = "\(target.latitude), \(target.longitude)"
-                    return .none
+                    return .run { send in
+                        await send(
+                            .internal(
+                                .geocodeResponse(
+                                    await TaskResult {
+                                        try await self.googleGeocoderClient.reverseGeocode(
+                                            .init(coordinate: position.target)
+                                        )
+                                    }
+                                )
+                            )
+                        )
+                    }
+                    .cancellable(id: CancelID.place)
                     
                 case .binding:
                     return .none
                 }
                 
-            case let .internal(.lastUserLocation(location)):
+            case let .internalResponse(.location(location)):
                 state.userLocation = location
+                return .none
+                
+            case let .internalResponse(.geocode(data)):
+                state.pickupSpot.address = data.thoroughfare
                 return .none
                 
             case .internal, .pickupSpot:
@@ -88,6 +110,6 @@ struct MapFeature: Reducer {
         }
         
         MapUserLocationFeature()
-        GooglePlacesFeature()
+        GeocoderFeature()
     }
 }

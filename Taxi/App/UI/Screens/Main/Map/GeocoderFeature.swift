@@ -1,5 +1,5 @@
 //
-//  GooglePlacesFeature.swift
+//  GeocoderFeature.swift
 //  Taxi
 //
 //  Created by Anatoli Petrosyants on 19.10.23.
@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import CoreLocation
 
-struct GooglePlacesFeature<State>: Reducer {
+struct GeocoderFeature<State>: Reducer {
 
     func reduce(into _: inout State, action: MapFeature.Action) -> Effect<MapFeature.Action> {
         switch action {
@@ -17,11 +17,11 @@ struct GooglePlacesFeature<State>: Reducer {
         case let .internal(internalAction):
             switch internalAction {
             
-            case let .placesResponse(.success(data)):
+            case let .geocodeResponse(.success(data)):
                 Log.info("placesResponse: \(data)")
-                return .none
+                return .send(.internalResponse(.place(data)))
                 
-            case let .placesResponse(.failure(error)):
+            case let .geocodeResponse(.failure(error)):
                 Log.error("placesResponse: \(error)")
                 return .none
                 

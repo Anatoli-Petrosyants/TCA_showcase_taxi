@@ -37,7 +37,7 @@ struct MapUserLocationFeature<State>: Reducer {
                 // Log.info("locationManager didUpdateLocation \(location.coordinate)")
                 
                 locationManagerClient.stopUpdatingLocation()
-                return .send(.internal(.lastUserLocation(location)))
+                return .send(.internalResponse(.location(location)))
                 
             case let .locationManager(.didChangeAuthorization(status)):
                 // Log.info("locationManager didChangeAuthorization \(status.description)")
