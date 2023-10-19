@@ -67,16 +67,9 @@ struct MapFeature: Reducer {
                     return .send(.internal(.updateLocation))
                     
                 case let .onMapViewIdleAtPosition(position):
-                    
-//                    let target = position.target
-//                    Log.info("onMapViewIdleAtPosition \(target.latitude), \(target.longitude)")
-                    
-//                    state.pickupSpot.address = "\(target.latitude), \(target.longitude)"
-                    
-//                    if !state.userTapOnLocationButton {
-//                        state.userLocation = CLLocation(latitude: target.latitude, longitude: target.longitude)
-//                        state.userTapOnLocationButton = false
-//                    }
+                    let target = position.target
+                    state.userLocation = nil
+                    state.pickupSpot.address = "\(target.latitude), \(target.longitude)"
                     return .none
                     
                 case .binding:
