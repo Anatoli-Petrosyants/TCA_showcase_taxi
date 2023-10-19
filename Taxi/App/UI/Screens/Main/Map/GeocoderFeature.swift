@@ -16,10 +16,9 @@ struct GeocoderFeature<State>: Reducer {
             
         case let .internal(internalAction):
             switch internalAction {
-            
             case let .geocodeResponse(.success(data)):
-                Log.info("placesResponse: \(data)")
-                return .send(.internalResponse(.place(data)))
+                // Log.info("placesResponse: \(data)")
+                return .send(.internalResponse(.geocode(data)))
                 
             case let .geocodeResponse(.failure(error)):
                 Log.error("placesResponse: \(error)")

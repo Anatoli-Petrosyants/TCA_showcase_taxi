@@ -10,10 +10,14 @@ import Dependencies
 import GoogleMaps
 import GooglePlaces
 
+// Struct to represent the response from the Google Geocoder service
 struct GoogleGeocoderResponse: Equatable, Decodable {
     var thoroughfare: String
+    var latitude: Double
+    var longitude: Double
 }
 
+// Struct to hold the request data for reverse geocoding
 struct GoogleGeocoderRequest {
     let coordinate: CLLocationCoordinate2D
 
@@ -22,17 +26,20 @@ struct GoogleGeocoderRequest {
     }
 }
 
+// Client for interacting with the Google Geocoder service
 struct GoogleGeocoderClient {
     var reverseGeocode: @Sendable (GoogleGeocoderRequest) async throws -> GoogleGeocoderResponse
 }
 
 extension DependencyValues {
+    /// Accessor for the GoogleGeocoderClient in the dependency values.
     var googleGeocoderClient: GoogleGeocoderClient {
         get { self[GoogleGeocoderClient.self] }
         set { self[GoogleGeocoderClient.self] = newValue }
     }
 }
 
+// Extension to make GoogleGeocoderClient a DependencyKey
 extension GoogleGeocoderClient: DependencyKey {
     static let liveValue: Self = {
         let geocoder = GMSGeocoder()
@@ -49,6 +56,7 @@ extension GoogleGeocoderClient: DependencyKey {
                                 return
                             }
 
+                            // Uncommented code for detailed address information
                             /*
                             print("\ncoordinate.latitude=\(address.coordinate.latitude)")
                             print("coordinate.longitude=\(address.coordinate.longitude)")
@@ -59,10 +67,15 @@ extension GoogleGeocoderClient: DependencyKey {
                             print("postalCode=\(address.postalCode)")
                             print("country=\(address.country)")
                             print("lines=\(address.lines)")
-                            print("addressLine1=\(address.addressLine1())")                            
+                            print("addressLine1=\(address.addressLine1())")
                             */
                             
-                            let place = GoogleGeocoderResponse(thoroughfare: address.thoroughfare.valueOr(""))
+                            // Create the GoogleGeocoderResponse based on the received data
+                            let place = GoogleGeocoderResponse(
+                                thoroughfare: address.thoroughfare.valueOr(""),
+                                latitude: address.coordinate.latitude,
+                                longitude: address.coordinate.longitude
+                            )
                             continuation.resume(returning: place)
                         }
                     }
@@ -71,3 +84,4 @@ extension GoogleGeocoderClient: DependencyKey {
         )
     }()
 }
+
