@@ -19,7 +19,6 @@ struct SearchInputFeature: Reducer {
     
     enum Action: Equatable {
         enum ViewAction: BindableAction, Equatable {
-            case onTextChanged(String)
             case onClear
             case binding(BindingAction<State>)
         }
@@ -50,21 +49,20 @@ struct SearchInputFeature: Reducer {
             // view actions
             case let .view(viewAction):
                 switch viewAction {
-                case let .onTextChanged(text):
-                    state.text = text
-                    state.isEditing = !text.isEmpty
-
-                    if text.isEmpty {
-                        return .send(.internal(.cancel))
-                    } else {
-                        return .send(.delegate(.didSearchQueryChanged(text)))
-                            .debounce(id: CancelID.search, for: 0.5, scheduler: self.mainQueue)
-                    }
-                    
                 case .onClear:
                     state.text = ""
                     state.isEditing = false
                     return .send(.internal(.cancel))
+                    
+                case .binding(\.$text):
+                    state.isEditing = !state.text.isEmpty
+
+                    if state.text.isEmpty {
+                        return .send(.internal(.cancel))
+                    } else {
+                        return .send(.delegate(.didSearchQueryChanged(state.text)))
+                            .debounce(id: CancelID.search, for: 0.5, scheduler: self.mainQueue)
+                    }
                     
                 case .binding:
                     return .none

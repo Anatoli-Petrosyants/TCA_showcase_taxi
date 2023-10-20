@@ -27,7 +27,7 @@ extension WhereToView: View {
             VStack(spacing: 20) {
                 HStack {
                     Button("Cancel") {
-                        viewStore.send(.onCancelTap)
+                        viewStore.send(.view(.onCancelTap))
                     }
                     .foregroundColor(Color.darkGray)
 
