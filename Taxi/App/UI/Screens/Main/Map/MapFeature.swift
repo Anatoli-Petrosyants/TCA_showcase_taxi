@@ -15,12 +15,14 @@ struct MapFeature: Reducer {
     struct State: Equatable {
         var userLocation: CLLocation? = nil
         var pickupSpot = PickupSpotFeature.State()
+        @PresentationState var whereTo: WhereToFeature.State?
     }
     
     enum Action: Equatable {
         enum ViewAction: BindableAction, Equatable {
             case onViewLoad
             case onLocationButtonTap
+            case onWhereToButtonTap
             case onMapViewIdleAtPosition(GMSCameraPosition)
             case binding(BindingAction<State>)
         }
@@ -40,6 +42,7 @@ struct MapFeature: Reducer {
         case `internal`(InternalAction)
         case internalResponse(InternalResponseAction)
         case pickupSpot(PickupSpotFeature.Action)
+        case whereTo(PresentationAction<WhereToFeature.Action>)
     }
     
     @Dependency(\.locationManagerClient) var locationManagerClient
@@ -75,6 +78,10 @@ struct MapFeature: Reducer {
                 case .onLocationButtonTap:
                     return .send(.internal(.updateLocation))
                     
+                case .onWhereToButtonTap:
+                    state.whereTo = WhereToFeature.State()
+                    return .none
+                    
                 case let .onMapViewIdleAtPosition(position):
                     state.userLocation = nil
                     return .run { send in
@@ -104,12 +111,19 @@ struct MapFeature: Reducer {
                 state.pickupSpot.address = data.thoroughfare
                 return .none
                 
-            case .internal, .pickupSpot:
+//            case let .whereTo(.presented(.delegate(whereToAction))):
+//                switch whereToAction {
+//                case .didDevelopedByViewed:
+//                    return .none
+//                }
+                
+            case .internal, .pickupSpot, .whereTo:
                 return .none
             }
         }
+        .ifLet(\.$whereTo, action: /Action.whereTo) { WhereToFeature() }
         
-        MapUserLocationFeature()
+        UserLocationFeature()
         GeocoderFeature()
     }
 }

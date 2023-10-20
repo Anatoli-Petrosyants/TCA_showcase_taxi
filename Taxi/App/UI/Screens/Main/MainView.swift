@@ -49,7 +49,7 @@ extension MainView: View {
                             }
                             .padding(8)
                             .background(Color.darkGray)
-                            .clipShape(RoundedRectangle(cornerRadius: 2))
+                            .clipShape(RoundedRectangle(cornerRadius: 3))
                                                         
                             Spacer()
                         }

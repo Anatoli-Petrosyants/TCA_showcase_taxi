@@ -57,7 +57,7 @@
 		A95E758D29ACA1F50081A170 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95E758C29ACA1F50081A170 /* String+Extensions.swift */; };
 		A960AA202A49A867005CE9F9 /* OnLoadModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A960AA1F2A49A867005CE9F9 /* OnLoadModifier.swift */; };
 		A9637D2B2ADE732F006DBFAC /* LocationManagerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D2A2ADE732F006DBFAC /* LocationManagerClient.swift */; };
-		A9637D2D2ADEA893006DBFAC /* MapUserLocationFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D2C2ADEA893006DBFAC /* MapUserLocationFeature.swift */; };
+		A9637D2D2ADEA893006DBFAC /* UserLocationFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D2C2ADEA893006DBFAC /* UserLocationFeature.swift */; };
 		A9637D2F2ADFC4C2006DBFAC /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D2E2ADFC4C2006DBFAC /* RoundedCornerShape.swift */; };
 		A9637D312ADFCFAB006DBFAC /* PickupSpotFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D302ADFCFAB006DBFAC /* PickupSpotFeature.swift */; };
 		A9637D332ADFCFB1006DBFAC /* PickupSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D322ADFCFB1006DBFAC /* PickupSpotView.swift */; };
@@ -123,6 +123,8 @@
 		A9A0CBB729D6FB2D0048A649 /* onboarding_1.json in Resources */ = {isa = PBXBuildFile; fileRef = A9A0CBB629D6FB2D0048A649 /* onboarding_1.json */; };
 		A9A5237A29C342440073177C /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5237929C342440073177C /* CircularProgressView.swift */; };
 		A9A5CBDF2AE26A9000E1C12B /* AppleGeocoderClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5CBDE2AE26A9000E1C12B /* AppleGeocoderClient.swift */; };
+		A9A5CBE12AE26C0100E1C12B /* WhereToFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5CBE02AE26C0100E1C12B /* WhereToFeature.swift */; };
+		A9A5CBE32AE26C0A00E1C12B /* WhereToView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5CBE22AE26C0A00E1C12B /* WhereToView.swift */; };
 		A9AA22BA2A8DE77E0073E070 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A9AA22B92A8DE77E0073E070 /* ComposableArchitecture */; };
 		A9AA22C82A8F96900073E070 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A9AA22C72A8F96900073E070 /* FirebaseFirestoreSwift */; };
 		A9AA22CC2A8F9BF90073E070 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */; };
@@ -249,7 +251,7 @@
 		A95E758C29ACA1F50081A170 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		A960AA1F2A49A867005CE9F9 /* OnLoadModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnLoadModifier.swift; sourceTree = "<group>"; };
 		A9637D2A2ADE732F006DBFAC /* LocationManagerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerClient.swift; sourceTree = "<group>"; };
-		A9637D2C2ADEA893006DBFAC /* MapUserLocationFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUserLocationFeature.swift; sourceTree = "<group>"; };
+		A9637D2C2ADEA893006DBFAC /* UserLocationFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationFeature.swift; sourceTree = "<group>"; };
 		A9637D2E2ADFC4C2006DBFAC /* RoundedCornerShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerShape.swift; sourceTree = "<group>"; };
 		A9637D302ADFCFAB006DBFAC /* PickupSpotFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupSpotFeature.swift; sourceTree = "<group>"; };
 		A9637D322ADFCFB1006DBFAC /* PickupSpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupSpotView.swift; sourceTree = "<group>"; };
@@ -311,6 +313,8 @@
 		A9A0CBB629D6FB2D0048A649 /* onboarding_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_1.json; sourceTree = "<group>"; };
 		A9A5237929C342440073177C /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		A9A5CBDE2AE26A9000E1C12B /* AppleGeocoderClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleGeocoderClient.swift; sourceTree = "<group>"; };
+		A9A5CBE02AE26C0100E1C12B /* WhereToFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhereToFeature.swift; sourceTree = "<group>"; };
+		A9A5CBE22AE26C0A00E1C12B /* WhereToView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhereToView.swift; sourceTree = "<group>"; };
 		A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		A9ABFB3A2AA5FADC0093EBF3 /* UserNotificationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationClient.swift; sourceTree = "<group>"; };
 		A9ABFB3C2AA607F10093EBF3 /* RemoteNotificationsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNotificationsClient.swift; sourceTree = "<group>"; };
@@ -408,7 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				A9637D392AE1394E006DBFAC /* GeocoderFeature.swift */,
-				A9637D2C2ADEA893006DBFAC /* MapUserLocationFeature.swift */,
+				A9637D2C2ADEA893006DBFAC /* UserLocationFeature.swift */,
 				A91606A42AD5667A00E581A4 /* MapFeature.swift */,
 				A91606A62AD5668200E581A4 /* MapView.swift */,
 				A98931C92ADD192C00317BC7 /* Views */,
@@ -452,6 +456,7 @@
 				A96BF14A2A6A700700B14247 /* Sidebar */,
 				A91606A82AD5668600E581A4 /* Map */,
 				A9637D342ADFCFB6006DBFAC /* PickupSpot */,
+				A9A5CBE42AE26C1000E1C12B /* WhereTo */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -874,6 +879,15 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
+		A9A5CBE42AE26C1000E1C12B /* WhereTo */ = {
+			isa = PBXGroup;
+			children = (
+				A9A5CBE02AE26C0100E1C12B /* WhereToFeature.swift */,
+				A9A5CBE22AE26C0A00E1C12B /* WhereToView.swift */,
+			);
+			path = WhereTo;
+			sourceTree = "<group>";
+		};
 		A9C0DFC32AC18FD5001A585B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1215,6 +1229,7 @@
 				A91606AA2AD5674F00E581A4 /* SettingsFeature.swift in Sources */,
 				A9FE005A29C875EE00B5F868 /* View+Extensions.swift in Sources */,
 				A9F665982A54302700D4FB8A /* Account.swift in Sources */,
+				A9A5CBE12AE26C0100E1C12B /* WhereToFeature.swift in Sources */,
 				A9637D332ADFCFB1006DBFAC /* PickupSpotView.swift in Sources */,
 				A91606AC2AD5675600E581A4 /* SettingsView.swift in Sources */,
 				A96FEB632A9E13E7008DC5BC /* JoinView.swift in Sources */,
@@ -1235,6 +1250,7 @@
 				A9637D2B2ADE732F006DBFAC /* LocationManagerClient.swift in Sources */,
 				A94A87342AA1FF7E00168BC1 /* LoginOptionsFeature.swift in Sources */,
 				A930CDA229E41DAD00AF73E3 /* OnboardingView.swift in Sources */,
+				A9A5CBE32AE26C0A00E1C12B /* WhereToView.swift in Sources */,
 				A9637D362AE10F2A006DBFAC /* UIViewRepresented.swift in Sources */,
 				A930CDA029E41C3A00AF73E3 /* AppView.swift in Sources */,
 				A9AA22CC2A8F9BF90073E070 /* FirestoreClient.swift in Sources */,
@@ -1319,7 +1335,7 @@
 				A97C84282A7D00F8008054E0 /* Loadable.swift in Sources */,
 				A988F0A629B5C22B0059F9BB /* Blocks.swift in Sources */,
 				A94A63BE2A938E0C0068903C /* Codable+Extensions.swift in Sources */,
-				A9637D2D2ADEA893006DBFAC /* MapUserLocationFeature.swift in Sources */,
+				A9637D2D2ADEA893006DBFAC /* UserLocationFeature.swift in Sources */,
 				A9637D3A2AE1394E006DBFAC /* GeocoderFeature.swift in Sources */,
 				A93B20042AAAF0DA00E05DD1 /* JSONDecoder+Extensions.swift in Sources */,
 				A990E5482A42D9D40004F4F9 /* Localization+DevelopedBy.swift in Sources */,

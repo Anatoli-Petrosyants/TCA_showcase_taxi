@@ -49,14 +49,14 @@ extension MapView: View {
 
                 HStack(alignment: .bottom) {
                     Button {
-                        // #dev send action to open where to floe. A.P.
+                        viewStore.send(.onWhereToButtonTap)
                     } label: {
                         Text("Where To?")
                             .foregroundColor(Color.white)
                             .font(.system(size: 16))
                             .padding(10)
                             .background(Color.darkGray)
-                            .clipShape(RoundedRectangle(cornerRadius: 2))
+                            .clipShape(RoundedRectangle(cornerRadius: 3))
                             .shadow(color: Color.black01, radius: 4)
                             .contentShape(Rectangle())
                     }
@@ -82,6 +82,10 @@ extension MapView: View {
                 }, moving: $moving)
             }
             .ignoresSafeArea()
+            .sheet(
+                store: self.store.scope(state: \.$whereTo, action: { .whereTo($0) }),
+                content: WhereToView.init(store:)
+            )
         }
     }
 }

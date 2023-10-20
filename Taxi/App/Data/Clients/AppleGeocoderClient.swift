@@ -18,6 +18,7 @@ struct AppleGeocoderResponse: Equatable, Decodable {
 
 // Struct to hold the request data for reverse geocoding
 struct AppleGeocoderRequest {
+
     let coordinate: CLLocationCoordinate2D
 
     init(coordinate: CLLocationCoordinate2D) {

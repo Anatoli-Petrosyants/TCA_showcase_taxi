@@ -1,5 +1,5 @@
 //
-//  MapUserLocationFeature.swift
+//  UserLocationFeature.swift
 //  Taxi
 //
 //  Created by Anatoli Petrosyants on 17.10.23.
@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import CoreLocation
 
-struct MapUserLocationFeature<State>: Reducer {
+struct UserLocationFeature<State>: Reducer {
     
     @Dependency(\.locationManagerClient) var locationManagerClient
     @Dependency(\.applicationClient.open) var openURL
