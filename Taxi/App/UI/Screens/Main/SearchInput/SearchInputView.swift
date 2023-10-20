@@ -12,6 +12,12 @@ import ComposableArchitecture
 
 struct SearchInputView {
     let store: StoreOf<SearchInputFeature>
+    
+    struct ViewState: Equatable {
+        @BindingViewState var text: String
+        var isEditing: Bool
+        var isLoading: Bool
+    }
 }
 
 // MARK: - Views
@@ -23,40 +29,53 @@ extension SearchInputView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
+        WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
             HStack(spacing: 16) {
-                    TextField(viewStore.placeholder, text: viewStore.binding(
-                        get: \.searchQuery,
-                        send: SearchInputFeature.Action.onTextChanged)
-                    )
+                TextField("Search address...", text: viewStore.$text)
                     .textFieldStyle(.plain)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
-                    .padding(.leading, 8)
+                    .foregroundColor(Color.darkGray)
+                    .font(.headline)
+                    .tint(Color.darkGray)
+                
+                Spacer()
                 
                 if viewStore.isLoading {
                     ProgressView()
-                        .tint(.black)
+                        .tint(Color.darkGray)
                         .frame(width: 30, height: 30)
                 } else {
-                    if viewStore.isHiddenClearButton {
-                        Image(systemName: "magnifyingglass")
-                            .frame(width: 30, height: 30)
-                    } else {
+                    if viewStore.isEditing {
                         Image(systemName: "xmark")
                             .frame(width: 30, height: 30)
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 viewStore.send(.onClear)
                             }
+                    } else {
+                        Image(systemName: "magnifyingglass")
+                            .renderingMode(.template)
+                            .foregroundColor(Color.darkGray)
+                            .frame(width: 30, height: 30)
                     }
                 }
             }
-            .padding(4)
+            .padding([.leading, .trailing], 8)
+            .padding([.top, .bottom], 6)
+            .background(Color.gray03)
             .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color.black, lineWidth: 1)
+                RoundedRectangle(cornerRadius: 4)
+                    .stroke(Color.darkGray, lineWidth: 1)
             )
         }
+    }
+}
+
+// MARK: BindingViewStore
+
+extension BindingViewStore<SearchInputFeature.State> {
+    var view: SearchInputView.ViewState {
+        SearchInputView.ViewState(text: self.$text, isEditing: self.isEditing, isLoading: self.isLoading)
     }
 }

@@ -21,6 +21,8 @@ extension Color {
     static let white08 = Color("white").opacity(0.8)
     
     static let gray = Color("gray")
+    static let gray03 = Color("gray").opacity(0.3)
+    
     static let green = Color("green")
     static let red = Color("red")
     static let blue = Color("blue")

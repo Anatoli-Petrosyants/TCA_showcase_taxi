@@ -19,20 +19,37 @@ struct WhereToView {
 extension WhereToView: View {
     
     var body: some View {
-        content.onAppear { self.store.send(.onViewAppear) }
+        content
     }
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            ZStack {
-                Color.darkGray
+            VStack(spacing: 20) {
+                HStack {
+                    Button("Cancel") {
+                        viewStore.send(.onCancelTap)
+                    }
+                    .foregroundColor(Color.darkGray)
+
+                    Spacer()
+                }
                 
-                Text("WhereTo Feature")
-                    .font(.title1Bold)
-                    .foregroundColor(Color.white)
-                    .padding()
+                SearchInputView(
+                    store: self.store.scope(
+                        state: \.input,
+                        action: WhereToFeature.Action.input
+                    )
+                )
+                
+                ScrollView(showsIndicators: false) {
+                    
+                }
+                
+                Spacer()
             }
+            .padding()
             .ignoresSafeArea()
+            // .background(Color.darkGray)
         }
     }
 }

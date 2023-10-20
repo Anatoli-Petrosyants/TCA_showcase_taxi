@@ -12,15 +12,17 @@ import Dependencies
 struct SearchInputFeature: Reducer {
     
     struct State: Equatable {
-        var placeholder: LocalizedStringKey
-        var searchQuery = ""
-        var isHiddenClearButton = true
+        @BindingState var text = ""
+        var isEditing = false
         var isLoading = false
     }
     
     enum Action: Equatable {
-        case onTextChanged(String)
-        case onClear
+        enum ViewAction: BindableAction, Equatable {
+            case onTextChanged(String)
+            case onClear
+            case binding(BindingAction<State>)
+        }
         
         enum InternalAction: Equatable {
             case cancel
@@ -31,6 +33,7 @@ struct SearchInputFeature: Reducer {
             case didSearchQueryCleared
         }
         
+        case view(ViewAction)
         case `internal`(InternalAction)
         case delegate(Delegate)
     }
@@ -40,36 +43,46 @@ struct SearchInputFeature: Reducer {
     @Dependency(\.mainQueue) var mainQueue
     
     var body: some ReducerOf<Self> {
+        BindingReducer(action: /Action.view)
+        
         Reduce { state, action in
             switch action {
-            /// view actions
-            case let .onTextChanged(query):
-                state.searchQuery = query
-                state.isHiddenClearButton = query.isEmpty
+            // view actions
+            case let .view(viewAction):
+                switch viewAction {
+                case let .onTextChanged(text):
+                    state.text = text
+                    state.isEditing = !text.isEmpty
 
-                if query.isEmpty {
+                    if text.isEmpty {
+                        return .send(.internal(.cancel))
+                    } else {
+                        return .send(.delegate(.didSearchQueryChanged(text)))
+                            .debounce(id: CancelID.search, for: 0.5, scheduler: self.mainQueue)
+                    }
+                    
+                case .onClear:
+                    state.text = ""
+                    state.isEditing = false
                     return .send(.internal(.cancel))
-                } else {
-                    return .send(.delegate(.didSearchQueryChanged(query)))
-                        .debounce(id: CancelID.search, for: 0.5, scheduler: self.mainQueue)
+                    
+                case .binding:
+                    return .none
                 }
                 
-            case .onClear:
-                state.searchQuery = ""
-                state.isHiddenClearButton = true
-                return .send(.internal(.cancel))
-                
-            /// internal actions
+            // internal actions
             case .internal(.cancel):
                 return .concatenate([
                     .cancel(id: CancelID.search),
                     .send(.delegate(.didSearchQueryCleared))
                 ])
-                
+              
+            // delegate actions
             case .delegate:
                 return .none
             }
         }
     }
 }
+
 

@@ -23,6 +23,7 @@ struct MapFeature: Reducer {
             case onViewLoad
             case onLocationButtonTap
             case onWhereToButtonTap
+            case onMapViewWillMove
             case onMapViewIdleAtPosition(GMSCameraPosition)
             case binding(BindingAction<State>)
         }
@@ -49,7 +50,7 @@ struct MapFeature: Reducer {
     @Dependency(\.applicationClient.open) var openURL
     @Dependency(\.googleGeocoderClient) var googleGeocoderClient
     
-    private enum CancelID { case place }
+    private enum CancelID { case reverseGeocode }
     
     var body: some ReducerOf<Self> {
         BindingReducer(action: /Action.view)
@@ -82,6 +83,9 @@ struct MapFeature: Reducer {
                     state.whereTo = WhereToFeature.State()
                     return .none
                     
+                case .onMapViewWillMove:
+                    return .cancel(id: CancelID.reverseGeocode)
+                    
                 case let .onMapViewIdleAtPosition(position):
                     state.userLocation = nil
                     return .run { send in
@@ -97,7 +101,7 @@ struct MapFeature: Reducer {
                             )
                         )
                     }
-                    .cancellable(id: CancelID.place)
+                    .cancellable(id: CancelID.reverseGeocode)
                     
                 case .binding:
                     return .none
