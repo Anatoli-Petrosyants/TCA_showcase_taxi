@@ -11,7 +11,7 @@ import GoogleMapsUtils
 import CoreLocation
 
 extension GMSCameraPosition {
-    static let `default` = GMSCameraPosition.camera(withLatitude: 40.18397482, longitude: 44.51509883, zoom: 17.0)
+    static let `default` = GMSCameraPosition.camera(withLatitude: 40.18397482, longitude: 44.51509883, zoom: 18.0)
 }
 
 extension CLLocationCoordinate2D: Equatable {
@@ -24,7 +24,7 @@ extension CLLocationCoordinate2D: Equatable {
     }
 }
 
-let cameraTopPadding: CGFloat = 200.0
+let cameraTopPadding: CGFloat = 110.0
 
 struct GoogleMapViewRepresentable: UIViewRepresentable {
     
@@ -50,9 +50,10 @@ struct GoogleMapViewRepresentable: UIViewRepresentable {
         let mapView = GMSMapView.map(withFrame: .zero, camera: .default)
         mapView.isMyLocationEnabled = true
         mapView.isBuildingsEnabled = true
+        mapView.mapType = .normal
         mapView.settings.rotateGestures = false
         mapView.settings.tiltGestures = false
-        mapView.padding = UIEdgeInsets(top: 0, left: 0, bottom: cameraTopPadding, right: 0)
+        // mapView.padding = UIEdgeInsets(top: 0, left: 0, bottom: cameraTopPadding, right: 0)
         mapView.delegate = context.coordinator
         return mapView
     }

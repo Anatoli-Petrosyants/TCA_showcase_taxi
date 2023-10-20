@@ -25,55 +25,85 @@ extension PickupSpotView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             VStack(spacing: 0) {
-                VStack {
-                    Spacer()
-                    Text("Set your pickup spot")
-                        .font(.subheadline)
+                HStack {
+                    Text(viewStore.address)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(2)
+                        .font(.subheadlineBold)
                         .foregroundColor(Color.white08)
+
                     Spacer()
-                    Divider()
-                        .frame(height: 2)
-                        .overlay(Color.white01)
-                }
-                .frame(maxWidth: .infinity, maxHeight: 50)
-                // .padding([.leading, .trailing], 8)
-                
-                VStack {
-                    HStack {
-                        Text(viewStore.address)
-                            .multilineTextAlignment(.leading)
-                            .lineLimit(2)
-                            .font(.subheadlineBold)
-                            .foregroundColor(Color.white08)
-                        Spacer()
-                        Button {
-                            // #dev send search action
-                        } label: {
-                            Text("Search")
-                                .font(.subheadline)
-                                .foregroundColor(Color.white)
-                                .padding(8)
-                        }
-                        .background(Color.white03)
-                        .clipShape(Capsule())
+                    
+                    Button {
+                        // #dev send search action
+                    } label: {
+                        Text("GO")
+                            .font(.headlineBold)
+                            .foregroundColor(Color.black)
+                            .padding()
                     }
-                    .padding([.leading, .trailing], 16)
+                    .background(Color.white08)
+                    .clipShape(Circle())
                 }
-                .frame(maxWidth: .infinity, maxHeight: 80)
-                
-                Button("Confirm pickup", action: {
-                    // #dev confirm pickup action
-                })
-                .frame(minWidth: 200, maxWidth: .infinity, minHeight: 52)
-                .background(Color.white08)
-                .foregroundColor(Color.black)
-                .font(.headlineBold)
-                .clipShape(Capsule())
-                .padding([.leading, .trailing], 16)
+                .padding()
                 
                 Spacer()
+                
+//                VStack {
+//                    Spacer()
+//                    Text("Set your pickup spot")
+//                        .font(.subheadline)
+//                        .foregroundColor(Color.white08)
+//                    Spacer()
+//                    Divider()
+//                        .frame(height: 2)
+//                        .overlay(Color.white01)
+//                }
+//                .frame(maxWidth: .infinity, maxHeight: 50)
+//                // .padding([.leading, .trailing], 8)
+//
+//                VStack {
+//                    HStack {
+//                        Text(viewStore.address)
+//                            .multilineTextAlignment(.leading)
+//                            .lineLimit(2)
+//                            .font(.subheadlineBold)
+//                            .foregroundColor(Color.white08)
+//
+//                        Spacer()
+//
+//                        Button {
+//                            // #dev send search action
+//                        } label: {
+//                            Text("GO")
+//                                .font(.headlineBold)
+//                                .foregroundColor(Color.black)
+//                                .padding()
+//                        }
+//                        .background(Color.white08)
+//                        .clipShape(Circle())
+//
+//                        /*
+//                        Button {
+//                            // #dev send search action
+//                        } label: {
+//                            Text("Search")
+//                                .font(.subheadline)
+//                                .foregroundColor(Color.white)
+//                                .padding(8)
+//                        }
+//                        .background(Color.white03)
+//                        .clipShape(Capsule())
+//                        */
+//                    }
+//                    .padding([.leading, .trailing], 16)
+//                }
+//                .frame(maxWidth: .infinity, maxHeight: 80)
+//
+//                Spacer()
             }
-            .frame(maxWidth: .infinity, maxHeight: 240)
+            .frame(maxWidth: .infinity, maxHeight: 100)
+            .padding(.top, 4)
             .background(Color.darkGray)
         }
     }

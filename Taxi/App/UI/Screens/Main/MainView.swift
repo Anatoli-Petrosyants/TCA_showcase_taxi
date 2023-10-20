@@ -40,14 +40,20 @@ extension MainView: View {
                         )
                         .ignoresSafeArea()
                         
-//                        Button {
-//                            viewStore.send(.view(.onMenuTap))
-//                        } label: {
-//                            Image(systemName: "line.3.horizontal")
-//                                .tint(Color.black)
-//                        }
-//                        .padding()
-//                        .background(.red)
+                        HStack {
+                            Button {
+                                viewStore.send(.view(.onMenuTap))
+                            } label: {
+                                Image(systemName: "line.3.horizontal")
+                                    .tint(Color.white)
+                            }
+                            .padding(8)
+                            .background(Color.darkGray)
+                            .clipShape(RoundedRectangle(cornerRadius: 2))
+                                                        
+                            Spacer()
+                        }
+                        .padding(8)
                     }
                     
                     SidebarView(

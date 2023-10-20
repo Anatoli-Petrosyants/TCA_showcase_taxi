@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct CurrentLocationButton: View {
-    
-    @Binding var moving: Bool
+
     var didTap: () -> ()
     
     var body: some View {
@@ -24,8 +23,6 @@ struct CurrentLocationButton: View {
                 .background(Color.darkGray)
                 .clipShape(Circle())
                 .shadow(color: Color.black01, radius: 4)
-        }
-        .opacity(moving ? 0 : 1.0)
-        .animation(.linear(duration: 0.1), value: moving)
+        }        
     }
 }

@@ -43,13 +43,34 @@ extension MapView: View {
 
                     ChooseAddressPinView(moving: $moving)
                             .frame(width: 100, height: 100)
-                            .padding(.top, (UIScreen.main.bounds.size.height - cameraTopPadding) / 2 - 92)
+                            // .padding(.top, (UIScreen.main.bounds.size.height - cameraTopPadding) / 2 - 92)
+                            .padding(.top, (UIScreen.main.bounds.size.height) / 2 - 92)
                 }
-                
-                CurrentLocationButton(moving: $moving, didTap: {
-                    viewStore.send(.onLocationButtonTap)
-                })
-                .offset(x: -10, y: -250)
+
+                HStack(alignment: .bottom) {
+                    Button {
+                        // #dev send action to open where to floe. A.P.
+                    } label: {
+                        Text("Where To?")
+                            .foregroundColor(Color.white)
+                            .font(.system(size: 16))
+                            .padding(10)
+                            .background(Color.darkGray)
+                            .clipShape(RoundedRectangle(cornerRadius: 2))
+                            .shadow(color: Color.black01, radius: 4)
+                            .contentShape(Rectangle())
+                    }
+
+                    Spacer()
+                    
+                    CurrentLocationButton(didTap: {
+                        viewStore.send(.onLocationButtonTap)
+                    })
+                }
+                .padding([.leading, .trailing], 8)
+                .offset(y: -110)
+                .opacity(moving ? 0 : 1.0)
+                .animation(.linear(duration: 0.1), value: moving)
 
                 PickupSpotBottomSheetView(content: {
                     PickupSpotView(
