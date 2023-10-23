@@ -10,7 +10,7 @@ import Dependencies
 import GoogleMaps
 import GooglePlaces
 
-struct GoogleAutocompletePrediction: Equatable {
+struct GoogleAutocompletePrediction: Equatable, Hashable {
     var placeID: String
     var attributedFullText: NSAttributedString
 }
@@ -41,13 +41,17 @@ extension DependencyValues {
 extension GooglePlacesClient: DependencyKey {
     static let liveValue: Self = {
         let token = GMSAutocompleteSessionToken.init()
+        
+        let filter = GMSAutocompleteFilter()
+        filter.country = "AM"
+        
         let placesClient = GMSPlacesClient()
         
         return Self(
             autocompletePredictions: { data in
                 return try await withCheckedThrowingContinuation { continuation in
                     placesClient.findAutocompletePredictions(fromQuery: data.query,
-                                                             filter: nil,
+                                                             filter: filter,
                                                              sessionToken: token) { (results, error) in
                         if let err = error {
                             continuation.resume(with: .failure(err))

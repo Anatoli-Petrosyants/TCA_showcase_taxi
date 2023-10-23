@@ -12,6 +12,7 @@ struct WhereToFeature: Reducer {
 
     struct State: Equatable {
         var input = SearchInputFeature.State()
+        var data: Loadable<[GoogleAutocompletePrediction]> = .idle
     }
     
     enum Action: Equatable {
@@ -53,6 +54,7 @@ struct WhereToFeature: Reducer {
                 switch internalAction {
                 case let .googlePlacesResponse(.success(data)):
                     Log.info("googlePlacesResponse: \(data)")
+                    state.data = .loaded(data.googleAutocompletePredictions)
                     return .none
                     
                 case let .googlePlacesResponse(.failure(error)):

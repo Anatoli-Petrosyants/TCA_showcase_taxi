@@ -41,8 +41,27 @@ extension WhereToView: View {
                     )
                 )
                 
-                ScrollView(showsIndicators: false) {
-                    
+                VStack {
+                    Group {
+                        (/Loadable<[GoogleAutocompletePrediction]>.loaded).extract(from: viewStore.data).map { contacts in
+                            List(contacts, id: \.self) { contact in
+                                VStack(alignment: .leading) {
+                                    Text("\(contact.placeID)")
+                                        .font(.bodyBold)
+                                    
+                                    Text("\(contact.attributedFullText)")
+                                        .font(.body)
+                                }
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    // viewStore.send(.onContactTap(contact))
+                                }
+                            }
+                            .environment(\.defaultMinListRowHeight, 44)
+                            .listRowBackground(Color.clear)
+                            .listStyle(.plain)
+                        }
+                    }
                 }
                 
                 Spacer()
