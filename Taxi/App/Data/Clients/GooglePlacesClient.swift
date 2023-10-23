@@ -13,6 +13,11 @@ import GooglePlaces
 struct GoogleAutocompletePrediction: Equatable, Hashable {
     var placeID: String
     var attributedFullText: NSAttributedString
+    
+    var text: String {
+        let array = attributedFullText.string.components(separatedBy: ",").dropLast()
+        return array.joined(separator: ",")
+    }
 }
 
 struct GooglePlacesResponse: Equatable {
@@ -43,7 +48,9 @@ extension GooglePlacesClient: DependencyKey {
         let token = GMSAutocompleteSessionToken.init()
         
         let filter = GMSAutocompleteFilter()
-        filter.country = "AM"
+        // filter.country = "AM"
+        filter.countries = ["AM"]
+        // filter.type = .address
         
         let placesClient = GMSPlacesClient()
         
