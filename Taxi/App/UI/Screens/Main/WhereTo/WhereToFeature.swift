@@ -53,19 +53,22 @@ struct WhereToFeature: Reducer {
             case let .internal(internalAction):
                 switch internalAction {
                 case let .googlePlacesResponse(.success(data)):
-                    Log.info("googlePlacesResponse: \(data)")
+                    // Log.info("googlePlacesResponse: \(data)")
+                    state.input.isLoading = false
                     state.data = .loaded(data.googleAutocompletePredictions)
                     return .none
                     
                 case let .googlePlacesResponse(.failure(error)):
                     Log.error("googlePlacesResponse: \(error)")
+                    state.input.isLoading = false
                     return .none
                 }
                 
             case let .input(inputAction):
                 switch inputAction {
                 case let .delegate(.didSearchQueryChanged(query)):
-                    Log.info("didSearchQueryChanged query: \(query)")
+                    // Log.info("didSearchQueryChanged query: \(query)")
+                    state.input.isLoading = true
                     return .run { send in
                         await send(
                             .internal(
@@ -82,6 +85,7 @@ struct WhereToFeature: Reducer {
                     .cancellable(id: CancelID.search)
 
                 case .delegate(.didSearchQueryCleared):
+                    state.data = .idle
                     return .cancel(id: CancelID.search)
                     
                 default:

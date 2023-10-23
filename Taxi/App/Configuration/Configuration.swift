@@ -30,6 +30,7 @@ protocol ShowcaseConfiguration {
     var deviceName: String { get }
     var bundle: String { get }
     var executable: String { get }
+    var country: String { get }
     var systemLanguage: String { get }
     var deviceNotificationToken: String { get }
     var timezoneOffset: String { get }
@@ -164,6 +165,10 @@ extension Configuration: ShowcaseConfiguration {
             return ""
         }
         return executable
+    }
+        
+    var country: String {
+        return Locale.current.language.region?.identifier ?? ""
     }
     
     var systemLanguage: String {

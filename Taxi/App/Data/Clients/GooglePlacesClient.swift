@@ -48,9 +48,7 @@ extension GooglePlacesClient: DependencyKey {
         let token = GMSAutocompleteSessionToken.init()
         
         let filter = GMSAutocompleteFilter()
-        // filter.country = "AM"
-        filter.countries = ["AM"]
-        // filter.type = .address
+        filter.country = Configuration.current.country
         
         let placesClient = GMSPlacesClient()
         

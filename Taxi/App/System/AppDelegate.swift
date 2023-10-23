@@ -30,6 +30,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSPlacesClient.provideAPIKey(Configuration.current.mapKey)
         
+        print("Locale.current.regionCode \(Locale.current.language.region?.identifier)")
+        
         self.store.send(.appDelegate(.didFinishLaunching))
         return true
     }

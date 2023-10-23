@@ -129,6 +129,7 @@
 		A9A5CBE82AE2727E00E1C12B /* SearchInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5CBE72AE2727E00E1C12B /* SearchInputView.swift */; };
 		A9A5CBEB2AE296C300E1C12B /* Shape+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5CBEA2AE296C300E1C12B /* Shape+Extensions.swift */; };
 		A9A5CBED2AE2AB5D00E1C12B /* GooglePlacesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5CBEC2AE2AB5D00E1C12B /* GooglePlacesClient.swift */; };
+		A9A5CBEF2AE687D100E1C12B /* map_style.json in Resources */ = {isa = PBXBuildFile; fileRef = A9A5CBEE2AE687D100E1C12B /* map_style.json */; };
 		A9AA22BA2A8DE77E0073E070 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A9AA22B92A8DE77E0073E070 /* ComposableArchitecture */; };
 		A9AA22C82A8F96900073E070 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A9AA22C72A8F96900073E070 /* FirebaseFirestoreSwift */; };
 		A9AA22CC2A8F9BF90073E070 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */; };
@@ -323,6 +324,7 @@
 		A9A5CBE72AE2727E00E1C12B /* SearchInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInputView.swift; sourceTree = "<group>"; };
 		A9A5CBEA2AE296C300E1C12B /* Shape+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shape+Extensions.swift"; sourceTree = "<group>"; };
 		A9A5CBEC2AE2AB5D00E1C12B /* GooglePlacesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesClient.swift; sourceTree = "<group>"; };
+		A9A5CBEE2AE687D100E1C12B /* map_style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map_style.json; sourceTree = "<group>"; };
 		A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		A9ABFB3A2AA5FADC0093EBF3 /* UserNotificationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationClient.swift; sourceTree = "<group>"; };
 		A9ABFB3C2AA607F10093EBF3 /* RemoteNotificationsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNotificationsClient.swift; sourceTree = "<group>"; };
@@ -954,6 +956,7 @@
 			children = (
 				A9AF260D2A78E8D400631158 /* Showcase.entitlements */,
 				A91606B22AD803CA00E581A4 /* GoogleService-Info.plist */,
+				A9A5CBEE2AE687D100E1C12B /* map_style.json */,
 				A9AF26042A77997900631158 /* Taxi-Info.plist */,
 				A9DED5A829AC7FA7003EFA02 /* Preview Assets.xcassets */,
 				A9DED5A529AC7FA7003EFA02 /* Assets.xcassets */,
@@ -1170,6 +1173,7 @@
 				A9DED5C929AC9F64003EFA02 /* config.plist in Resources */,
 				A9DED5A929AC7FA7003EFA02 /* Preview Assets.xcassets in Resources */,
 				A9A0CBB729D6FB2D0048A649 /* onboarding_1.json in Resources */,
+				A9A5CBEF2AE687D100E1C12B /* map_style.json in Resources */,
 				A9A0CBAB29D6F2BB0048A649 /* onboarding_2.json in Resources */,
 				A91606B32AD803CA00E581A4 /* GoogleService-Info.plist in Resources */,
 				A9DED5C229AC9683003EFA02 /* LaunchScreen.storyboard in Resources */,

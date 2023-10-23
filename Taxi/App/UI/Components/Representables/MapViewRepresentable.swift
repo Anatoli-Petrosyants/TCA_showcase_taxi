@@ -55,6 +55,17 @@ struct GoogleMapViewRepresentable: UIViewRepresentable {
         mapView.settings.tiltGestures = false
         // mapView.padding = UIEdgeInsets(top: 0, left: 0, bottom: cameraTopPadding, right: 0)
         mapView.delegate = context.coordinator
+        
+        do {
+          if let styleURL = Bundle.main.url(forResource: "map_style", withExtension: "json") {
+              mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+          } else {
+              Log.error("Unable to find style.json")
+          }
+        } catch {
+            Log.error("One or more of the map styles failed to load. \(error)")
+        }
+        
         return mapView
     }
     
