@@ -35,10 +35,18 @@ extension LoadingView: View {
 //        WithViewStore(self.store, observe: { $0 }, send: { .view($0) }) { viewStore in
 //        WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
         WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
-            VStack(spacing: 10) {
-                Text(Localization.Base.showcase).font(Font.title2)
-                ProgressViewWrapper(progress: viewStore.$progress)
+            ZStack {
+                Color.darkGray
+                
+                VStack(spacing: 10) {
+                    Text(Localization.Base.showcase)
+                        .font(Font.title2)
+                        .foregroundColor(Color.white)
+                    
+                    ProgressViewWrapper(progress: viewStore.$progress)
+                }
             }
+            .ignoresSafeArea()
         }
     }
 }

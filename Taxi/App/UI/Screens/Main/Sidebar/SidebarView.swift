@@ -88,13 +88,7 @@ extension BindingViewStore<SidebarFeature.State> {
 extension SidebarView {
 
     private func featuresView(viewStore: SidebarReducerViewStore) -> some View {
-        Group {
-            Button {
-                viewStore.send(.onDarkModeTap)
-            } label: {
-                Label(Localization.Sidebar.darkMode, systemImage: "switch.2")
-            }
-            
+        Group {            
             Button {
                 viewStore.send(.onAppSettings)
             } label: {

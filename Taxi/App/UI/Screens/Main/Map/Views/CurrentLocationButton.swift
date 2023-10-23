@@ -18,9 +18,9 @@ struct CurrentLocationButton: View {
             Image(systemName: "location.fill")
                 .renderingMode(.template)
                 .foregroundColor(Color.white)
-                .font(.system(size: 20))
+                .font(.headline)
                 .padding(12)
-                .background(Color.darkGray)
+                .background(Color.primaryBlack)
                 .clipShape(Circle())
                 .shadow(color: Color.black01, radius: 4)
         }        

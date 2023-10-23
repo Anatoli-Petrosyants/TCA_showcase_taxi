@@ -46,7 +46,7 @@ extension WhereToView: View {
                     Button("Cancel") {
                         viewStore.send(.view(.onCancelTap))
                     }
-                    .foregroundColor(Color.darkGray)
+                    .foregroundColor(Color.white)
 
                     Spacer()
                 }
@@ -68,16 +68,17 @@ extension WhereToView: View {
                                     
                                     Text(prediction.text)
                                         .font(.subheadline)
-                                        .foregroundColor(Color.black08)
+                                        .foregroundColor(Color.white)
                                 }
                                 .padding([.top, .bottom], 4)
                                 .contentShape(Rectangle())
+                                .listRowBackground(Color.clear)
+                                .listRowSeparatorTint(Color.white05)
                                 .onTapGesture {
                                     // viewStore.send(.onContactTap(contact))
                                 }
                             }
                             .environment(\.defaultMinListRowHeight, 44)
-                            .listRowBackground(Color.clear)
                             .listStyle(.plain)
                         }
                     }
@@ -87,7 +88,7 @@ extension WhereToView: View {
             }
             .padding()
             .ignoresSafeArea()
-            // .background(Color.darkGray)
+            .background(Color.darkGray)
         }
     }
 }

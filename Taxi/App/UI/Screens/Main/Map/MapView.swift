@@ -55,7 +55,7 @@ extension MapView: View {
                             .foregroundColor(Color.white)
                             .font(.system(size: 16))
                             .padding(10)
-                            .background(Color.darkGray)
+                            .background(Color.primaryBlack)
                             .clipShape(RoundedRectangle(cornerRadius: 3))
                             .shadow(color: Color.black01, radius: 4)
                             .contentShape(Rectangle())
@@ -68,7 +68,7 @@ extension MapView: View {
                     })
                 }
                 .padding([.leading, .trailing], 8)
-                .offset(y: -110)
+                .offset(y: -130)
                 .opacity(moving ? 0 : 1.0)
                 .animation(.linear(duration: 0.1), value: moving)
 

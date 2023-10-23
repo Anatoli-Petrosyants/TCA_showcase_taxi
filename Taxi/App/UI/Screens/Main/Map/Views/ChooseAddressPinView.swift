@@ -18,26 +18,25 @@ struct ChooseAddressPinView: View {
             VStack(spacing: 0) {
                 ZStack {
                     Circle()
-                        .fill(Color.darkGray)
+                        .fill(Color.white)
 
                     Image(systemName: "square.fill")
                         .renderingMode(.template)
-                        .foregroundColor(Color.white)
-                        .font(.system(size: 8))
+                        .foregroundColor(Color.primaryBlack)
+                        .font(.system(size: 7))
                 }
-                .shadow(color: Color.black.opacity(0.1), radius: 1)
-                .frame(width: 36, height: 36)
+                .frame(width: 30, height: 30)
 
                 Rectangle()
-                    .frame(width: 2.5, height: 22)
-                    .foregroundColor(Color.darkGray)
+                    .frame(width: 2.0, height: 18)
+                    .foregroundColor(Color.white)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .offset(y: moving ? -10 : 0.0)
 
             Ellipse()
-                .frame(width: 7, height: 6)
-                .foregroundColor(Color.darkGray)
+                .frame(width: 6, height: 5)
+                .foregroundColor(Color.white)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                 .opacity(moving ? 1.0 : 0.0)
         }

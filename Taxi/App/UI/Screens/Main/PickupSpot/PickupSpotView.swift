@@ -102,9 +102,9 @@ extension PickupSpotView: View {
 //
 //                Spacer()
             }
-            .frame(maxWidth: .infinity, maxHeight: 100)
+            .frame(maxWidth: .infinity, maxHeight: 120)
             .padding(.top, 4)
-            .background(Color.darkGray)
+            .background(Color.primaryBlack)
         }
     }
 }

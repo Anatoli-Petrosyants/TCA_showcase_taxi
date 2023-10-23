@@ -13,7 +13,7 @@ struct ProgressViewWrapper: View {
     var body: some View {
         ProgressView(value: progress)
             .background(Color.gray)
-            .tint(Color.black)
+            .tint(Color.white)
             .scaleEffect(0.5, anchor: .center)
             .frame(width: 202, height: 2, alignment: .center)
     }

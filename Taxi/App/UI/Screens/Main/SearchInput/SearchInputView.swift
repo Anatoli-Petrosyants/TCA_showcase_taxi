@@ -35,19 +35,21 @@ extension SearchInputView: View {
                     .textFieldStyle(.plain)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
-                    .foregroundColor(Color.darkGray)
+                    .foregroundColor(Color.white)
                     .font(.headline)
-                    .tint(Color.darkGray)
+                    .tint(Color.white)
                 
                 Spacer()
                 
                 if viewStore.isLoading {
                     ProgressView()
-                        .tint(Color.darkGray)
+                        .tint(Color.white)
                         .frame(width: 30, height: 30)
                 } else {
                     if viewStore.isEditing {
                         Image(systemName: "xmark")
+                            .renderingMode(.template)
+                            .foregroundColor(Color.white)
                             .frame(width: 30, height: 30)
                             .contentShape(Rectangle())
                             .onTapGesture {
@@ -56,14 +58,14 @@ extension SearchInputView: View {
                     } else {
                         Image(systemName: "magnifyingglass")
                             .renderingMode(.template)
-                            .foregroundColor(Color.darkGray)
+                            .foregroundColor(Color.white)
                             .frame(width: 30, height: 30)
                     }
                 }
             }
             .padding([.leading, .trailing], 8)
             .padding([.top, .bottom], 6)
-            .background(Color.gray03)
+            .background(Color.secondaryGray)
             .overlay(
                 RoundedRectangle(cornerRadius: 4)
                     .stroke(Color.darkGray, lineWidth: 1)

@@ -27,7 +27,6 @@ struct SidebarFeature: Reducer {
             case onRateTap
             case onShareTap
             case onAppSettings
-            case onDarkModeTap
             case binding(BindingAction<State>)
         }
         
@@ -72,9 +71,6 @@ struct SidebarFeature: Reducer {
                     return .none
                     
                 case .onAppSettings:
-                    return .none
-                
-                case .onDarkModeTap:
                     return .none
 
                 case .binding:

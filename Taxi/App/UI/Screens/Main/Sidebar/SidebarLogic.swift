@@ -31,12 +31,6 @@ struct SidebarLogic<State>: Reducer {
                 UIApplication.shared.open(url)
                 return .none
                 
-            case .onDarkModeTap:
-                let style = UIApplication.shared.firstKeyWindow?.overrideUserInterfaceStyle
-                return .run { _ in
-                    await self.setUserInterfaceStyle((style == .dark) ? .light : .dark)
-                }
-                
             case .onAppSettings:
                 return .run { _ in
                     _ = await self.openURL(URL(string: UIApplication.openSettingsURLString)!, [:])
