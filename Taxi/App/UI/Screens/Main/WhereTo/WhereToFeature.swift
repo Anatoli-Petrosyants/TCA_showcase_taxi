@@ -22,11 +22,17 @@ struct WhereToFeature: Reducer {
         }
         
         enum InternalAction: Equatable {
-            case googlePlacesResponse(TaskResult<GooglePlacesResponse>)
+            case googleAutocompletePredictionsResponse(TaskResult<GooglePlacesResponse>)
+            case googlePlaceResponse(TaskResult<GooglePlaceResponse>)
+        }
+        
+        enum DelegateAction: Equatable {
+            case didPlaceSelected(GooglePlaceResponse)
         }
 
         case view(ViewAction)
         case `internal`(InternalAction)
+        case delegate(DelegateAction)
         case input(SearchInputFeature.Action)
     }
     
@@ -50,35 +56,62 @@ struct WhereToFeature: Reducer {
                         .run { _ in await self.dismiss() }
                     ])
                     
-                    
                 case let .onPredictionTap(prediction):
-                    Log.info("onPredictionTap \(prediction)")
-                    return .none
+                    state.input.isLoading = true
+                    return .run { send in
+                        await send(
+                            .internal(
+                                .googlePlaceResponse(
+                                    await TaskResult {
+                                        try await self.googlePlacesClient.lookUpPlaceID(prediction.placeID)
+                                    }
+                                )
+                            )
+                        )
+                    }
                 }
                 
             case let .internal(internalAction):
                 switch internalAction {
-                case let .googlePlacesResponse(.success(data)):
-                    // Log.info("googlePlacesResponse: \(data)")
-                    state.input.isLoading = false
-                    state.data = .loaded(data.googleAutocompletePredictions)
-                    return .none
+                case let .googleAutocompletePredictionsResponse(result):
+                    switch result {
+                    case let .success(data):
+                        state.input.isLoading = false
+                        state.data = .loaded(data.googleAutocompletePredictions)
+                        return .none
+                        
+                    case let .failure(error):
+                        Log.error("googlePlacesResponse: \(error)")
+                        state.input.isLoading = false
+                        state.data = .failed(error)
+                        return .none
+                    }
                     
-                case let .googlePlacesResponse(.failure(error)):
-                    Log.error("googlePlacesResponse: \(error)")
-                    state.input.isLoading = false
-                    return .none
+                case let .googlePlaceResponse(result):
+                    switch result {
+                    case let .success(data):
+                        state.input.isLoading = false
+                        return .concatenate([
+                            .send(.delegate(.didPlaceSelected(data))),
+                            .run { _ in await self.dismiss() }
+                        ])
+                        
+                    case let .failure(error):
+                        Log.error("googlePlacesResponse: \(error)")
+                        state.input.isLoading = false
+                        state.data = .failed(error)
+                        return .none
+                    }
                 }
                 
             case let .input(inputAction):
                 switch inputAction {
                 case let .delegate(.didSearchQueryChanged(query)):
-                    // Log.info("didSearchQueryChanged query: \(query)")
                     state.input.isLoading = true
                     return .run { send in
                         await send(
                             .internal(
-                                .googlePlacesResponse(
+                                .googleAutocompletePredictionsResponse(
                                     await TaskResult {
                                         try await self.googlePlacesClient.autocompletePredictions(
                                             .init(query: query)
@@ -97,6 +130,9 @@ struct WhereToFeature: Reducer {
                 default:
                     return .none
                 }
+                
+            case .delegate:
+                return .none
             }
         }
     }

@@ -34,13 +34,13 @@ struct SidebarFeature: Reducer {
             case toggleVisibility
         }
 
-        enum Delegate: Equatable {
+        enum DelegateAction: Equatable {
             case didSidebarTapped(SidebarItemType)
         }
 
         case view(ViewAction)
         case `internal`(InternalAction)
-        case delegate(Delegate)
+        case delegate(DelegateAction)
     }        
     
     var body: some ReducerOf<Self> {

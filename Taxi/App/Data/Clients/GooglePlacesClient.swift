@@ -88,9 +88,20 @@ extension GooglePlacesClient: DependencyKey {
             lookUpPlaceID: { placeId in
                 return try await withCheckedThrowingContinuation { continuation in
                     placesClient.lookUpPlaceID(placeId) { (place, error) in
-                        Log.info("lookUpPlaceID \(placeId) placeId \(place?.placeID)")
-                        Log.info("lookUpPlaceID \(placeId) coordinate \(place?.coordinate)")
-                        Log.info("lookUpPlaceID \(placeId) formattedAddress \(place?.formattedAddress)")
+                        if let err = error {
+                            continuation.resume(with: .failure(err))
+                            return
+                        }
+                        
+                        if let place = place {
+                            let response = GooglePlaceResponse(
+                                placeID: place.placeID.valueOr(""),
+                                coordinate: place.coordinate,
+                                formattedAddress: place.formattedAddress.valueOr("")
+                            )
+                            
+                            continuation.resume(returning: response)
+                        }
                     }
                 }
             }

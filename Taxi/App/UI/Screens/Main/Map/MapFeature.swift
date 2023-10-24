@@ -115,11 +115,12 @@ struct MapFeature: Reducer {
                 state.pickupSpot.address = data.thoroughfare
                 return .none
                 
-//            case let .whereTo(.presented(.delegate(whereToAction))):
-//                switch whereToAction {
-//                case .didDevelopedByViewed:
-//                    return .none
-//                }
+            case let .whereTo(.presented(.delegate(whereToAction))):
+                switch whereToAction {
+                case let .didPlaceSelected(place):
+                    Log.info("didPlaceSelected place \(place)")
+                    return .none
+                }
                 
             case .internal, .pickupSpot, .whereTo:
                 return .none
