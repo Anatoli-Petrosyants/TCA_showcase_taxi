@@ -50,6 +50,7 @@ extension OnboardingView: View {
                 .isHidden(!viewStore.showGetStarted)
             }
             .padding()
+            .background(Color.black.ignoresSafeArea())
         }
     }
 }
@@ -64,22 +65,21 @@ struct OnboardingPageView: View {
     @State private var playLottie = false
 
     var body: some View {
-        VStack() {
+        VStack(spacing: 0) {
             LottieViewRepresentable(name: data.lottie, loopMode: .autoReverse, play: $playLottie)
 
             Spacer()
 
             Text(data.title)
-                .font(.title2)
-                .bold()
-                .foregroundColor(.black)
+                .font(.headlineBold)
+                .foregroundColor(Color.white)
                 .multilineTextAlignment(.center)
 
             Text(data.description)
-                .font(.headline)
-                .foregroundColor(.secondary)
+                .font(.subheadline)
+                .foregroundColor(Color.white)
                 .multilineTextAlignment(.center)
-                .padding()
+                .padding(.top, 8)
             
             Spacer()
         }

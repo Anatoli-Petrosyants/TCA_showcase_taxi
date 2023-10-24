@@ -47,6 +47,7 @@ extension PhoneOTPView: View {
             .loader(isLoading: viewStore.isActivityIndicatorVisible)
             .padding(24)
             .navigationTitle("Enter Code")
+            .background(Color.black.ignoresSafeArea())
         }
     }
 }

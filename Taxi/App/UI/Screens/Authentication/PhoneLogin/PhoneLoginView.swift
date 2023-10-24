@@ -44,14 +44,14 @@ extension PhoneLoginView: View {
                     .flagHidden(false)
                     .flagSelectable(true)
                     .maximumDigits(10)
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color.white)
                     .clearButtonMode(.whileEditing)
-                    .accentColor(Color.black)
+                    .accentColor(Color.white)
                     .padding()
-                    .background(Color.white)
+                    .background(Color.clear)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.black05, lineWidth: 0.5)
+                            .stroke(Color.white05, lineWidth: 0.5)
                     )
                     .focused($focused)
                 
@@ -67,6 +67,7 @@ extension PhoneLoginView: View {
             .loader(isLoading: viewStore.isActivityIndicatorVisible)
             .padding(24)
             .navigationTitle("Login with phone")
+            .background(Color.black.ignoresSafeArea())
         }
     }
 }

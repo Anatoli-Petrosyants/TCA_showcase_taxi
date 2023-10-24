@@ -33,7 +33,7 @@ extension ForgotPasswordView: View {
                 })
                 .buttonStyle(.cta)
             }
-            .padding(24)
+            .background(Color.black.ignoresSafeArea())
         }
         .alert(store: self.store.scope(state: \.$alert, action: ForgotPasswordFeature.Action.alert))
     }

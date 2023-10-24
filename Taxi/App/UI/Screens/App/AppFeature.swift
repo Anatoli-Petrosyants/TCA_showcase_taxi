@@ -99,10 +99,6 @@ struct AppFeature: Reducer {
             case let .loading(action: .delegate(loadingAction)):
                 switch loadingAction {
                 case .didLoaded:
-                    
-                    state = .main(MainFeature.State())
-                    return .none
-                    
                     if self.userDefaultsClient.hasShownFirstLaunchOnboarding {
                         if (self.userKeychainClient.retrieveToken() != nil) {
                             state = .main(MainFeature.State())

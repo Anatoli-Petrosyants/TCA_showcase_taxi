@@ -12,11 +12,11 @@ struct AppTextFieldStyle: TextFieldStyle {
     func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
             .padding(.vertical, 8)
-            .foregroundColor(.black)
+            .foregroundColor(Color.white)
         
             Rectangle()
             .frame(height: 0.5)
-                .foregroundColor(.gray)
+                .foregroundColor(Color.white05)
     }
 }
 

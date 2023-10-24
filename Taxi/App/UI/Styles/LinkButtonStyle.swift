@@ -13,7 +13,7 @@ struct LinkButtonStyle: ButtonStyle {
         configuration.label
             .underline()
             .font(.subheadline)
-            .foregroundColor(.black)
+            .foregroundColor(.white)
     }
 }
 

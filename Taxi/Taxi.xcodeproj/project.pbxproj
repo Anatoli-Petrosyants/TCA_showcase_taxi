@@ -88,7 +88,6 @@
 		A98DD1612A9F545100B39EDC /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = A98DD1602A9F545100B39EDC /* iPhoneNumberField */; };
 		A990E5042A4194820004F4F9 /* Showcase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E5032A4194820004F4F9 /* Showcase.swift */; };
 		A990E5062A41970B0004F4F9 /* ProgressViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E5052A41970B0004F4F9 /* ProgressViewWrapper.swift */; };
-		A990E50C2A419A7C0004F4F9 /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E50B2A419A7C0004F4F9 /* NavigationBarModifier.swift */; };
 		A990E51F2A41A03C0004F4F9 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E51B2A41A03C0004F4F9 /* Layout.swift */; };
 		A990E5202A41A03C0004F4F9 /* Layout+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E51C2A41A03C0004F4F9 /* Layout+Extension.swift */; };
 		A990E5232A41BA3E0004F4F9 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E5222A41BA3E0004F4F9 /* Bundle+Extensions.swift */; };
@@ -285,7 +284,6 @@
 		A98DD15D2A9F31DA00B39EDC /* Localization+LoginOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+LoginOptions.swift"; sourceTree = "<group>"; };
 		A990E5032A4194820004F4F9 /* Showcase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Showcase.swift; sourceTree = "<group>"; };
 		A990E5052A41970B0004F4F9 /* ProgressViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewWrapper.swift; sourceTree = "<group>"; };
-		A990E50B2A419A7C0004F4F9 /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
 		A990E51B2A41A03C0004F4F9 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		A990E51C2A41A03C0004F4F9 /* Layout+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Layout+Extension.swift"; sourceTree = "<group>"; };
 		A990E5222A41BA3E0004F4F9 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
@@ -676,7 +674,6 @@
 		A990E50A2A419A720004F4F9 /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
-				A990E50B2A419A7C0004F4F9 /* NavigationBarModifier.swift */,
 				A960AA1F2A49A867005CE9F9 /* OnLoadModifier.swift */,
 				A9C181BA2A6558D000C9EB90 /* LoaderModifier.swift */,
 				A988F0D529B60B470059F9BB /* ErrorModifier.swift */,
@@ -1288,7 +1285,6 @@
 				A9A0CBA329D6F1B50048A649 /* Onboarding.swift in Sources */,
 				A9FAD6BD2A54195A003A46F5 /* CoreData+Extensions.swift in Sources */,
 				A9FAD6BF2A541981003A46F5 /* CoreData+Request.swift in Sources */,
-				A990E50C2A419A7C0004F4F9 /* NavigationBarModifier.swift in Sources */,
 				A93B200A2AAAF5A900E05DD1 /* MoyaError+Extenstions.swift in Sources */,
 				A93B20152AAB082F00E05DD1 /* APIEndpoint.swift in Sources */,
 				A9637D312ADFCFAB006DBFAC /* PickupSpotFeature.swift in Sources */,

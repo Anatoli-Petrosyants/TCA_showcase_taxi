@@ -43,7 +43,7 @@ extension JoinView: View {
                         } label: {
                             Text("Anatoli Petrosyants")
                                 .font(.headlineBold)
-                                .foregroundColor(.black)
+                                .foregroundColor(Color.white)
                                 .underline()
                         }
                     }
@@ -58,7 +58,7 @@ extension JoinView: View {
                 }
                 .padding(24)
                 .navigationTitle(Localization.LoginOptions.title)
-                .modifier(NavigationBarModifier())
+                .background(Color.black.ignoresSafeArea())
             } destination: {
                 switch $0 {
                 case .emailLogin:
@@ -86,6 +86,7 @@ extension JoinView: View {
                     )
                 }
             }
+            .accentColor(Color.white)
             .sheet(
                 store: self.store.scope(state: \.$developedBy, action: { .developedBy($0) }),
                 content: DevelopedByView.init(store:)

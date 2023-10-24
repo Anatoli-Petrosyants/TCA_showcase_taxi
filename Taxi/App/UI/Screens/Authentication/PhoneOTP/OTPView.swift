@@ -50,12 +50,12 @@ public struct OTPView: View {
                     ZStack {
                         Text(self.getPin(at: index))
                             .font(.largeTitle)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.white)
                         
                         Rectangle()
                             .frame(height: 2)
                             .padding(.vertical, 20)
-                            .foregroundColor(Color.black05)
+                            .foregroundColor(Color.white05)
                             .padding(.trailing, 5)
                             .padding(.leading, 5)
                             .opacity(self.code.count <= index ? 1 : 0)

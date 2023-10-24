@@ -12,7 +12,7 @@ struct AppProgressStyle: ProgressViewStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         ProgressView(configuration)
             .scaleEffect(1.5)
-            .tint(.black)
+            .tint(Color.white)
     }
 }
 

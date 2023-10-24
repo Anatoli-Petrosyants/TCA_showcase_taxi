@@ -66,7 +66,9 @@ extension EmailLoginView: View {
 
                 Spacer()
             }
+            .loader(isLoading: viewStore.isActivityIndicatorVisible)
             .navigationTitle(Localization.Login.title)
+            .background(Color.black.ignoresSafeArea())
             .alert(store: self.store.scope(state: \.$alert, action: EmailLoginFeature.Action.alert))
         }
     }
