@@ -12,22 +12,22 @@ struct WhereToFeature: Reducer {
 
     struct State: Equatable {
         var input = SearchInputFeature.State()
-        var data: Loadable<[GoogleAutocompletePrediction]> = .idle
+        var data: Loadable<[GooglePlacesClient.AutocompletePredictionResponse]> = .idle
     }
     
     enum Action: Equatable {
         enum ViewAction: Equatable {
             case onCancelTap
-            case onPredictionTap(GoogleAutocompletePrediction)
+            case onPredictionTap(GooglePlacesClient.AutocompletePredictionResponse)
         }
         
         enum InternalAction: Equatable {
-            case googleAutocompletePredictionsResponse(TaskResult<GooglePlacesResponse>)
-            case googlePlaceResponse(TaskResult<GooglePlaceResponse>)
+            case googleAutocompletePredictionsResponse(TaskResult<[GooglePlacesClient.AutocompletePredictionResponse]>)
+            case googlePlaceResponse(TaskResult<GooglePlacesClient.LookUpPlaceResponse>)
         }
         
         enum DelegateAction: Equatable {
-            case didPlaceSelected(GooglePlaceResponse)
+            case didPlaceSelected(GooglePlacesClient.LookUpPlaceResponse)
         }
 
         case view(ViewAction)
@@ -77,7 +77,7 @@ struct WhereToFeature: Reducer {
                     switch result {
                     case let .success(data):
                         state.input.isLoading = false
-                        state.data = .loaded(data.googleAutocompletePredictions)
+                        state.data = .loaded(data)
                         return .none
                         
                     case let .failure(error):

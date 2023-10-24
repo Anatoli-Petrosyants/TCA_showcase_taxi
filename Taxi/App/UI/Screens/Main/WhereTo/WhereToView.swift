@@ -60,7 +60,7 @@ extension WhereToView: View {
                 
                 VStack {
                     Group {
-                        (/Loadable<[GoogleAutocompletePrediction]>.loaded).extract(from: viewStore.data).map { predictions in
+                        (/Loadable<[GooglePlacesClient.AutocompletePredictionResponse]>.loaded).extract(from: viewStore.data).map { predictions in
                             List(predictions, id: \.self) { prediction in
                                 VStack(alignment: .leading) {
                                     Text(prediction.text)

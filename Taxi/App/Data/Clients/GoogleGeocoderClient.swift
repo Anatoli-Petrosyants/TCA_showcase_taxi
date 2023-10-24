@@ -10,25 +10,29 @@ import Dependencies
 import GoogleMaps
 import GooglePlaces
 
-// Struct to represent the response from the Google Geocoder service
-struct GoogleGeocoderResponse: Equatable, Decodable {
-    var thoroughfare: String
-    var latitude: Double
-    var longitude: Double
+// Client for interacting with the Google Geocoder service
+struct GoogleGeocoderClient {
+    var reverseGeocode: @Sendable (GoogleGeocoderClient.Request) async throws -> GoogleGeocoderClient.Response
 }
 
 // Struct to hold the request data for reverse geocoding
-struct GoogleGeocoderRequest {
-    let coordinate: CLLocationCoordinate2D
+extension GoogleGeocoderClient {
+    struct Request {
+        let coordinate: CLLocationCoordinate2D
 
-    init(coordinate: CLLocationCoordinate2D) {
-        self.coordinate = coordinate
+        init(coordinate: CLLocationCoordinate2D) {
+            self.coordinate = coordinate
+        }
     }
 }
 
-// Client for interacting with the Google Geocoder service
-struct GoogleGeocoderClient {
-    var reverseGeocode: @Sendable (GoogleGeocoderRequest) async throws -> GoogleGeocoderResponse
+// Struct to represent the response from the Google Geocoder service
+extension GoogleGeocoderClient {
+    struct Response: Equatable, Decodable {
+        var thoroughfare: String
+        var latitude: Double
+        var longitude: Double
+    }
 }
 
 extension DependencyValues {
@@ -71,7 +75,7 @@ extension GoogleGeocoderClient: DependencyKey {
                             */
                             
                             // Create the GoogleGeocoderResponse based on the received data
-                            let place = GoogleGeocoderResponse(
+                            let place = GoogleGeocoderClient.Response(
                                 thoroughfare: address.thoroughfare.valueOr(""),
                                 latitude: address.coordinate.latitude,
                                 longitude: address.coordinate.longitude

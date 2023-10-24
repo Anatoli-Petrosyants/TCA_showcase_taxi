@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A3E8C14A69F577E463FA3EBB /* libPods-Taxi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE26582494BCBB897F84CA0 /* libPods-Taxi.a */; };
+		9EC49FB0BEC64F70AA4CB41E /* Pods_Taxi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B116589CF03AFBE71F283980 /* Pods_Taxi.framework */; };
 		A90110102A4434A800DD08C4 /* UserDefaultsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A901100F2A4434A800DD08C4 /* UserDefaultsClient.swift */; };
 		A91606A52AD5667A00E581A4 /* MapFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91606A42AD5667A00E581A4 /* MapFeature.swift */; };
 		A91606A72AD5668200E581A4 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91606A62AD5668200E581A4 /* MapView.swift */; };
@@ -159,7 +159,6 @@
 		A9DED5B329AC93E6003EFA02 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DED5B229AC93E6003EFA02 /* Colors.swift */; };
 		A9DED5B529AC940A003EFA02 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9DED5B429AC940A003EFA02 /* Colors.xcassets */; };
 		A9DED5B829AC94D2003EFA02 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A9DED5BA29AC94D2003EFA02 /* Localizable.strings */; };
-		A9DED5C229AC9683003EFA02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9DED5C129AC9683003EFA02 /* LaunchScreen.storyboard */; };
 		A9DED5C429AC96CF003EFA02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DED5C329AC96CF003EFA02 /* AppDelegate.swift */; };
 		A9DED5C929AC9F64003EFA02 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9DED5C829AC9F64003EFA02 /* config.plist */; };
 		A9DED5CB29AC9FC6003EFA02 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DED5CA29AC9FC6003EFA02 /* Configuration.swift */; };
@@ -205,7 +204,6 @@
 /* Begin PBXFileReference section */
 		1B1D612DE996858965D802DF /* Pods-Taxi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taxi.release.xcconfig"; path = "Target Support Files/Pods-Taxi/Pods-Taxi.release.xcconfig"; sourceTree = "<group>"; };
 		6B326BCA5DE228C3D0F5E504 /* Pods-Taxi.qa.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taxi.qa.xcconfig"; path = "Target Support Files/Pods-Taxi/Pods-Taxi.qa.xcconfig"; sourceTree = "<group>"; };
-		6FE26582494BCBB897F84CA0 /* libPods-Taxi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Taxi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A901100F2A4434A800DD08C4 /* UserDefaultsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsClient.swift; sourceTree = "<group>"; };
 		A91606A42AD5667A00E581A4 /* MapFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFeature.swift; sourceTree = "<group>"; };
 		A91606A62AD5668200E581A4 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -345,7 +343,6 @@
 		A9DED5BB29AC94D5003EFA02 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A9DED5BC29AC94D6003EFA02 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A9DED5BD29AC94D7003EFA02 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A9DED5C129AC9683003EFA02 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9DED5C329AC96CF003EFA02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9DED5C829AC9F64003EFA02 /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		A9DED5CA29AC9FC6003EFA02 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -363,6 +360,7 @@
 		A9FAD6C72A541BEC003A46F5 /* Showcase_Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Showcase_Database.xcdatamodel; sourceTree = "<group>"; };
 		A9FAD6C92A541DB3003A46F5 /* Account+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account+CoreData.swift"; sourceTree = "<group>"; };
 		A9FE005929C875EE00B5F868 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		B116589CF03AFBE71F283980 /* Pods_Taxi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Taxi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D47348E658D6630352BE8F94 /* Pods-Taxi.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taxi.development.xcconfig"; path = "Target Support Files/Pods-Taxi/Pods-Taxi.development.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -399,7 +397,7 @@
 				A9A0CBB029D6F3180048A649 /* Lottie in Frameworks */,
 				A9DD83EE2AA9C21B00FD9927 /* SwiftKeychainWrapper in Frameworks */,
 				A9AA22C82A8F96900073E070 /* FirebaseFirestoreSwift in Frameworks */,
-				A3E8C14A69F577E463FA3EBB /* libPods-Taxi.a in Frameworks */,
+				9EC49FB0BEC64F70AA4CB41E /* Pods_Taxi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -910,7 +908,7 @@
 		A9C0DFC32AC18FD5001A585B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6FE26582494BCBB897F84CA0 /* libPods-Taxi.a */,
+				B116589CF03AFBE71F283980 /* Pods_Taxi.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -960,7 +958,6 @@
 				A9DED5B429AC940A003EFA02 /* Colors.xcassets */,
 				A9A0CBAD29D6F2CB0048A649 /* Lottie */,
 				A9DED5BA29AC94D2003EFA02 /* Localizable.strings */,
-				A9DED5C129AC9683003EFA02 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1173,7 +1170,6 @@
 				A9A5CBEF2AE687D100E1C12B /* map_style.json in Resources */,
 				A9A0CBAB29D6F2BB0048A649 /* onboarding_2.json in Resources */,
 				A91606B32AD803CA00E581A4 /* GoogleService-Info.plist in Resources */,
-				A9DED5C229AC9683003EFA02 /* LaunchScreen.storyboard in Resources */,
 				A9DED5A629AC7FA7003EFA02 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1583,6 +1579,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"App/Resources\"";
 				DEVELOPMENT_TEAM = HMUNVFLZV8;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "App/Resources/Taxi-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Taxi;
@@ -1593,7 +1590,6 @@
 				INFOPLIST_KEY_NSLocationUsageDescription = "We need your location, etc";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
@@ -1740,6 +1736,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"App/Resources\"";
 				DEVELOPMENT_TEAM = HMUNVFLZV8;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "App/Resources/Taxi-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Taxi;
@@ -1750,7 +1747,6 @@
 				INFOPLIST_KEY_NSLocationUsageDescription = "We need your location, etc";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
@@ -1789,7 +1785,6 @@
 				INFOPLIST_KEY_NSLocationUsageDescription = "We need your location, etc";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;

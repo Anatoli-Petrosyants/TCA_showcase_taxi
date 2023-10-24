@@ -9,25 +9,29 @@ import Foundation
 import Dependencies
 import CoreLocation
 
-// Struct to represent the response from the Apple Geocoder service
-struct AppleGeocoderResponse: Equatable, Decodable {
-    var thoroughfare: String
-    var latitude: Double
-    var longitude: Double
+// Client for interacting with the Apple Geocoder service
+struct AppleGeocoderClient {
+    var reverseGeocode: @Sendable (AppleGeocoderClient.Request) async throws -> AppleGeocoderClient.Response
 }
 
-// Struct to hold the request data for reverse geocoding
-struct AppleGeocoderRequest {
-    let coordinate: CLLocationCoordinate2D
-
-    init(coordinate: CLLocationCoordinate2D) {
-        self.coordinate = coordinate
+// Struct to represent the response from the Apple Geocoder service
+extension AppleGeocoderClient {
+    struct Response: Equatable, Decodable {
+        var thoroughfare: String
+        var latitude: Double
+        var longitude: Double
     }
 }
 
-// Client for interacting with the Apple Geocoder service
-struct AppleGeocoderClient {
-    var reverseGeocode: @Sendable (AppleGeocoderRequest) async throws -> AppleGeocoderResponse
+// Struct to hold the request data for reverse geocoding
+extension AppleGeocoderClient {
+    struct Request {
+        let coordinate: CLLocationCoordinate2D
+
+        init(coordinate: CLLocationCoordinate2D) {
+            self.coordinate = coordinate
+        }
+    }
 }
 
 extension DependencyValues {
@@ -63,7 +67,7 @@ extension AppleGeocoderClient: DependencyKey {
                             print("thoroughfare=\(placemark.thoroughfare.valueOr(""))")
                             */
                             
-                            let place = AppleGeocoderResponse(
+                            let place = AppleGeocoderClient.Response(
                                 thoroughfare: placemark.thoroughfare.valueOr(""),
                                 latitude: placemark.location!.coordinate.latitude,
                                 longitude: placemark.location!.coordinate.longitude

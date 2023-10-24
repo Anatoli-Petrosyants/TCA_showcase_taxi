@@ -6,44 +6,53 @@
 //
 
 import Foundation
+import ComposableArchitecture
 import Dependencies
-import GoogleMaps
 import GooglePlaces
 
-struct GoogleAutocompletePrediction: Equatable, Hashable {
-    var placeID: String
-    var attributedFullText: NSAttributedString
-    
-    var text: String {
-        let array = attributedFullText.string.components(separatedBy: ",").dropLast()
-        return array.joined(separator: ",")
-    }
-}
-
-struct GooglePlacesResponse: Equatable {
-    var googleAutocompletePredictions: [GoogleAutocompletePrediction]
-}
-
-struct GooglePlaceResponse: Equatable {
-    var placeID: String
-    var coordinate: CLLocationCoordinate2D
-    var formattedAddress: String
-}
-
-struct GooglePlacesRequest {
-    let query: String
-
-    init(query: String) {
-        self.query = query
-    }
-}
-
+/// A client for interacting with Google Places services.
 struct GooglePlacesClient {
-    var autocompletePredictions: @Sendable (GooglePlacesRequest) async throws -> GooglePlacesResponse
-    var lookUpPlaceID: @Sendable (String) async throws -> GooglePlaceResponse
+    /// A closure for performing an autocomplete predictions request.
+    var autocompletePredictions: @Sendable (GooglePlacesClient.AutocompletePredictionRequest) async throws -> [GooglePlacesClient.AutocompletePredictionResponse]
+
+    /// A closure for performing a place lookup by place ID request.
+    var lookUpPlaceID: @Sendable (String) async throws -> GooglePlacesClient.LookUpPlaceResponse
+}
+
+extension GooglePlacesClient {
+    /// Response for autocomplete predictions.
+    struct AutocompletePredictionResponse: Equatable, Hashable {
+        var placeID: String
+        var attributedFullText: NSAttributedString
+        
+        /// Extract the plain text from attributed full text.
+        var text: String {
+            let array = attributedFullText.string.components(separatedBy: ",").dropLast()
+            return array.joined(separator: ",")
+        }
+    }
+    
+    /// Response for place lookup by place ID.
+    struct LookUpPlaceResponse: Equatable {
+        var placeID: String
+        var coordinate: CLLocationCoordinate2D
+        var formattedAddress: String
+    }
+}
+
+extension GooglePlacesClient {
+    /// Request for autocomplete predictions.
+    struct AutocompletePredictionRequest {
+        let query: String
+
+        init(query: String) {
+            self.query = query
+        }
+    }
 }
 
 extension DependencyValues {
+    /// Accessor for the GooglePlacesClient in the dependency values.
     var googlePlacesClient: GooglePlacesClient {
         get { self[GooglePlacesClient.self] }
         set { self[GooglePlacesClient.self] = newValue }
@@ -51,9 +60,8 @@ extension DependencyValues {
 }
 
 extension GooglePlacesClient: DependencyKey {
+    /// A live implementation of GooglePlacesClient.
     static let liveValue: Self = {
-        let token = GMSAutocompleteSessionToken.init()
-        
         let filter = GMSAutocompleteFilter()
         filter.country = Configuration.current.country
         
@@ -64,7 +72,7 @@ extension GooglePlacesClient: DependencyKey {
                 return try await withCheckedThrowingContinuation { continuation in
                     placesClient.findAutocompletePredictions(fromQuery: data.query,
                                                              filter: filter,
-                                                             sessionToken: token) { (results, error) in
+                                                             sessionToken: .init()) { (results, error) in
                         if let err = error {
                             continuation.resume(with: .failure(err))
                             return
@@ -72,15 +80,13 @@ extension GooglePlacesClient: DependencyKey {
                         
                         if let results = results {
                             let response = results.compactMap {
-                                GoogleAutocompletePrediction(
+                                GooglePlacesClient.AutocompletePredictionResponse(
                                     placeID: $0.placeID,
                                     attributedFullText: $0.attributedFullText
                                 )
                             }
                             
-                            continuation.resume(
-                                returning: GooglePlacesResponse(googleAutocompletePredictions: response)
-                            )
+                            continuation.resume(returning:  response)
                         }
                     }
                 }
@@ -94,7 +100,7 @@ extension GooglePlacesClient: DependencyKey {
                         }
                         
                         if let place = place {
-                            let response = GooglePlaceResponse(
+                            let response = GooglePlacesClient.LookUpPlaceResponse(
                                 placeID: place.placeID.valueOr(""),
                                 coordinate: place.coordinate,
                                 formattedAddress: place.formattedAddress.valueOr("")

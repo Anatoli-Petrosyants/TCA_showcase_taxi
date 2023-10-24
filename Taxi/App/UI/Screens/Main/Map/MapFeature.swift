@@ -14,6 +14,9 @@ struct MapFeature: Reducer {
     
     struct State: Equatable {
         var userLocation: CLLocation? = nil
+        var startCoordinate: CLLocationCoordinate2D? = nil
+        var endCoordinate: CLLocationCoordinate2D? = nil
+        
         var pickupSpot = PickupSpotFeature.State()
         @PresentationState var whereTo: WhereToFeature.State?
     }
@@ -31,12 +34,12 @@ struct MapFeature: Reducer {
         enum InternalAction: Equatable {
             case updateLocation
             case locationManager(LocationManagerClient.DelegateEvent)
-            case geocodeResponse(TaskResult<GoogleGeocoderResponse>)
+            case geocodeResponse(TaskResult<GoogleGeocoderClient.Response>)
         }
         
         enum InternalResponseAction: Equatable {
             case location(CLLocation)
-            case geocode(GoogleGeocoderResponse)
+            case geocode(GoogleGeocoderClient.Response)
         }
         
         case view(ViewAction)
@@ -88,6 +91,7 @@ struct MapFeature: Reducer {
                     
                 case let .onMapViewIdleAtPosition(position):
                     state.userLocation = nil
+                    state.startCoordinate = position.target
                     return .run { send in
                         await send(
                             .internal(
@@ -108,6 +112,7 @@ struct MapFeature: Reducer {
                 }
                 
             case let .internalResponse(.location(location)):
+                Log.info("userLocation \(location)")
                 state.userLocation = location
                 return .none
                 
@@ -118,7 +123,10 @@ struct MapFeature: Reducer {
             case let .whereTo(.presented(.delegate(whereToAction))):
                 switch whereToAction {
                 case let .didPlaceSelected(place):
-                    Log.info("didPlaceSelected place \(place)")
+                    state.endCoordinate = place.coordinate
+                    
+                    Log.info("didPlaceSelected start \(state.startCoordinate)")
+                    Log.info("didPlaceSelected end \(state.endCoordinate)")
                     return .none
                 }
                 
