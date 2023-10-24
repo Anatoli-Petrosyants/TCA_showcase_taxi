@@ -55,9 +55,8 @@ extension MapView: View {
                             .foregroundColor(Color.white)
                             .font(.system(size: 16))
                             .padding(10)
-                            .background(Color.primaryBlack)
+                            .background(Color.black)
                             .clipShape(RoundedRectangle(cornerRadius: 3))
-                            .shadow(color: Color.black01, radius: 4)
                             .contentShape(Rectangle())
                     }
 

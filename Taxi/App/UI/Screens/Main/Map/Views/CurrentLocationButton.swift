@@ -20,9 +20,8 @@ struct CurrentLocationButton: View {
                 .foregroundColor(Color.white)
                 .font(.headline)
                 .padding(12)
-                .background(Color.primaryBlack)
+                .background(Color.black)
                 .clipShape(Circle())
-                .shadow(color: Color.black01, radius: 4)
         }        
     }
 }

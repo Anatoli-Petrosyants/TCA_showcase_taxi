@@ -36,7 +36,7 @@ extension LoadingView: View {
 //        WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
         WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
             ZStack {
-                Color.darkGray
+                Color.black
                 
                 VStack(spacing: 10) {
                     Text(Localization.Base.showcase)

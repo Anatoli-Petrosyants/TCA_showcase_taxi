@@ -8,29 +8,12 @@
 import SwiftUI
 
 extension Color {
-    static let black = Color("black")
-    static let black01 = Color("black").opacity(0.1)
-    static let black03 = Color("black").opacity(0.3)
-    static let black05 = Color("black").opacity(0.5)
-    static let black08 = Color("black").opacity(0.8)
-        
-    static let white = Color("white")
-    static let white01 = Color("white").opacity(0.1)
-    static let white03 = Color("white").opacity(0.3)
-    static let white05 = Color("white").opacity(0.5)
-    static let white08 = Color("white").opacity(0.8)
+    static let black = Color(hex: "161616")
+    static let black05 = Color(hex: "161616").opacity(0.5)
     
-    static let gray = Color("gray")
-    static let gray03 = Color("gray").opacity(0.3)
+    static let white = Color(hex: "ffffff")
+    static let white05 = Color(hex: "ffffff").opacity(0.5)    
     
-    static let green = Color("green")
-    static let red = Color("red")
-    static let blue = Color("blue")
-    static let yellow = Color("yellow")
-    
-    static let darkGray = Color(hex: "262626")
-    
-    static let primaryBlack = Color(hex: "161616")
+    static let primaryGray = Color(hex: "262626")
     static let secondaryGray = Color(hex: "383838")
-    
 }

@@ -22,7 +22,7 @@ struct ChooseAddressPinView: View {
 
                     Image(systemName: "square.fill")
                         .renderingMode(.template)
-                        .foregroundColor(Color.primaryBlack)
+                        .foregroundColor(Color.black)
                         .font(.system(size: 7))
                 }
                 .frame(width: 30, height: 30)

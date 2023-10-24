@@ -30,7 +30,7 @@ extension PickupSpotView: View {
                         .multilineTextAlignment(.leading)
                         .lineLimit(2)
                         .font(.subheadlineBold)
-                        .foregroundColor(Color.white08)
+                        .foregroundColor(Color.white)
 
                     Spacer()
                     
@@ -42,7 +42,7 @@ extension PickupSpotView: View {
                             .foregroundColor(Color.black)
                             .padding()
                     }
-                    .background(Color.white08)
+                    .background(Color.white)
                     .clipShape(Circle())
                 }
                 .padding()
@@ -104,7 +104,7 @@ extension PickupSpotView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: 120)
             .padding(.top, 4)
-            .background(Color.primaryBlack)
+            .background(Color.black)
         }
     }
 }

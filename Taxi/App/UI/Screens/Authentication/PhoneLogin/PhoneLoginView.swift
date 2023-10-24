@@ -51,7 +51,7 @@ extension PhoneLoginView: View {
                     .background(Color.white)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.black03, lineWidth: 0.5)
+                            .stroke(Color.black05, lineWidth: 0.5)
                     )
                     .focused($focused)
                 

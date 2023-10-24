@@ -55,7 +55,7 @@ public struct OTPView: View {
                         Rectangle()
                             .frame(height: 2)
                             .padding(.vertical, 20)
-                            .foregroundColor(.black05)
+                            .foregroundColor(Color.black05)
                             .padding(.trailing, 5)
                             .padding(.leading, 5)
                             .opacity(self.code.count <= index ? 1 : 0)

@@ -85,7 +85,7 @@ extension WhereToView: View {
             }
             .padding()
             .ignoresSafeArea()
-            .background(Color.primaryBlack)
+            .background(Color.black)
         }
     }
 }
