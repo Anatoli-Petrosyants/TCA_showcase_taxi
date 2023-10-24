@@ -63,9 +63,6 @@ extension WhereToView: View {
                         (/Loadable<[GoogleAutocompletePrediction]>.loaded).extract(from: viewStore.data).map { predictions in
                             List(predictions, id: \.self) { prediction in
                                 VStack(alignment: .leading) {
-//                                    Text("\(contact.placeID)")
-//                                        .font(.bodyBold)
-                                    
                                     Text(prediction.text)
                                         .font(.subheadline)
                                         .foregroundColor(Color.white)
@@ -75,7 +72,7 @@ extension WhereToView: View {
                                 .listRowBackground(Color.clear)
                                 .listRowSeparatorTint(Color.white05)
                                 .onTapGesture {
-                                    // viewStore.send(.onContactTap(contact))
+                                    viewStore.send(.view(.onPredictionTap(prediction)))
                                 }
                             }
                             .environment(\.defaultMinListRowHeight, 44)

@@ -24,6 +24,12 @@ struct GooglePlacesResponse: Equatable {
     var googleAutocompletePredictions: [GoogleAutocompletePrediction]
 }
 
+struct GooglePlaceResponse: Equatable {
+    var placeID: String
+    var coordinate: CLLocationCoordinate2D
+    var formattedAddress: String
+}
+
 struct GooglePlacesRequest {
     let query: String
 
@@ -34,6 +40,7 @@ struct GooglePlacesRequest {
 
 struct GooglePlacesClient {
     var autocompletePredictions: @Sendable (GooglePlacesRequest) async throws -> GooglePlacesResponse
+    var lookUpPlaceID: @Sendable (String) async throws -> GooglePlaceResponse
 }
 
 extension DependencyValues {
@@ -65,14 +72,25 @@ extension GooglePlacesClient: DependencyKey {
                         
                         if let results = results {
                             let response = results.compactMap {
-                                GoogleAutocompletePrediction(placeID: $0.placeID,
-                                                             attributedFullText: $0.attributedFullText)
+                                GoogleAutocompletePrediction(
+                                    placeID: $0.placeID,
+                                    attributedFullText: $0.attributedFullText
+                                )
                             }
                             
                             continuation.resume(
                                 returning: GooglePlacesResponse(googleAutocompletePredictions: response)
                             )
                         }
+                    }
+                }
+            },
+            lookUpPlaceID: { placeId in
+                return try await withCheckedThrowingContinuation { continuation in
+                    placesClient.lookUpPlaceID(placeId) { (place, error) in
+                        Log.info("lookUpPlaceID \(placeId) placeId \(place?.placeID)")
+                        Log.info("lookUpPlaceID \(placeId) coordinate \(place?.coordinate)")
+                        Log.info("lookUpPlaceID \(placeId) formattedAddress \(place?.formattedAddress)")
                     }
                 }
             }

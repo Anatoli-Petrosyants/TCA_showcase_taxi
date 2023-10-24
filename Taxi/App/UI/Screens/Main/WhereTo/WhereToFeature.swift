@@ -18,6 +18,7 @@ struct WhereToFeature: Reducer {
     enum Action: Equatable {
         enum ViewAction: Equatable {
             case onCancelTap
+            case onPredictionTap(GoogleAutocompletePrediction)
         }
         
         enum InternalAction: Equatable {
@@ -48,6 +49,11 @@ struct WhereToFeature: Reducer {
                         .cancel(id: CancelID.search),
                         .run { _ in await self.dismiss() }
                     ])
+                    
+                    
+                case let .onPredictionTap(prediction):
+                    Log.info("onPredictionTap \(prediction)")
+                    return .none
                 }
                 
             case let .internal(internalAction):
