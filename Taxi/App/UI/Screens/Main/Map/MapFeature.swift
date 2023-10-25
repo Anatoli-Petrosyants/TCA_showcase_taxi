@@ -125,8 +125,23 @@ struct MapFeature: Reducer {
                 case let .didPlaceSelected(place):
                     state.endCoordinate = place.coordinate
                     
-                    Log.info("didPlaceSelected start \(state.startCoordinate)")
-                    Log.info("didPlaceSelected end \(state.endCoordinate)")
+//                    Log.info("didPlaceSelected start \(state.startCoordinate)")
+//                    Log.info("didPlaceSelected end \(state.endCoordinate)")
+                    
+//                    let origin = GoogleMapsDirections.Place.coordinate(
+//                        coordinate: GoogleMapsDirections.LocationCoordinate2D(
+//                            latitude: state.startCoordinate!.latitude,
+//                            longitude: state.startCoordinate!.longitude
+//                        )
+//                    )
+//                    
+//                    let destination = GoogleMapsDirections.Place.coordinate(
+//                        coordinate: GoogleMapsDirections.LocationCoordinate2D(
+//                            latitude: state.endCoordinate!.latitude,
+//                            longitude: state.endCoordinate!.longitude
+//                        )
+//                    )
+                    
                     return .none
                 }
                 

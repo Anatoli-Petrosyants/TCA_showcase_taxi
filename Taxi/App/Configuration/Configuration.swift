@@ -36,6 +36,7 @@ protocol ShowcaseConfiguration {
     var timezoneOffset: String { get }
     var apiVersion: String { get }
     var mapKey: String { get }
+    var directionKey: String { get }
 }
 
 public class Configuration {
@@ -189,5 +190,9 @@ extension Configuration: ShowcaseConfiguration {
     
     var mapKey: String {
         return config["map_key"] as! String
+    }
+    
+    var directionKey: String {
+        return config["direction_key"] as! String
     }
 }
