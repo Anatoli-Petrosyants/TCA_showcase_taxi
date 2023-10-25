@@ -85,12 +85,12 @@ import Alamofire
 class GoogleMapsDirections {
     
     static let baseURLString = "https://maps.googleapis.com/maps/api/directions/json"
-    static let key = Configuration.current.mapKey
+    static let key = Configuration.current.directionKey
 
     class func direction(fromOrigin origin: Place, 
                          toDestination destination: Place,
                          travelMode: TravelMode = .driving) {
-        var requestParameters: [String : Any] = [
+        let requestParameters: [String : Any] = [
             "key" : GoogleMapsDirections.key,
             "origin" : origin.toString(),
             "destination" : destination.toString(),
@@ -100,9 +100,44 @@ class GoogleMapsDirections {
         let response = AF.request(GoogleMapsDirections.baseURLString,
                                   method: .get,
                                   parameters: requestParameters)
-            .responseJSON { response in
+            .responseDecodable(of: GoogleMapsDirections.Response.self) { response in
                 Log.info("response \(response)")
             }
+    }
+}
+
+extension GoogleMapsDirections {
+    
+    enum StatusCode: String, Decodable {
+        case ok = "OK"
+        case notFound = "NOT_FOUND"
+        case zeroResults = "ZERO_RESULTS"
+        case maxWaypointsExceeded = "MAX_WAYPOINTS_EXCEEDED"
+        case invalidRequest = "INVALID_REQUEST"
+        case overQueryLimit = "OVER_QUERY_LIMIT"
+        case requestDenied = "REQUEST_DENIED"
+        case unknownError = "UNKNOWN_ERROR"
+    }
+    
+    enum GeocoderStatus: String, Decodable {
+        case ok = "OK"
+        case zeroResults = "ZERO_RESULTS"
+    }
+    
+    struct GeocodedWaypoint: Decodable {
+        public var geocoderStatus: GeocoderStatus?
+        // public var partialMatch: Bool = false
+        public var placeID: String?
+    }
+    
+    struct Response: Decodable {
+        var status: StatusCode?
+        var errorMessage: String?
+        var geocodedWaypoints: [GeocodedWaypoint] = []
+                
+        enum CodingKeys: String, CodingKey {
+            case geocodedWaypoints = "geocoded_waypoints"
+        }
     }
 }
 
