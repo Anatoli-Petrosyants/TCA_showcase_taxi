@@ -125,25 +125,35 @@ extension GoogleMapsDirections {
     }
     
     struct GeocodedWaypoint: Decodable {
-        public var geocoderStatus: GeocoderStatus?
-        // public var partialMatch: Bool = false
-        public var placeID: String?
+        var geocoderStatus: GeocoderStatus?
+        // var partialMatch: Bool = false
+        var placeID: String?
     }
     
     struct Response: Decodable {
         var status: StatusCode?
         var errorMessage: String?
         var geocodedWaypoints: [GeocodedWaypoint] = []
-                
+        var routes: [Route] = []
+
         enum CodingKeys: String, CodingKey {
             case geocodedWaypoints = "geocoded_waypoints"
+        }
+        
+        struct Route: Decodable {
+            var summary: String?
+        }
+        
+        struct Bounds: Decodable {
+            var northeast: LocationCoordinate2D?
+            var southwest: LocationCoordinate2D?
         }
     }
 }
 
 extension GoogleMapsDirections {
     
-    struct LocationCoordinate2D {
+    struct LocationCoordinate2D: Decodable {
         public var latitude: Double
         public var longitude: Double
         
