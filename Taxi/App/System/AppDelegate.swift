@@ -30,7 +30,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.setMetalRendererEnabled(true)
         
         GMSPlacesClient.provideAPIKey(Configuration.current.mapKey)
-        
   
         let origin = GoogleMapsDirections.Place.coordinate(
             coordinate: GoogleMapsDirections.LocationCoordinate2D(
@@ -41,13 +40,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let destination = GoogleMapsDirections.Place.coordinate(
             coordinate: GoogleMapsDirections.LocationCoordinate2D(
-                latitude: 40.18853655504229,
-                longitude: 44.515554775540835
+                latitude: 40.19792272406243,
+                longitude: 44.51916420358389
             )
         )
       
         GoogleMapsDirections.direction(fromOrigin: origin, toDestination: destination)
-        
 //        GoogleMapsDirections.direction(fromOrigin: origin, toDestination: destination) { (response, error) -> Void in
 //            // Check Status Code
 //            guard response?.status == GoogleMapsDirections.StatusCode.ok else {
@@ -94,14 +92,15 @@ class GoogleMapsDirections {
             "key" : GoogleMapsDirections.key,
             "origin" : origin.toString(),
             "destination" : destination.toString(),
-            "mode" : travelMode.rawValue.lowercased()
+            "mode" : travelMode.rawValue.lowercased(),
+            "region" : Configuration.current.country
         ]
         
-        let response = AF.request(GoogleMapsDirections.baseURLString,
+        AF.request(GoogleMapsDirections.baseURLString,
                                   method: .get,
                                   parameters: requestParameters)
             .responseDecodable(of: GoogleMapsDirections.Response.self) { response in
-                Log.info("response \(response)")
+                Log.info("direction response \(response)")
             }
     }
 }
