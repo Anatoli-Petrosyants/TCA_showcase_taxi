@@ -15,14 +15,14 @@ struct GoogleDirectionsClient {
 // common
 extension GoogleDirectionsClient {
 
-    enum TravelMode: String, Decodable {
+    enum TravelMode: String, Decodable, Equatable {
         case driving = "DRIVING"
         case walking = "WALKING"
         case bicycling = "BICYCLING"
         case transit = "TRANSIT"
     }
     
-    struct LocationCoordinate2D: Decodable {
+    struct LocationCoordinate2D: Decodable, Equatable {
         var latitude: Double
         var longitude: Double
         
@@ -67,7 +67,7 @@ extension GoogleDirectionsClient {
 // response
 extension GoogleDirectionsClient {
     
-    enum StatusCode: String, Decodable {
+    enum StatusCode: String, Decodable, Equatable {
         case ok = "OK"
         case notFound = "NOT_FOUND"
         case zeroResults = "ZERO_RESULTS"
@@ -78,13 +78,13 @@ extension GoogleDirectionsClient {
         case unknownError = "UNKNOWN_ERROR"
     }
     
-    struct Route: Decodable {
+    struct Route: Decodable, Equatable {
         var copyrights: String?
         var summary: String?
         var legs: [Leg] = []
         var bounds: Bounds?
 
-        struct Leg: Decodable {
+        struct Leg: Decodable, Equatable {
             var startAddress: String?
             var endAddress: String?
             var startLocation: LocationCoordinate2D?
@@ -99,7 +99,7 @@ extension GoogleDirectionsClient {
                 case steps
             }
             
-            struct Step: Decodable {
+            struct Step: Decodable, Equatable {
                 var htmlInstructions: String?
                 var distance: Distance?
                 var duration: Duration?
@@ -115,26 +115,26 @@ extension GoogleDirectionsClient {
                     case endLocation = "end_location"
                 }
                 
-                struct Distance: Decodable {
+                struct Distance: Decodable, Equatable {
                     var value: Int?
                     var text: String?
                 }
 
-                struct Duration: Decodable {
+                struct Duration: Decodable, Equatable {
                     var value: Int?
                     var text: String?
                 }
             }
         }
 
-        struct Bounds: Decodable {
+        struct Bounds: Decodable, Equatable {
             var northeast: LocationCoordinate2D?
             var southwest: LocationCoordinate2D?
         }
     }
     
-    struct GeocodedWaypoint: Decodable {
-        enum GeocoderStatus: String, Decodable {
+    struct GeocodedWaypoint: Decodable, Equatable {
+        enum GeocoderStatus: String, Decodable, Equatable {
             case ok = "OK"
             case zeroResults = "ZERO_RESULTS"
         }
@@ -148,7 +148,7 @@ extension GoogleDirectionsClient {
         }
     }
     
-    struct Response: Decodable {
+    struct Response: Decodable, Equatable {
         var status: StatusCode?
         var errorMessage: String?
         var geocodedWaypoints: [GeocodedWaypoint] = []
@@ -161,14 +161,6 @@ extension GoogleDirectionsClient {
         }
     }
 }
-
-//let requestParameters: [String : Any] = [
-//    "key" : GoogleMapsDirections.key,
-//    "destination" : destination.toString(),
-//    "origin" : origin.toString(),
-//    "mode" : travelMode.rawValue.lowercased(),
-//    "region" : Configuration.current.country
-//]
 
 extension DependencyValues {
     var googleDirectionsClient: GoogleDirectionsClient {
