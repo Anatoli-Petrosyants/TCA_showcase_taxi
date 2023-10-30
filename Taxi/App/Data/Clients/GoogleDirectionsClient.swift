@@ -182,9 +182,17 @@ extension GoogleDirectionsClient: DependencyKey {
         
         return Self(
             directions: { data in
-                return try await withCheckedThrowingContinuation { continuation in
-                    
-                }
+                // Construct parameters and perform API request
+                let request = GoogleDirectionRequest(
+                    key: Configuration.current.directionKey,
+                    origin: data.origin.toString(),
+                    destination: data.destination.toString(),
+                    mode: TravelMode.driving.rawValue.lowercased(),
+                    region: Configuration.current.country
+                )
+                
+                return try await API.provider.async.request(.googleDirection(request))
+                    .map(GoogleDirectionsClient.Response.self)
             }
         )
     }()

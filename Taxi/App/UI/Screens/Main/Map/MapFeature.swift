@@ -52,6 +52,7 @@ struct MapFeature: Reducer {
     @Dependency(\.locationManagerClient) var locationManagerClient
     @Dependency(\.applicationClient.open) var openURL
     @Dependency(\.googleGeocoderClient) var googleGeocoderClient
+    @Dependency(\.googleDirectionsClient) var googleDirectionsClient
     
     private enum CancelID { case reverseGeocode }
     
