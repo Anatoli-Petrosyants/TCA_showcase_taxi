@@ -17,10 +17,15 @@ struct DirectionsFeature<State>: Reducer {
         case let .internal(internalAction):
             switch internalAction {
             case let .directionsResponse(.success(data)):
+                guard data.status == GoogleDirectionsClient.StatusCode.ok else {
+                    Log.error("directionsResponse success: \(data.errorMessage.valueOr(""))")
+                    return .none
+                }
+                
                 return .send(.internalResponse(.directions(data)))
                 
             case let .directionsResponse(.failure(error)):
-                Log.error("directionsResponse: \(error)")
+                Log.error("directionsResponse failure: \(error)")
                 return .none
                 
             default:

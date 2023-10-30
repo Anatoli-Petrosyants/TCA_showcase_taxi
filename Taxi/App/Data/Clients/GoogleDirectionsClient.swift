@@ -8,13 +8,15 @@
 import Foundation
 import Dependencies
 
+/// A client for interacting with the Google Directions API.
 struct GoogleDirectionsClient {
     var directions: @Sendable (GoogleDirectionsClient.Request) async throws -> GoogleDirectionsClient.Response
 }
 
-// common
+// Common data shared between requests and responses.
 extension GoogleDirectionsClient {
 
+    /// Travel modes available for directions.
     enum TravelMode: String, Decodable, Equatable {
         case driving = "DRIVING"
         case walking = "WALKING"
@@ -22,6 +24,7 @@ extension GoogleDirectionsClient {
         case transit = "TRANSIT"
     }
     
+    /// Represents a geographic coordinate with latitude and longitude.
     struct LocationCoordinate2D: Decodable, Equatable {
         var latitude: Double
         var longitude: Double
@@ -38,7 +41,7 @@ extension GoogleDirectionsClient {
     }
 }
 
-// request
+// Request structure for obtaining directions.
 extension GoogleDirectionsClient {
     
     struct Request {
@@ -64,9 +67,10 @@ extension GoogleDirectionsClient {
     }
 }
 
-// response
+// Response structures from the Google Directions API.
 extension GoogleDirectionsClient {
     
+    /// Status codes for Google Directions API responses.
     enum StatusCode: String, Decodable, Equatable {
         case ok = "OK"
         case notFound = "NOT_FOUND"
@@ -78,6 +82,7 @@ extension GoogleDirectionsClient {
         case unknownError = "UNKNOWN_ERROR"
     }
     
+    /// Represents a route from the origin to the destination.
     struct Route: Decodable, Equatable {
         var copyrights: String?
         var summary: String?
@@ -133,6 +138,7 @@ extension GoogleDirectionsClient {
         }
     }
     
+    /// Represents a geocoded waypoint response.
     struct GeocodedWaypoint: Decodable, Equatable {
         enum GeocoderStatus: String, Decodable, Equatable {
             case ok = "OK"
@@ -148,6 +154,7 @@ extension GoogleDirectionsClient {
         }
     }
     
+    /// Represents the overall response from the Google Directions API.
     struct Response: Decodable, Equatable {
         var status: StatusCode?
         var errorMessage: String?
@@ -162,6 +169,7 @@ extension GoogleDirectionsClient {
     }
 }
 
+/// Accessor for the Google Directions Client in the dependency values.
 extension DependencyValues {
     var googleDirectionsClient: GoogleDirectionsClient {
         get { self[GoogleDirectionsClient.self] }
@@ -169,6 +177,7 @@ extension DependencyValues {
     }
 }
 
+/// Provides a live implementation of the Google Directions Client.
 extension GoogleDirectionsClient: DependencyKey {
     static let liveValue: Self = {
         
@@ -183,7 +192,8 @@ extension GoogleDirectionsClient: DependencyKey {
                     region: Configuration.current.country
                 )
                 
-                return try await API.provider.async.request(.googleDirection(request))
+                return try await API.provider.async
+                    .request(.googleDirection(request))
                     .map(GoogleDirectionsClient.Response.self)
             }
         )

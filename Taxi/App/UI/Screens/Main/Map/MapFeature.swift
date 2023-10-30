@@ -82,15 +82,15 @@ struct MapFeature: Reducer {
 //                        }
 //                    }
                     
-//                    let origin = GoogleMapsDirections.Place.coordinate(
-//                        coordinate: GoogleMapsDirections.LocationCoordinate2D(
+//                    let origin = GoogleDirectionsClient.Request.Place.coordinate(
+//                        coordinate: GoogleDirectionsClient.LocationCoordinate2D(
 //                            latitude: 40.18394662431355,
 //                            longitude: 44.515071977924926
 //                        )
 //                    )
 //                    
-//                    let destination = GoogleMapsDirections.Place.coordinate(
-//                        coordinate: GoogleMapsDirections.LocationCoordinate2D(
+//                    let destination = GoogleDirectionsClient.Request.Place.coordinate(
+//                        coordinate: GoogleDirectionsClient.LocationCoordinate2D(
 //                            latitude: 40.19792272406243,
 //                            longitude: 44.51916420358389
 //                        )
@@ -98,7 +98,6 @@ struct MapFeature: Reducer {
                     
                     let origin = GoogleDirectionsClient.Request.Place.stringDescription(address: "Yerevan")
                     let destination = GoogleDirectionsClient.Request.Place.stringDescription(address: "Dilijan")
-                    
                     return .run { send in
                         await send(
                             .internal(

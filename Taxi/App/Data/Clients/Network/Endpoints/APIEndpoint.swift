@@ -52,7 +52,6 @@ enum APIEndpoint: TargetType {
             
         case .googleDirection(let request):
             let parameters = try! DictionaryEncoder().encode(request)
-            dump(parameters)
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
 
 //        default:
