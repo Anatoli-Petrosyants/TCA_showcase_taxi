@@ -78,6 +78,7 @@
 		A97207A52AC44B5E0099A1EA /* EmailLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97207A42AC44B5E0099A1EA /* EmailLoginTests.swift */; };
 		A979AC042A8C9E610050E028 /* Localization+Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A979AC032A8C9E610050E028 /* Localization+Sidebar.swift */; };
 		A97C84282A7D00F8008054E0 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97C84272A7D00F8008054E0 /* Loadable.swift */; };
+		A98492D92AEFA50E00983441 /* GoogleDirectionsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98492D82AEFA50E00983441 /* GoogleDirectionsClient.swift */; };
 		A988F0A629B5C22B0059F9BB /* Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988F0A529B5C22B0059F9BB /* Blocks.swift */; };
 		A988F0B929B5CC610059F9BB /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988F0B829B5CC610059F9BB /* Optional+Extensions.swift */; };
 		A988F0D629B60B470059F9BB /* ErrorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988F0D529B60B470059F9BB /* ErrorModifier.swift */; };
@@ -273,6 +274,7 @@
 		A97207A42AC44B5E0099A1EA /* EmailLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginTests.swift; sourceTree = "<group>"; };
 		A979AC032A8C9E610050E028 /* Localization+Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Sidebar.swift"; sourceTree = "<group>"; };
 		A97C84272A7D00F8008054E0 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
+		A98492D82AEFA50E00983441 /* GoogleDirectionsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleDirectionsClient.swift; sourceTree = "<group>"; };
 		A988F0A529B5C22B0059F9BB /* Blocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blocks.swift; sourceTree = "<group>"; };
 		A988F0B829B5CC610059F9BB /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
 		A988F0D529B60B470059F9BB /* ErrorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModifier.swift; sourceTree = "<group>"; };
@@ -797,6 +799,7 @@
 				A9637D372AE13347006DBFAC /* GoogleGeocoderClient.swift */,
 				A9A5CBDE2AE26A9000E1C12B /* AppleGeocoderClient.swift */,
 				A9A5CBEC2AE2AB5D00E1C12B /* GooglePlacesClient.swift */,
+				A98492D82AEFA50E00983441 /* GoogleDirectionsClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -1333,6 +1336,7 @@
 				A95E758B29ACA1540081A170 /* Logger.swift in Sources */,
 				A91F587629E67C2C008C0F35 /* EmailLoginFeature.swift in Sources */,
 				A9FAD6B92A54180A003A46F5 /* CoreData+Convertible.swift in Sources */,
+				A98492D92AEFA50E00983441 /* GoogleDirectionsClient.swift in Sources */,
 				A9FAD6CA2A541DB3003A46F5 /* Account+CoreData.swift in Sources */,
 				A96FEB5C2A9E12FF008DC5BC /* PhoneLoginFeature.swift in Sources */,
 				A988F0D829B60D170059F9BB /* AppError.swift in Sources */,

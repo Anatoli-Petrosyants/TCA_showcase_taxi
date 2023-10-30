@@ -105,23 +105,19 @@ class GoogleMapsDirections {
             "mode" : travelMode.rawValue.lowercased(),
             "region" : Configuration.current.country
         ]
-        
-//        let requestParameters: [String : Any] = [
-//            "destination" : "Madrid",
-//            "origin" : "Toledo",
-//            "region" : "es",
-//            "key" : GoogleMapsDirections.key
-//        ]
-        
-        print("requestParameters \(requestParameters)")
-        
+
 //    https://maps.googleapis.com/maps/api/directions/json?destination=Yerevan&origin=Dilijan&region=am&mode=driving&key=AIzaSyC--Qx9Rx1bpKOsM-MxvAVEzq67eo6UiPc
         
         AF.request(GoogleMapsDirections.baseURLString,
                                   method: .get,
                                   parameters: requestParameters)
             .responseDecodable(of: GoogleMapsDirections.Response.self) { response in
-                Log.info("direction response \(response)")
+                switch response.result {
+                    case .success(let data):
+                        dump(data)
+                    case .failure(let error):
+                        print(error)
+                }
             }
     }
 }
@@ -143,6 +139,7 @@ extension GoogleMapsDirections {
         var copyrights: String?
         var summary: String?
         var legs: [Leg] = []
+        var bounds: Bounds?
 
         struct Leg: Decodable {
             var startAddress: String?
@@ -156,87 +153,71 @@ extension GoogleMapsDirections {
                 case endAddress = "end_address"
                 case startLocation = "start_location"
                 case endLocation = "end_location"
+                case steps
             }
-
+            
             struct Step: Decodable {
-                var travelMode: String?
+                var htmlInstructions: String?
+                var distance: Distance?
+                var duration: Duration?
+                var startLocation: LocationCoordinate2D?
+                var endLocation: LocationCoordinate2D?
+                var travelMode: TravelMode?
 
                 enum CodingKeys: String, CodingKey {
+                    case htmlInstructions = "html_instructions"
+                    case distance, duration
                     case travelMode = "travel_mode"
+                    case startLocation = "start_location"
+                    case endLocation = "end_location"
                 }
-//                
-//                var distance: Distance?
-//                var duration: Duration?
-//                
-//                struct Distance: Decodable {
-//                    var value: Int?
-//                    var text: String?
-//                }
-//                
-//                struct Duration: Decodable {
-//                    var value: Int?
-//                    var text: String?
-//                }
+                
+                struct Distance: Decodable {
+                    var value: Int?
+                    var text: String?
+                }
+
+                struct Duration: Decodable {
+                    var value: Int?
+                    var text: String?
+                }
             }
+        }
+
+        struct Bounds: Decodable {
+            var northeast: LocationCoordinate2D?
+            var southwest: LocationCoordinate2D?
+        }
+    }
+    
+    struct GeocodedWaypoint: Decodable {
+        enum GeocoderStatus: String, Decodable {
+            case ok = "OK"
+            case zeroResults = "ZERO_RESULTS"
+        }
+        
+        var placeID: String?
+        var geocoderStatus: GeocoderStatus?
+        
+        enum CodingKeys: String, CodingKey {
+            case placeID = "place_id"
+            case geocoderStatus = "geocoder_status"
         }
     }
     
     struct Response: Decodable {
         var status: StatusCode?
+        var errorMessage: String?
+        var geocodedWaypoints: [GeocodedWaypoint] = []
         var routes: [Route] = []
+        
+        enum CodingKeys: String, CodingKey {
+            case status, routes
+            case errorMessage = "error_message"
+            case geocodedWaypoints = "geocoded_waypoints"
+        }
     }
 }
-
-//extension GoogleMapsDirections {
-//    
-//    enum StatusCode: String, Decodable {
-//        case ok = "OK"
-//        case notFound = "NOT_FOUND"
-//        case zeroResults = "ZERO_RESULTS"
-//        case maxWaypointsExceeded = "MAX_WAYPOINTS_EXCEEDED"
-//        case invalidRequest = "INVALID_REQUEST"
-//        case overQueryLimit = "OVER_QUERY_LIMIT"
-//        case requestDenied = "REQUEST_DENIED"
-//        case unknownError = "UNKNOWN_ERROR"
-//    }
-//    
-//    enum GeocoderStatus: String, Decodable {
-//        case ok = "OK"
-//        case zeroResults = "ZERO_RESULTS"
-//    }
-//    
-//    struct GeocodedWaypoint: Decodable {
-////        var geocoderStatus: GeocoderStatus?
-////        var placeID: String?
-//        
-////        enum CodingKeys: String, CodingKey {
-////            case geocoderStatus = "geocoder_status"
-////            case placeID = "place_id"
-////        }
-//    }
-//    
-//    struct Route: Decodable {
-//        var copyrights: String?
-//        var summary: String?
-//    }
-//    
-////    struct Bounds: Decodable {
-////        var northeast: LocationCoordinate2D?
-////        var southwest: LocationCoordinate2D?
-////    }
-//    
-//    struct Response: Decodable {
-//        var status: StatusCode?
-////        var errorMessage: String?
-////        var geocodedWaypoints: [GeocodedWaypoint] = []
-//        var routes: [Route] = []
-//
-////        enum CodingKeys: String, CodingKey {
-////            case geocodedWaypoints = "geocoded_waypoints"
-////            case errorMessage = "error_message"
-////        }
-//    }
-//}
 
 extension GoogleMapsDirections {
     
@@ -279,3 +260,4 @@ extension GoogleMapsDirections {
         }
     }
 }
+
