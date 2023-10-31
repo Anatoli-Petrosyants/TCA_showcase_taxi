@@ -14,6 +14,7 @@ struct MapFeature: Reducer {
     
     struct State: Equatable {
         var userLocation: CLLocation? = nil
+        var points: [String]? = nil
         var startCoordinate: CLLocationCoordinate2D? = nil
         var endCoordinate: CLLocationCoordinate2D? = nil
         
@@ -71,45 +72,15 @@ struct MapFeature: Reducer {
             case let .view(viewAction):
                 switch viewAction {
                 case .onViewLoad:
-//                    let userLocationsEventStream = self.locationManagerClient.delegate()
-//                    return .run { send in
-//                        await withThrowingTaskGroup(of: Void.self) { group in
-//                            group.addTask {
-//                                for await event in userLocationsEventStream {
-//                                    await send(.internal(.locationManager(event)))
-//                                }
-//                            }
-//                        }
-//                    }
-                    
-//                    let origin = GoogleDirectionsClient.Request.Place.coordinate(
-//                        coordinate: GoogleDirectionsClient.LocationCoordinate2D(
-//                            latitude: 40.18394662431355,
-//                            longitude: 44.515071977924926
-//                        )
-//                    )
-//                    
-//                    let destination = GoogleDirectionsClient.Request.Place.coordinate(
-//                        coordinate: GoogleDirectionsClient.LocationCoordinate2D(
-//                            latitude: 40.19792272406243,
-//                            longitude: 44.51916420358389
-//                        )
-//                    )
-                    
-                    let origin = GoogleDirectionsClient.Request.Place.stringDescription(address: "Yerevan")
-                    let destination = GoogleDirectionsClient.Request.Place.stringDescription(address: "Dilijan")
+                    let userLocationsEventStream = self.locationManagerClient.delegate()
                     return .run { send in
-                        await send(
-                            .internal(
-                                .directionsResponse(
-                                    await TaskResult {
-                                        try await self.googleDirectionsClient.directions(
-                                            .init(origin: origin, destination: destination)
-                                        )
-                                    }
-                                )
-                            )
-                        )
+                        await withThrowingTaskGroup(of: Void.self) { group in
+                            group.addTask {
+                                for await event in userLocationsEventStream {
+                                    await send(.internal(.locationManager(event)))
+                                }
+                            }
+                        }
                     }
                     
                 case .onLocationButtonTap:
@@ -154,6 +125,7 @@ struct MapFeature: Reducer {
                 
             case let .internalResponse(.directions(data)):
                 dump(data)
+                state.points = data
                 return .none
                 
             case let .whereTo(.presented(.delegate(whereToAction))):
@@ -164,21 +136,33 @@ struct MapFeature: Reducer {
 //                    Log.info("didPlaceSelected start \(state.startCoordinate)")
 //                    Log.info("didPlaceSelected end \(state.endCoordinate)")
                     
-//                    let origin = GoogleMapsDirections.Place.coordinate(
-//                        coordinate: GoogleMapsDirections.LocationCoordinate2D(
-//                            latitude: state.startCoordinate!.latitude,
-//                            longitude: state.startCoordinate!.longitude
-//                        )
-//                    )
-//                    
-//                    let destination = GoogleMapsDirections.Place.coordinate(
-//                        coordinate: GoogleMapsDirections.LocationCoordinate2D(
-//                            latitude: state.endCoordinate!.latitude,
-//                            longitude: state.endCoordinate!.longitude
-//                        )
-//                    )
+                    let origin = GoogleDirectionsClient.Request.Place.coordinate(
+                        coordinate: GoogleDirectionsClient.LocationCoordinate2D(
+                            latitude: state.startCoordinate!.latitude,
+                            longitude: state.startCoordinate!.longitude
+                        )
+                    )
+
+                    let destination = GoogleDirectionsClient.Request.Place.coordinate(
+                        coordinate: GoogleDirectionsClient.LocationCoordinate2D(
+                            latitude: state.endCoordinate!.latitude,
+                            longitude: state.endCoordinate!.longitude
+                        )
+                    )
                     
-                    return .none
+                    return .run { send in
+                        await send(
+                            .internal(
+                                .directionsResponse(
+                                    await TaskResult {
+                                        try await self.googleDirectionsClient.directions(
+                                            .init(origin: origin, destination: destination)
+                                        )
+                                    }
+                                )
+                            )
+                        )
+                    }
                 }
                 
             case .internal, .pickupSpot, .whereTo:
@@ -192,3 +176,35 @@ struct MapFeature: Reducer {
         DirectionsFeature()
     }
 }
+
+
+
+//                    let origin = GoogleDirectionsClient.Request.Place.coordinate(
+//                        coordinate: GoogleDirectionsClient.LocationCoordinate2D(
+//                            latitude: 40.18394662431355,
+//                            longitude: 44.515071977924926
+//                        )
+//                    )
+//
+//                    let destination = GoogleDirectionsClient.Request.Place.coordinate(
+//                        coordinate: GoogleDirectionsClient.LocationCoordinate2D(
+//                            latitude: 40.19792272406243,
+//                            longitude: 44.51916420358389
+//                        )
+//                    )
+
+//                    let origin = GoogleDirectionsClient.Request.Place.stringDescription(address: "Yerevan")
+//                    let destination = GoogleDirectionsClient.Request.Place.stringDescription(address: "Dilijan")
+//                    return .run { send in
+//                        await send(
+//                            .internal(
+//                                .directionsResponse(
+//                                    await TaskResult {
+//                                        try await self.googleDirectionsClient.directions(
+//                                            .init(origin: origin, destination: destination)
+//                                        )
+//                                    }
+//                                )
+//                            )
+//                        )
+//                    }

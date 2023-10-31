@@ -22,9 +22,13 @@ struct DirectionsFeature<State>: Reducer {
                     return .none
                 }
                 
-                let points = data.routes.compactMap {
-                    $0.overviewPolyline?.points
-                }
+                let points = data.routes.map {
+                    $0.legs.compactMap {
+                        $0.steps.compactMap {
+                            $0.polyline?.points
+                        }
+                    }
+                }.reduce([], +).reduce([], +)
                 
                 return .send(.internalResponse(.directions(points)))
                 
