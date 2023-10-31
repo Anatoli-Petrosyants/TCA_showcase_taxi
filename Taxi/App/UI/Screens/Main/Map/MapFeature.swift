@@ -14,7 +14,6 @@ struct MapFeature: Reducer {
     
     struct State: Equatable {
         var userLocation: CLLocation? = nil
-        var points: [String]? = nil
         var startCoordinate: CLLocationCoordinate2D? = nil
         var endCoordinate: CLLocationCoordinate2D? = nil
         
@@ -42,7 +41,7 @@ struct MapFeature: Reducer {
         enum InternalResponseAction: Equatable {
             case location(CLLocation)
             case geocode(GoogleGeocoderClient.Response)
-            case directions([String])
+//            case directions([String])
         }
         
         case view(ViewAction)
@@ -123,78 +122,29 @@ struct MapFeature: Reducer {
                 state.pickupSpot.address = data.thoroughfare
                 return .none
                 
-            case let .internalResponse(.directions(data)):
-                dump(data)
-                state.points = data
-                return .none
+//            case let .internalResponse(.directions(data)):
+//                return .none
                 
             case let .whereTo(.presented(.delegate(whereToAction))):
                 switch whereToAction {
                 case let .didPlaceSelected(place):
-                    state.endCoordinate = place.coordinate
-                    
-//                    Log.info("didPlaceSelected start \(state.startCoordinate)")
-//                    Log.info("didPlaceSelected end \(state.endCoordinate)")
-                    
-                    let origin = GoogleDirectionsClient.Request.Place.coordinate(
-                        coordinate: GoogleDirectionsClient.LocationCoordinate2D(
-                            latitude: state.startCoordinate!.latitude,
-                            longitude: state.startCoordinate!.longitude
-                        )
-                    )
-
-                    let destination = GoogleDirectionsClient.Request.Place.coordinate(
-                        coordinate: GoogleDirectionsClient.LocationCoordinate2D(
-                            latitude: state.endCoordinate!.latitude,
-                            longitude: state.endCoordinate!.longitude
-                        )
-                    )
-                    
-                    return .run { send in
-                        await send(
-                            .internal(
-                                .directionsResponse(
-                                    await TaskResult {
-                                        try await self.googleDirectionsClient.directions(
-                                            .init(origin: origin, destination: destination)
-                                        )
-                                    }
-                                )
-                            )
-                        )
-                    }
-                }
-                
-            case .internal, .pickupSpot, .whereTo:
-                return .none
-            }
-        }
-        .ifLet(\.$whereTo, action: /Action.whereTo) { WhereToFeature() }
-        
-        UserLocationFeature()
-        GeocoderFeature()
-        DirectionsFeature()
-    }
-}
-
-
-
+                    return .none
+//                    state.endCoordinate = place.coordinate
+//                    
 //                    let origin = GoogleDirectionsClient.Request.Place.coordinate(
 //                        coordinate: GoogleDirectionsClient.LocationCoordinate2D(
-//                            latitude: 40.18394662431355,
-//                            longitude: 44.515071977924926
+//                            latitude: state.startCoordinate!.latitude,
+//                            longitude: state.startCoordinate!.longitude
 //                        )
 //                    )
 //
 //                    let destination = GoogleDirectionsClient.Request.Place.coordinate(
 //                        coordinate: GoogleDirectionsClient.LocationCoordinate2D(
-//                            latitude: 40.19792272406243,
-//                            longitude: 44.51916420358389
+//                            latitude: state.endCoordinate!.latitude,
+//                            longitude: state.endCoordinate!.longitude
 //                        )
 //                    )
-
-//                    let origin = GoogleDirectionsClient.Request.Place.stringDescription(address: "Yerevan")
-//                    let destination = GoogleDirectionsClient.Request.Place.stringDescription(address: "Dilijan")
+//                    
 //                    return .run { send in
 //                        await send(
 //                            .internal(
@@ -208,3 +158,16 @@ struct MapFeature: Reducer {
 //                            )
 //                        )
 //                    }
+                }
+                
+            case .internal, .pickupSpot, .whereTo:
+                return .none
+            }
+        }
+        .ifLet(\.$whereTo, action: /Action.whereTo) { WhereToFeature() }
+        
+        UserLocationFeature()
+        GeocoderFeature()
+        // DirectionsFeature()
+    }
+}

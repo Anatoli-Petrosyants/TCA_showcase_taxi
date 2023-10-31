@@ -79,6 +79,8 @@
 		A98492D92AEFA50E00983441 /* GoogleDirectionsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98492D82AEFA50E00983441 /* GoogleDirectionsClient.swift */; };
 		A98492DB2AEFBD3500983441 /* GoogleDirectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98492DA2AEFBD3500983441 /* GoogleDirectionRequest.swift */; };
 		A98492DD2AEFBFCB00983441 /* DirectionsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98492DC2AEFBFCB00983441 /* DirectionsFeature.swift */; };
+		A98492DF2AF0E5F500983441 /* RequestRideFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98492DE2AF0E5F500983441 /* RequestRideFeature.swift */; };
+		A98492E12AF0E5FA00983441 /* RequestRideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98492E02AF0E5FA00983441 /* RequestRideView.swift */; };
 		A988F0A629B5C22B0059F9BB /* Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988F0A529B5C22B0059F9BB /* Blocks.swift */; };
 		A988F0B929B5CC610059F9BB /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988F0B829B5CC610059F9BB /* Optional+Extensions.swift */; };
 		A988F0D629B60B470059F9BB /* ErrorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988F0D529B60B470059F9BB /* ErrorModifier.swift */; };
@@ -275,6 +277,8 @@
 		A98492D82AEFA50E00983441 /* GoogleDirectionsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleDirectionsClient.swift; sourceTree = "<group>"; };
 		A98492DA2AEFBD3500983441 /* GoogleDirectionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleDirectionRequest.swift; sourceTree = "<group>"; };
 		A98492DC2AEFBFCB00983441 /* DirectionsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsFeature.swift; sourceTree = "<group>"; };
+		A98492DE2AF0E5F500983441 /* RequestRideFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRideFeature.swift; sourceTree = "<group>"; };
+		A98492E02AF0E5FA00983441 /* RequestRideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRideView.swift; sourceTree = "<group>"; };
 		A988F0A529B5C22B0059F9BB /* Blocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blocks.swift; sourceTree = "<group>"; };
 		A988F0B829B5CC610059F9BB /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
 		A988F0D529B60B470059F9BB /* ErrorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModifier.swift; sourceTree = "<group>"; };
@@ -421,7 +425,6 @@
 			children = (
 				A9637D392AE1394E006DBFAC /* GeocoderFeature.swift */,
 				A9637D2C2ADEA893006DBFAC /* UserLocationFeature.swift */,
-				A98492DC2AEFBFCB00983441 /* DirectionsFeature.swift */,
 				A91606A42AD5667A00E581A4 /* MapFeature.swift */,
 				A91606A62AD5668200E581A4 /* MapView.swift */,
 				A98931C92ADD192C00317BC7 /* Views */,
@@ -462,6 +465,7 @@
 			children = (
 				A92A229F29F8EEC50034469C /* MainFeature.swift */,
 				A92A229D29F8EAAD0034469C /* MainView.swift */,
+				A98492E22AF0E60300983441 /* RequestRide */,
 				A96BF14A2A6A700700B14247 /* Sidebar */,
 				A91606A82AD5668600E581A4 /* Map */,
 				A9637D342ADFCFB6006DBFAC /* PickupSpot */,
@@ -660,6 +664,16 @@
 				A96FEB622A9E13E7008DC5BC /* JoinView.swift */,
 			);
 			path = Join;
+			sourceTree = "<group>";
+		};
+		A98492E22AF0E60300983441 /* RequestRide */ = {
+			isa = PBXGroup;
+			children = (
+				A98492DC2AEFBFCB00983441 /* DirectionsFeature.swift */,
+				A98492DE2AF0E5F500983441 /* RequestRideFeature.swift */,
+				A98492E02AF0E5FA00983441 /* RequestRideView.swift */,
+			);
+			path = RequestRide;
 			sourceTree = "<group>";
 		};
 		A98931C92ADD192C00317BC7 /* Views */ = {
@@ -1264,6 +1278,7 @@
 				A94A87282AA0B4EE00168BC1 /* PhoneOTPFeature.swift in Sources */,
 				A990E52B2A41BC530004F4F9 /* ReachabilityClient.swift in Sources */,
 				A990E5202A41A03C0004F4F9 /* Layout+Extension.swift in Sources */,
+				A98492E12AF0E5FA00983441 /* RequestRideView.swift in Sources */,
 				A96FEB5E2A9E1305008DC5BC /* PhoneLoginView.swift in Sources */,
 				A91F587B29E68260008C0F35 /* AnyTransition+Extensions.swift in Sources */,
 				A93B20082AAAF22300E05DD1 /* APIError.swift in Sources */,
@@ -1336,6 +1351,7 @@
 				A91F587629E67C2C008C0F35 /* EmailLoginFeature.swift in Sources */,
 				A9FAD6B92A54180A003A46F5 /* CoreData+Convertible.swift in Sources */,
 				A98492D92AEFA50E00983441 /* GoogleDirectionsClient.swift in Sources */,
+				A98492DF2AF0E5F500983441 /* RequestRideFeature.swift in Sources */,
 				A9FAD6CA2A541DB3003A46F5 /* Account+CoreData.swift in Sources */,
 				A96FEB5C2A9E12FF008DC5BC /* PhoneLoginFeature.swift in Sources */,
 				A988F0D829B60D170059F9BB /* AppError.swift in Sources */,

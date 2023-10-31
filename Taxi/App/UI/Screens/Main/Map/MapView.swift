@@ -32,7 +32,7 @@ extension MapView: View {
                 ZStack(alignment: .top) {
                     GoogleMapViewRepresentable(
                         userLocation: viewStore.userLocation,
-                        points: viewStore.points,
+                        points: nil,
                         mapViewIdleAtPosition: { position in
                             viewStore.send(.onMapViewIdleAtPosition(position))
                             moving = false
