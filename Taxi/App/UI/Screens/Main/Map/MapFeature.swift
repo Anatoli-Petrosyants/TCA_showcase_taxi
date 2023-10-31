@@ -41,7 +41,7 @@ struct MapFeature: Reducer {
         enum InternalResponseAction: Equatable {
             case location(CLLocation)
             case geocode(GoogleGeocoderClient.Response)
-            case directions(GoogleDirectionsClient.Response)
+            case directions([String])
         }
         
         case view(ViewAction)

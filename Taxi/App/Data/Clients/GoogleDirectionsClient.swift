@@ -88,6 +88,12 @@ extension GoogleDirectionsClient {
         var summary: String?
         var legs: [Leg] = []
         var bounds: Bounds?
+        var overviewPolyline: Polyline?
+        
+        enum CodingKeys: String, CodingKey {
+            case copyrights, summary, legs, bounds
+            case overviewPolyline = "overview_polyline"
+        }
 
         struct Leg: Decodable, Equatable {
             var startAddress: String?
@@ -111,10 +117,11 @@ extension GoogleDirectionsClient {
                 var startLocation: LocationCoordinate2D?
                 var endLocation: LocationCoordinate2D?
                 var travelMode: TravelMode?
+                var polyline: Polyline?
 
                 enum CodingKeys: String, CodingKey {
                     case htmlInstructions = "html_instructions"
-                    case distance, duration
+                    case distance, duration, polyline
                     case travelMode = "travel_mode"
                     case startLocation = "start_location"
                     case endLocation = "end_location"
@@ -130,6 +137,10 @@ extension GoogleDirectionsClient {
                     var text: String?
                 }
             }
+        }
+        
+        struct Polyline: Decodable, Equatable {
+            var points: String?
         }
 
         struct Bounds: Decodable, Equatable {

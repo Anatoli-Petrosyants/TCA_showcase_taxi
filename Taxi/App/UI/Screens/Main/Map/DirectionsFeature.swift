@@ -22,7 +22,11 @@ struct DirectionsFeature<State>: Reducer {
                     return .none
                 }
                 
-                return .send(.internalResponse(.directions(data)))
+                let points = data.routes.compactMap {
+                    $0.overviewPolyline?.points
+                }
+                
+                return .send(.internalResponse(.directions(points)))
                 
             case let .directionsResponse(.failure(error)):
                 Log.error("directionsResponse failure: \(error)")
