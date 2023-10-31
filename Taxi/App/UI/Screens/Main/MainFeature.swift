@@ -13,7 +13,6 @@ struct MainFeature: Reducer {
     struct State: Equatable {
         var sidebar = SidebarFeature.State()
         var map = MapFeature.State()
-        var path = StackState<Path.State>()
     }
     
     enum Action: Equatable {
@@ -29,23 +28,6 @@ struct MainFeature: Reducer {
         case delegate(Delegate)
         case sidebar(SidebarFeature.Action)
         case map(MapFeature.Action)
-        case path(StackAction<Path.State, Path.Action>)
-    }
-    
-    struct Path: Reducer {
-        enum State: Equatable {
-            case settings(SettingsFeature.State)
-        }
-
-        enum Action: Equatable {
-            case settings(SettingsFeature.Action)
-        }
-
-        var body: some Reducer<State, Action> {
-            Scope(state: /State.settings, action: /Action.settings) {
-                SettingsFeature()
-            }
-        }
     }
     
     var body: some Reducer<State, Action> {
@@ -77,16 +59,9 @@ struct MainFeature: Reducer {
                     return .none
                 }
                 
-            // path actions
-            case .path:
-                return .none
-                
             case .sidebar, .map, .delegate:
                 return .none
             }
-        }
-        .forEach(\.path, action: /Action.path) {
-            Path()
         }
     }
 }

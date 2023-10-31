@@ -19,6 +19,8 @@ struct MapFeature: Reducer {
         
         var pickupSpot = PickupSpotFeature.State()
         @PresentationState var whereTo: WhereToFeature.State?
+        
+        var path = StackState<Path.State>()
     }
     
     enum Action: Equatable {
@@ -28,6 +30,7 @@ struct MapFeature: Reducer {
             case onWhereToButtonTap
             case onMapViewWillMove
             case onMapViewIdleAtPosition(GMSCameraPosition)
+            case onRequestButtonTap
             case binding(BindingAction<State>)
         }
         
@@ -49,6 +52,23 @@ struct MapFeature: Reducer {
         case internalResponse(InternalResponseAction)
         case pickupSpot(PickupSpotFeature.Action)
         case whereTo(PresentationAction<WhereToFeature.Action>)
+        case path(StackAction<Path.State, Path.Action>)
+    }
+    
+    struct Path: Reducer {
+        enum State: Equatable {
+            case requestRide(RequestRideFeature.State)
+        }
+        
+        enum Action: Equatable {
+            case requestRide(RequestRideFeature.Action)
+        }
+        
+        var body: some Reducer<State, Action> {
+            Scope(state: /State.requestRide, action: /Action.requestRide) {
+                RequestRideFeature()
+            }
+        }
     }
     
     @Dependency(\.locationManagerClient) var locationManagerClient
@@ -110,6 +130,14 @@ struct MapFeature: Reducer {
                     }
                     .cancellable(id: CancelID.reverseGeocode)
                     
+                case .onRequestButtonTap:
+                    state.path.append(
+                        .requestRide(
+                            .init()
+                        )
+                    )
+                    return .none
+                    
                 case .binding:
                     return .none
                 }
@@ -160,11 +188,14 @@ struct MapFeature: Reducer {
 //                    }
                 }
                 
-            case .internal, .pickupSpot, .whereTo:
+            case .internal, .pickupSpot, .whereTo, .path:
                 return .none
             }
         }
         .ifLet(\.$whereTo, action: /Action.whereTo) { WhereToFeature() }
+        .forEach(\.path, action: /Action.path) {
+            Path()
+        }
         
         UserLocationFeature()
         GeocoderFeature()

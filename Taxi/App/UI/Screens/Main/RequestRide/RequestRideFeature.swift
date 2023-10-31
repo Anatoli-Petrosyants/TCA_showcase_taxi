@@ -7,12 +7,13 @@
 
 import SwiftUI
 import ComposableArchitecture
+import CoreLocation
 
 struct RequestRideFeature: Reducer {
     
     struct State: Equatable {
-        var startPlaceId: String
-        var endPlaceId: String
+//        var startCoordinate: CLLocationCoordinate2D? = nil
+//        var endCoordinate: CLLocationCoordinate2D? = nil
     }
     
     enum Action: Equatable {
