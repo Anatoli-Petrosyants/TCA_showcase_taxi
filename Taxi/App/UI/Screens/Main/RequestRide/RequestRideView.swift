@@ -12,6 +12,8 @@ import ComposableArchitecture
 
 struct RequestRideView {
     let store: StoreOf<RequestRideFeature>
+    
+    @State private var opacity: Double = 0.0
 }
 
 // MARK: - Views
@@ -25,7 +27,33 @@ extension RequestRideView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Text("Request Ride")
+            ZStack(alignment: .top) {
+                GoogleMapViewRepresentable(
+                    userLocation: nil,
+                    polylinePoints: viewStore.polylinePoints,
+                    overviewPolylinePoint: viewStore.overviewPolylinePoint,
+                    mapViewIdleAtPosition: { position in
+                        
+                    },
+                    mapViewWillMove: { gesture in
+                        
+                    }
+                )
+//                .opacity(opacity)
+//                .animate { opacity = opacity == 0.0 ? 1.0 : 0.0 }
+            }
+            .ignoresSafeArea()
+        }
+    }
+}
+
+// Create an immediate animation.
+extension View {
+    func animate(using animation: Animation = .easeInOut(duration: 1), _ action: @escaping () -> Void) -> some View {
+        onAppear {
+            withAnimation(animation) {
+                action()
+            }
         }
     }
 }

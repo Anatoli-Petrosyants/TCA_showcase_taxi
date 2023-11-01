@@ -8,6 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 import GoogleMaps
+import NavigationTransitions
 
 // MARK: - MapView
 
@@ -35,7 +36,8 @@ extension MapView: View {
                     ZStack(alignment: .top) {
                         GoogleMapViewRepresentable(
                             userLocation: viewStore.userLocation,
-                            points: nil,
+                            polylinePoints: nil,
+                            overviewPolylinePoint: nil,
                             mapViewIdleAtPosition: { position in
                                 viewStore.send(.onMapViewIdleAtPosition(position))
                                 moving = false
@@ -85,6 +87,7 @@ extension MapView: View {
                     }, moving: $moving)
                 }
                 .ignoresSafeArea()
+                .modifier(NavigationBarModifier())
             } destination: {
                 switch $0 {
                 case .requestRide:
@@ -94,6 +97,8 @@ extension MapView: View {
                     )
                 }
             }
+            .accentColor(Color.white)
+            .navigationTransition(.fade(.cross))
             .sheet(
                 store: self.store.scope(state: \.$whereTo, action: { .whereTo($0) }),
                 content: WhereToView.init(store:)

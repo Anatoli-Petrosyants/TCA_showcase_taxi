@@ -30,7 +30,6 @@ struct MapFeature: Reducer {
             case onWhereToButtonTap
             case onMapViewWillMove
             case onMapViewIdleAtPosition(GMSCameraPosition)
-            case onRequestButtonTap
             case binding(BindingAction<State>)
         }
         
@@ -38,13 +37,11 @@ struct MapFeature: Reducer {
             case updateLocation
             case locationManager(LocationManagerClient.DelegateEvent)
             case geocodeResponse(TaskResult<GoogleGeocoderClient.Response>)
-            case directionsResponse(TaskResult<GoogleDirectionsClient.Response>)
         }
         
         enum InternalResponseAction: Equatable {
             case location(CLLocation)
             case geocode(GoogleGeocoderClient.Response)
-//            case directions([String])
         }
         
         case view(ViewAction)
@@ -130,14 +127,6 @@ struct MapFeature: Reducer {
                     }
                     .cancellable(id: CancelID.reverseGeocode)
                     
-                case .onRequestButtonTap:
-                    state.path.append(
-                        .requestRide(
-                            .init()
-                        )
-                    )
-                    return .none
-                    
                 case .binding:
                     return .none
                 }
@@ -150,43 +139,27 @@ struct MapFeature: Reducer {
                 state.pickupSpot.address = data.thoroughfare
                 return .none
                 
-//            case let .internalResponse(.directions(data)):
-//                return .none
-                
             case let .whereTo(.presented(.delegate(whereToAction))):
                 switch whereToAction {
                 case let .didPlaceSelected(place):
+                    state.endCoordinate = place.coordinate
+                    
+                    // #dev: duplicated snipet. A.P.
+                    guard let start = state.startCoordinate else { return .none }
+                    guard let end = state.endCoordinate else { return .none }
+                    state.path.append(
+                        .requestRide(.init(startCoordinate: start, endCoordinate: end))
+                    )
                     return .none
-//                    state.endCoordinate = place.coordinate
-//                    
-//                    let origin = GoogleDirectionsClient.Request.Place.coordinate(
-//                        coordinate: GoogleDirectionsClient.LocationCoordinate2D(
-//                            latitude: state.startCoordinate!.latitude,
-//                            longitude: state.startCoordinate!.longitude
-//                        )
-//                    )
-//
-//                    let destination = GoogleDirectionsClient.Request.Place.coordinate(
-//                        coordinate: GoogleDirectionsClient.LocationCoordinate2D(
-//                            latitude: state.endCoordinate!.latitude,
-//                            longitude: state.endCoordinate!.longitude
-//                        )
-//                    )
-//                    
-//                    return .run { send in
-//                        await send(
-//                            .internal(
-//                                .directionsResponse(
-//                                    await TaskResult {
-//                                        try await self.googleDirectionsClient.directions(
-//                                            .init(origin: origin, destination: destination)
-//                                        )
-//                                    }
-//                                )
-//                            )
-//                        )
-//                    }
                 }
+                
+            case .pickupSpot(.delegate(.didRideRequested)):
+                guard let start = state.startCoordinate else { return .none }
+                guard let end = state.endCoordinate else { return .none }
+                state.path.append(
+                    .requestRide(.init(startCoordinate: start, endCoordinate: end))
+                )
+                return .none
                 
             case .internal, .pickupSpot, .whereTo, .path:
                 return .none

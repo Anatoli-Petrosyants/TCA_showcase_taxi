@@ -19,7 +19,7 @@ struct PickupSpotView {
 extension PickupSpotView: View {
     
     var body: some View {
-        content.onAppear { self.store.send(.onViewAppear) }
+        content
     }
     
     @ViewBuilder private var content: some View {
@@ -35,7 +35,7 @@ extension PickupSpotView: View {
                     Spacer()
                     
                     Button {
-                        // #dev send search action
+                        viewStore.send(.view(.onGoButtonTap))
                     } label: {
                         Text("GO")
                             .font(.headlineBold)

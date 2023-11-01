@@ -12,23 +12,6 @@ import ComposableArchitecture
 
 struct WhereToView {
     let store: StoreOf<WhereToFeature>
-    
-    private var text: AttributedString {
-        let string = "Attributed String"
-
-        let attributes: [NSAttributedString.Key : Any] = [
-            NSAttributedString.Key.foregroundColor: UIColor.systemPink,
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 40),
-            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
-        ]
-        // 1
-        let nsAttributedString = NSAttributedString(string: string, attributes: attributes)
-
-        // 2
-        let attributedString = AttributedString(nsAttributedString)
-
-        return attributedString
-    }
 }
 
 // MARK: - Views

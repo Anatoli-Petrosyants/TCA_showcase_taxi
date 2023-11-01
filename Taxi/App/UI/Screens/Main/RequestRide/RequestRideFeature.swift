@@ -12,8 +12,11 @@ import CoreLocation
 struct RequestRideFeature: Reducer {
     
     struct State: Equatable {
-//        var startCoordinate: CLLocationCoordinate2D? = nil
-//        var endCoordinate: CLLocationCoordinate2D? = nil
+        var startCoordinate: CLLocationCoordinate2D
+        var endCoordinate: CLLocationCoordinate2D
+        
+        var polylinePoints: [String] = []
+        var overviewPolylinePoint: String? = nil
     }
     
     enum Action: Equatable {
@@ -25,13 +28,11 @@ struct RequestRideFeature: Reducer {
             case directionsResponse(TaskResult<GoogleDirectionsClient.Response>)
         }
         
-//        enum InternalResponseAction: Equatable {
-//            case points([String])
-//        }
-        
         case view(ViewAction)
         case `internal`(InternalAction)
     }
+    
+    @Dependency(\.googleDirectionsClient) var googleDirectionsClient
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -40,7 +41,33 @@ struct RequestRideFeature: Reducer {
             case let .view(viewAction):
                 switch viewAction {
                 case .onViewLoad:
-                    return .none
+                    let origin = GoogleDirectionsClient.Request.Place.coordinate(
+                        coordinate: GoogleDirectionsClient.LocationCoordinate2D(
+                            latitude: state.startCoordinate.latitude,
+                            longitude: state.startCoordinate.longitude
+                        )
+                    )
+
+                    let destination = GoogleDirectionsClient.Request.Place.coordinate(
+                        coordinate: GoogleDirectionsClient.LocationCoordinate2D(
+                            latitude: state.endCoordinate.latitude,
+                            longitude: state.endCoordinate.longitude
+                        )
+                    )
+                    
+                    return .run { send in
+                        await send(
+                            .internal(
+                                .directionsResponse(
+                                    await TaskResult {
+                                        try await self.googleDirectionsClient.directions(
+                                            .init(origin: origin, destination: destination)
+                                        )
+                                    }
+                                )
+                            )
+                        )
+                    }
                 }
                 
                 // internal actions
@@ -60,7 +87,9 @@ struct RequestRideFeature: Reducer {
                         }
                     }.reduce([], +).reduce([], +)
                     
-                    // return .send(.internalResponse(.directions(points)))
+                    state.polylinePoints = points
+                    state.overviewPolylinePoint = data.routes[0].overviewPolyline?.points
+
                     return .none
                     
                 case let .directionsResponse(.failure(error)):
@@ -71,31 +100,3 @@ struct RequestRideFeature: Reducer {
         }
     }
 }
-
-//let origin = GoogleDirectionsClient.Request.Place.coordinate(
-//    coordinate: GoogleDirectionsClient.LocationCoordinate2D(
-//        latitude: state.startCoordinate!.latitude,
-//        longitude: state.startCoordinate!.longitude
-//    )
-//)
-//
-//let destination = GoogleDirectionsClient.Request.Place.coordinate(
-//    coordinate: GoogleDirectionsClient.LocationCoordinate2D(
-//        latitude: state.endCoordinate!.latitude,
-//        longitude: state.endCoordinate!.longitude
-//    )
-//)
-//
-//return .run { send in
-//    await send(
-//        .internal(
-//            .directionsResponse(
-//                await TaskResult {
-//                    try await self.googleDirectionsClient.directions(
-//                        .init(origin: origin, destination: destination)
-//                    )
-//                }
-//            )
-//        )
-//    )
-//}

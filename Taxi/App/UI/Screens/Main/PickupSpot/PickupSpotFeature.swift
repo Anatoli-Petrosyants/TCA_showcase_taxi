@@ -15,13 +15,25 @@ struct PickupSpotFeature: Reducer {
     }
     
     enum Action: Equatable {
-        case onViewAppear
+        enum ViewAction: Equatable {
+            case onGoButtonTap
+        }
+        
+        enum DelegateAction: Equatable {
+            case didRideRequested
+        }
+        
+        case view(ViewAction)
+        case delegate(DelegateAction)
     }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .onViewAppear:
+            case .view(.onGoButtonTap):
+                return .send(.delegate(.didRideRequested))
+
+            case .delegate:
                 return .none
             }
         }
