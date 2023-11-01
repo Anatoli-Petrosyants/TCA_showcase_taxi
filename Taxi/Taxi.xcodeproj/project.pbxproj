@@ -138,6 +138,7 @@
 		A9AB4F1E2AF0F90600E58D9A /* NavigationTransitions in Frameworks */ = {isa = PBXBuildFile; productRef = A9AB4F1D2AF0F90600E58D9A /* NavigationTransitions */; };
 		A9AB4F202AF11CDB00E58D9A /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AB4F1F2AF11CDB00E58D9A /* NavigationBarModifier.swift */; };
 		A9AB4F222AF273FE00E58D9A /* Localization+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AB4F212AF273FE00E58D9A /* Localization+Map.swift */; };
+		A9AB4F242AF2744500E58D9A /* Localization+RideRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AB4F232AF2744500E58D9A /* Localization+RideRequest.swift */; };
 		A9ABFB3B2AA5FADC0093EBF3 /* UserNotificationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ABFB3A2AA5FADC0093EBF3 /* UserNotificationClient.swift */; };
 		A9ABFB3D2AA607F10093EBF3 /* RemoteNotificationsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ABFB3C2AA607F10093EBF3 /* RemoteNotificationsClient.swift */; };
 		A9AF26032A73E8A500631158 /* UIApplicationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF26022A73E8A500631158 /* UIApplicationClient.swift */; };
@@ -333,6 +334,7 @@
 		A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		A9AB4F1F2AF11CDB00E58D9A /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
 		A9AB4F212AF273FE00E58D9A /* Localization+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Map.swift"; sourceTree = "<group>"; };
+		A9AB4F232AF2744500E58D9A /* Localization+RideRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+RideRequest.swift"; sourceTree = "<group>"; };
 		A9ABFB3A2AA5FADC0093EBF3 /* UserNotificationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationClient.swift; sourceTree = "<group>"; };
 		A9ABFB3C2AA607F10093EBF3 /* RemoteNotificationsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNotificationsClient.swift; sourceTree = "<group>"; };
 		A9AF26022A73E8A500631158 /* UIApplicationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationClient.swift; sourceTree = "<group>"; };
@@ -790,6 +792,7 @@
 				A990E5472A42D9D40004F4F9 /* Localization+DevelopedBy.swift */,
 				A979AC032A8C9E610050E028 /* Localization+Sidebar.swift */,
 				A9AB4F212AF273FE00E58D9A /* Localization+Map.swift */,
+				A9AB4F232AF2744500E58D9A /* Localization+RideRequest.swift */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -1310,6 +1313,7 @@
 				A9FAD6BD2A54195A003A46F5 /* CoreData+Extensions.swift in Sources */,
 				A9FAD6BF2A541981003A46F5 /* CoreData+Request.swift in Sources */,
 				A93B200A2AAAF5A900E05DD1 /* MoyaError+Extenstions.swift in Sources */,
+				A9AB4F242AF2744500E58D9A /* Localization+RideRequest.swift in Sources */,
 				A93B20152AAB082F00E05DD1 /* APIEndpoint.swift in Sources */,
 				A9637D312ADFCFAB006DBFAC /* PickupSpotFeature.swift in Sources */,
 				A9AF26032A73E8A500631158 /* UIApplicationClient.swift in Sources */,
