@@ -172,6 +172,5 @@ struct MapFeature: Reducer {
         
         UserLocationFeature()
         GeocoderFeature()
-        // DirectionsFeature()
     }
 }
