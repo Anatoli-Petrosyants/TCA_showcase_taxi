@@ -9,43 +9,43 @@ import SwiftUI
 import ComposableArchitecture
 import CoreLocation
 
-//struct DirectionsFeature<State>: Reducer {
-//
-//    func reduce(into _: inout State, action: MapFeature.Action) -> Effect<MapFeature.Action> {
-//        switch action {
-//            
-//        case let .internal(internalAction):
-//            switch internalAction {
-//            case let .directionsResponse(.success(data)):
-//                guard data.status == GoogleDirectionsClient.StatusCode.ok else {
-//                    Log.error("directionsResponse success: \(data.errorMessage.valueOr(""))")
-//                    return .none
-//                }
-//                
-//                let points = data.routes.map {
-//                    $0.legs.compactMap {
-//                        $0.steps.compactMap {
-//                            $0.polyline?.points
-//                        }
-//                    }
-//                }.reduce([], +).reduce([], +)
-//                
-//                return .send(.internalResponse(.directions(points)))
-//                
-//            case let .directionsResponse(.failure(error)):
-//                Log.error("directionsResponse failure: \(error)")
-//                return .none
-//                
-//            default:
-//                return .none
-//            }
-//            
-//        default:
-//            return .none
-//        
-//        }
-//    }
-//}
+struct DirectionsFeature<State>: Reducer {
+
+    func reduce(into _: inout State, action: RequestRideFeature.Action) -> Effect<RequestRideFeature.Action> {
+        switch action {
+            
+        case let .internal(internalAction):
+            switch internalAction {
+            case let .directionsResponse(.success(data)):
+                guard data.status == GoogleDirectionsClient.StatusCode.ok else {
+                    Log.error("directionsResponse success: \(data.errorMessage.valueOr(""))")
+                    return .none
+                }
+                
+                let points = data.routes.map {
+                    $0.legs.compactMap {
+                        $0.steps.compactMap {
+                            $0.polyline?.points
+                        }
+                    }
+                }.reduce([], +).reduce([], +)
+                
+                return .send(.internal(.directionsPoints(points, data.routes[0].overviewPolyline?.points)))
+                
+            case let .directionsResponse(.failure(error)):
+                Log.error("directionsResponse failure: \(error)")
+                return .none
+                
+            default:
+                return .none
+            }
+            
+        default:
+            return .none
+        
+        }
+    }
+}
 
 // https://maps.googleapis.com/maps/api/directions/json?destination=Yerevan&origin=Dilijan&region=am&mode=driving&key=AIzaSyC--Qx9Rx1bpKOsM-MxvAVEzq67eo6UiPc
 

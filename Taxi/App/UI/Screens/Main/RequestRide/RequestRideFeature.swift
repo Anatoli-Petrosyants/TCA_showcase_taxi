@@ -26,6 +26,7 @@ struct RequestRideFeature: Reducer {
         
         enum InternalAction: Equatable {
             case directionsResponse(TaskResult<GoogleDirectionsClient.Response>)
+            case directionsPoints([String], String?)
         }
         
         case view(ViewAction)
@@ -37,7 +38,7 @@ struct RequestRideFeature: Reducer {
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-                // view actions
+            // view actions
             case let .view(viewAction):
                 switch viewAction {
                 case .onViewLoad:
@@ -70,33 +71,17 @@ struct RequestRideFeature: Reducer {
                     }
                 }
                 
-                // internal actions
-            case let .internal(internalAction):
-                switch internalAction {
-                case let .directionsResponse(.success(data)):
-                    guard data.status == GoogleDirectionsClient.StatusCode.ok else {
-                        Log.error("directionsResponse success: \(data.errorMessage.valueOr(""))")
-                        return .none
-                    }
-                    
-                    let points = data.routes.map {
-                        $0.legs.compactMap {
-                            $0.steps.compactMap {
-                                $0.polyline?.points
-                            }
-                        }
-                    }.reduce([], +).reduce([], +)
-                    
-                    state.polylinePoints = points
-                    state.overviewPolylinePoint = data.routes[0].overviewPolyline?.points
-
-                    return .none
-                    
-                case let .directionsResponse(.failure(error)):
-                    Log.error("directionsResponse failure: \(error)")
-                    return .none
-                }
+            // internal actions
+            case let .internal(.directionsPoints(polylinePoints, overviewPolylinePoint)):
+                state.polylinePoints = polylinePoints
+                state.overviewPolylinePoint = overviewPolylinePoint
+                return .none                
+                
+            case .internal:
+                return .none
             }
         }
+        
+        DirectionsFeature()
     }
 }

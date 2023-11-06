@@ -28,6 +28,11 @@ extension SearchInputView: View {
         content
             .ignoresSafeArea()
             .background(Color.secondaryGray)
+            .cornerRadius(8)
+//            .overlay(
+//                RoundedRectangle(cornerRadius: 8)
+//                    .stroke(Color.red, lineWidth: 1)
+//            )
     }
     
     @ViewBuilder private var content: some View {
@@ -67,11 +72,6 @@ extension SearchInputView: View {
             }
             .padding([.leading, .trailing], 8)
             .padding([.top, .bottom], 6)
-//            .cornerRadius(8)
-//            .overlay(
-//                RoundedRectangle(cornerRadius: 8)
-//                    .stroke(Color.darkGray, lineWidth: 1)
-//            )
         }
     }
 }
