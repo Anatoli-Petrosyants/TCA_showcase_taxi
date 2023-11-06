@@ -78,24 +78,24 @@ struct GoogleMapViewRepresentable: UIViewRepresentable {
             mapView.isMyLocationEnabled = true
         }
         
-//        if let polylinePoints = polylinePoints, polylinePoints.count > 0 {
-//            for point in polylinePoints {
-//                let path = GMSPath(fromEncodedPath: point)
-//                let polyline = GMSPolyline(path: path)
-//                polyline.strokeColor = .white
-//                polyline.strokeWidth = 3.0
-//                polyline.map = mapView
-//            }
-//            
-//            if let overviewPolylinePoint = overviewPolylinePoint {
-//                if let overviewPolylinePath = GMSPath(fromEncodedPath: overviewPolylinePoint) {
-//                    let bounds = GMSCoordinateBounds(path: overviewPolylinePath)
-//                    let insets = UIEdgeInsets(top: 20, left: 40, bottom: 200, right: 40)
-//                    let camera = GMSCameraUpdate.fit(bounds, with: insets)
-//                    mapView.animate(with: camera)
-//                }
-//            }
-//        }
+        if let polylinePoints = polylinePoints, polylinePoints.count > 0 {
+            for point in polylinePoints {
+                let path = GMSPath(fromEncodedPath: point)
+                let polyline = GMSPolyline(path: path)
+                polyline.strokeColor = .white
+                polyline.strokeWidth = 3.0
+                polyline.map = mapView
+            }
+            
+            if let overviewPolylinePoint = overviewPolylinePoint {
+                if let overviewPolylinePath = GMSPath(fromEncodedPath: overviewPolylinePoint) {
+                    let bounds = GMSCoordinateBounds(path: overviewPolylinePath)
+                    let insets = UIEdgeInsets(top: 20, left: 40, bottom: 200, right: 40)
+                    let camera = GMSCameraUpdate.fit(bounds, with: insets)
+                    mapView.animate(with: camera)
+                }
+            }
+        }
     }
     
     func makeCoordinator() -> GoogleMapCoordinator {

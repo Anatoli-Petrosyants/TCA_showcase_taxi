@@ -39,8 +39,6 @@ extension RequestRideView: View {
                         
                     }
                 )
-//                .opacity(opacity)
-//                .animate { opacity = opacity == 0.0 ? 1.0 : 0.0 }
             }
             .ignoresSafeArea()
         }
