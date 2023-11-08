@@ -1,10 +1,10 @@
 PODS:
-  - GoogleMaps (7.0.0):
-    - GoogleMaps/Maps (= 7.0.0)
-  - GoogleMaps/Base (7.0.0)
-  - GoogleMaps/Maps (7.0.0):
+  - GoogleMaps (8.2.0):
+    - GoogleMaps/Maps (= 8.2.0)
+  - GoogleMaps/Base (8.2.0)
+  - GoogleMaps/Maps (8.2.0):
     - GoogleMaps/Base
-  - GooglePlaces (7.0.0)
+  - GooglePlaces (8.2.1)
 
 DEPENDENCIES:
   - GoogleMaps
@@ -16,8 +16,8 @@ SPEC REPOS:
     - GooglePlaces
 
 SPEC CHECKSUMS:
-  GoogleMaps: 6e9c923ca035989709fcb5771544fda4cc5fa2a4
-  GooglePlaces: 8dba710bed6160a2e4b85e84aaafdbcc0b4010d8
+  GoogleMaps: 081f2547b60a1c0870a8f49166a653900e5055d5
+  GooglePlaces: 867722fe422f5a4cc19c68bc28f9f74a24470e40
 
 PODFILE CHECKSUM: 078c2e9e7a836e5ad05622730c2f30d2666ca6d8
 

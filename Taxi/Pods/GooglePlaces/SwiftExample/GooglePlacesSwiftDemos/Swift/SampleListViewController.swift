@@ -22,7 +22,7 @@ class SampleListViewController: UITableViewController {
   let sampleSections = Samples.allSamples()
 
   let configuration: AutocompleteConfiguration = {
-    let fields: [GMSPlaceField] = [
+    var fields: [GMSPlaceField] = [
       .name, .placeID, .plusCode, .coordinate, .openingHours, .phoneNumber, .formattedAddress,
       .rating, .userRatingsTotal, .priceLevel, .types, .website, .viewport, .addressComponents,
       .photos, .utcOffsetMinutes, .businessStatus, .iconImageURL, .iconBackgroundColor,
@@ -46,6 +46,16 @@ class SampleListViewController: UITableViewController {
     tableView.delegate = self
 
     navigationItem.rightBarButtonItem = editButton
+
+    let navBar = navigationController?.navigationBar
+
+    let navBarAppearance = UINavigationBarAppearance()
+    navBarAppearance.configureWithOpaqueBackground()
+    navBarAppearance.backgroundColor = .systemBackground
+    navBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
+
+    navBar?.standardAppearance = navBarAppearance
+    navBar?.scrollEdgeAppearance = navBarAppearance
   }
 
   func sample(at indexPath: IndexPath) -> Sample? {

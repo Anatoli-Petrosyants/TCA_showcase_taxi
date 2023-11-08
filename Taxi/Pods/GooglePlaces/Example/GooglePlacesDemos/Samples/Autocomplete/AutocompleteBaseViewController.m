@@ -28,15 +28,7 @@
   [super viewDidLoad];
 
   // Configure a background color.
-#if defined(__IPHONE_13_0) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0)
-  if (@available(iOS 13.0, *)) {
-    self.view.backgroundColor = [UIColor systemBackgroundColor];
-  } else {
-    self.view.backgroundColor = [UIColor whiteColor];
-  }
-#else
-  self.view.backgroundColor = [UIColor whiteColor];
-#endif  // defined(__IPHONE_13_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0
+  self.view.backgroundColor = [UIColor systemBackgroundColor];
 
   // Configure the UI. Tell our superclass we want a button and a result view below that.
   _photoButton =
@@ -89,13 +81,15 @@
     [text appendAttributedString:doubleReturn];
     [text appendAttributedString:attributions];
   }
-#if defined(__IPHONE_13_0) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0)
-  if (@available(iOS 13.0, *)) {
-    [text addAttribute:NSForegroundColorAttributeName
-                 value:[UIColor labelColor]
-                 range:NSMakeRange(0, text.length)];
-  }
-#endif
+
+  [text addAttribute:NSForegroundColorAttributeName
+               value:[UIColor labelColor]
+               range:NSMakeRange(0, text.length)];
+
+  [text addAttribute:NSFontAttributeName
+               value:[UIFont preferredFontForTextStyle:UIFontTextStyleBody]
+               range:NSMakeRange(0, text.length)];
+
   _textView.attributedText = text;
   [_textView setIsAccessibilityElement:YES];
   [_textView setHidden:NO];
@@ -149,6 +143,7 @@
         .active = YES;
     [self.view.readableContentGuide.trailingAnchor constraintEqualToAnchor:_textView.trailingAnchor]
         .active = YES;
+
     // Set the textContainerInset to 0 because the readableContentGuide is already handling the
     // inset.
     _textView.textContainerInset = UIEdgeInsetsZero;
@@ -174,22 +169,22 @@
 - (UIButton *)createButton:(SEL)selector title:(NSString *)title {
   // Create a button to show the autocomplete widget.
   UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-  [button setTitle:title forState:UIControlStateNormal];
 
-  // Set the text color to adapt to light and dark mode on iOS 13+ devices
-  // Otherwise, set the text color to black
-#if defined(__IPHONE_13_0) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0)
-  if (@available(iOS 13.0, *)) {
-    [button setTitleColor:[UIColor labelColor] forState:UIControlStateNormal];
-  } else {
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-  }
-#else
-  self.view.backgroundColor = [UIColor whiteColor];
-#endif  // defined(__IPHONE_13_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0
+  // Set button title to have a font attirbute that respond to the device text size
+  NSAttributedString *buttonTitle = [[NSAttributedString alloc]
+      initWithString:title
+          attributes:@{
+            NSFontAttributeName : [UIFont preferredFontForTextStyle:UIFontTextStyleBody]
+          }];
+  [button setAttributedTitle:buttonTitle forState:UIControlStateNormal];
+
+  // Set the text color to adapt to light and dark mode.
+  [button setTitleColor:[UIColor labelColor] forState:UIControlStateNormal];
+
   [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
   button.translatesAutoresizingMaskIntoConstraints = NO;
   [self.view addSubview:button];
+
   // Position the button from the top of the view.
   [button.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;
   [button.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:kButtonTopMargin].active =
@@ -208,7 +203,7 @@
   [_photoView setHidden:NO];
 }
 
-// Preload the photos to be displayed.
+/** Preload the photos to be displayed. */
 - (void)preloadPhotoList:(NSArray<GMSPlacePhotoMetadata *> *)photos {
   __block NSMutableArray *attributedPhotos = [NSMutableArray array];
   __block NSInteger photoRequestsInFlight = photos.count;

@@ -16,15 +16,18 @@
 #import "GooglePlacesDemos/Samples/Autocomplete/AutocompleteWithCustomColors.h"
 
 #import <GooglePlaces/GooglePlaces.h>
-
+#import "GooglePlacesDemos/Samples/Autocomplete/AutocompleteBaseViewController.h"
+#import "GooglePlacesDemos/Support/BaseDemoViewController.h"
 /**
  * Simple subclass of GMSAutocompleteViewController solely for the purpose of localising appearance
  * proxy changes to this part of the demo app.
  */
 @interface GMSStyledAutocompleteViewController : GMSAutocompleteViewController
+
 @end
 
 @implementation GMSStyledAutocompleteViewController
+
 @end
 
 static CGFloat const kButtonPadding = 10.f;
@@ -45,18 +48,7 @@ static CGFloat const kButtonPadding = 10.f;
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  UIColor *textColor = nil;
-#if defined(__IPHONE_13_0) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0)
-  if (@available(iOS 13.0, *)) {
-    self.view.backgroundColor = [UIColor systemBackgroundColor];
-    textColor = [UIColor labelColor];
-  } else {
-    self.view.backgroundColor = [UIColor whiteColor];
-    textColor = [UIColor blackColor];
-  }
-#else
-  self.view.backgroundColor = [UIColor whiteColor];
-#endif  // defined(__IPHONE_13_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0
+  UIColor *textColor = [UIColor labelColor];
 
   NSString *titleYellowAndBrown =
       NSLocalizedString(@"Demo.Content.Autocomplete.Styling.Colors.YellowAndBrown",
@@ -71,8 +63,12 @@ static CGFloat const kButtonPadding = 10.f;
       NSLocalizedString(@"Demo.Content.Autocomplete.Styling.Colors.HotDogStand",
                         @"Button title for the 'Hot Dog Stand' styled autocomplete widget.");
 
+  UIFont *preferredBodyFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
   UIButton *brownThemeButton = [UIButton buttonWithType:UIButtonTypeSystem];
-  [brownThemeButton setTitle:titleYellowAndBrown forState:UIControlStateNormal];
+  NSAttributedString *yellowAndBrownAttributedTitle =
+      [[NSAttributedString alloc] initWithString:titleYellowAndBrown
+                                      attributes:@{NSFontAttributeName : preferredBodyFont}];
+  [brownThemeButton setAttributedTitle:yellowAndBrownAttributedTitle forState:UIControlStateNormal];
   [brownThemeButton setTitleColor:textColor forState:UIControlStateNormal];
   [brownThemeButton addTarget:self
                        action:@selector(openBrownTheme:)
@@ -86,7 +82,11 @@ static CGFloat const kButtonPadding = 10.f;
   [brownThemeButton.widthAnchor constraintEqualToConstant:kButtonWidth].active = YES;
 
   UIButton *blackThemeButton = [UIButton buttonWithType:UIButtonTypeSystem];
-  [blackThemeButton setTitle:titleWhiteOnBlack forState:UIControlStateNormal];
+  NSAttributedString *blackThemeButtonAttributedTitle =
+      [[NSAttributedString alloc] initWithString:titleWhiteOnBlack
+                                      attributes:@{NSFontAttributeName : preferredBodyFont}];
+  [blackThemeButton setAttributedTitle:blackThemeButtonAttributedTitle
+                              forState:UIControlStateNormal];
   [blackThemeButton setTitleColor:textColor forState:UIControlStateNormal];
   [blackThemeButton addTarget:self
                        action:@selector(openBlackTheme:)
@@ -101,7 +101,10 @@ static CGFloat const kButtonPadding = 10.f;
   [blackThemeButton.widthAnchor constraintEqualToConstant:kButtonWidth].active = YES;
 
   UIButton *blueThemeButton = [UIButton buttonWithType:UIButtonTypeSystem];
-  [blueThemeButton setTitle:titleBlueColors forState:UIControlStateNormal];
+  NSAttributedString *blueThemeButtonAttributedTitle =
+      [[NSAttributedString alloc] initWithString:titleBlueColors
+                                      attributes:@{NSFontAttributeName : preferredBodyFont}];
+  [blueThemeButton setAttributedTitle:blueThemeButtonAttributedTitle forState:UIControlStateNormal];
   [blueThemeButton setTitleColor:textColor forState:UIControlStateNormal];
   [blueThemeButton addTarget:self
                       action:@selector(openBlueTheme:)
@@ -116,7 +119,11 @@ static CGFloat const kButtonPadding = 10.f;
   [blueThemeButton.widthAnchor constraintEqualToConstant:kButtonWidth].active = YES;
 
   UIButton *hotDogThemeButton = [UIButton buttonWithType:UIButtonTypeSystem];
-  [hotDogThemeButton setTitle:titleHotDogStand forState:UIControlStateNormal];
+  NSAttributedString *hotDogThemeButtonAttributedTitle =
+      [[NSAttributedString alloc] initWithString:titleHotDogStand
+                                      attributes:@{NSFontAttributeName : preferredBodyFont}];
+  [hotDogThemeButton setAttributedTitle:hotDogThemeButtonAttributedTitle
+                               forState:UIControlStateNormal];
   [hotDogThemeButton setTitleColor:textColor forState:UIControlStateNormal];
   [hotDogThemeButton addTarget:self
                         action:@selector(openHotDogTheme:)
@@ -276,12 +283,24 @@ static CGFloat const kButtonPadding = 10.f;
       appearanceWhenContainedInInstancesOfClasses:@[ [GMSStyledAutocompleteViewController class] ]];
   [appearance setColor:primaryTextColor];
 
-  [[UINavigationBar
-      appearanceWhenContainedInInstancesOfClasses:@[ [GMSStyledAutocompleteViewController class] ]]
-      setBarTintColor:darkBackgroundColor];
-  [[UINavigationBar
-      appearanceWhenContainedInInstancesOfClasses:@[ [GMSStyledAutocompleteViewController class] ]]
-      setTintColor:searchBarTintColor];
+  // Customize the navigation bar appearance.
+  UINavigationBar *navBar = [UINavigationBar
+      appearanceWhenContainedInInstancesOfClasses:@[ [GMSStyledAutocompleteViewController class] ]];
+  [navBar setBarTintColor:darkBackgroundColor];
+  [navBar setTintColor:searchBarTintColor];
+
+  // On iOS 15 onwards, we need to update the navigation bar appearance to ensure customized colors
+  // are consistently applied on all states of the navigation bar.
+#if defined(__IPHONE_15_0) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_15_0)
+  if (@available(iOS 15.0, *)) {
+    UINavigationBarAppearance *consistentAppearance = [[UINavigationBarAppearance alloc] init];
+    consistentAppearance.backgroundColor = darkBackgroundColor;
+    navBar.standardAppearance = consistentAppearance;
+    navBar.scrollEdgeAppearance = consistentAppearance;
+    navBar.compactAppearance = consistentAppearance;
+    navBar.compactScrollEdgeAppearance = consistentAppearance;
+  }
+#endif  // defined(__IPHONE_15_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_15_0
 
   // Color of typed text in search bar.
   NSDictionary *searchBarTextAttributes = @{
@@ -322,7 +341,6 @@ static CGFloat const kButtonPadding = 10.f;
   GMSAutocompleteViewController *acController = [[GMSStyledAutocompleteViewController alloc] init];
   acController.delegate = self;
   acController.autocompleteFilter = self.autocompleteFilter;
-  acController.placeFields = self.placeFields;
   acController.tableCellBackgroundColor = backgroundColor;
   acController.tableCellSeparatorColor = separatorColor;
   acController.primaryTextColor = primaryTextColor;
@@ -337,7 +355,7 @@ static CGFloat const kButtonPadding = 10.f;
   }
 }
 
-/*
+/**
  * This method shows how to replace the "search" and "clear text" icons in the search bar with
  * custom icons in the case where the default gray icons don't match a custom background.
  */

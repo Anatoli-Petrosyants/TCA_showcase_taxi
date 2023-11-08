@@ -16,7 +16,7 @@
 #import "GooglePlacesDemos/Samples/Autocomplete/AutocompleteWithSearchViewController.h"
 
 #import <GooglePlaces/GooglePlaces.h>
-
+#import "GooglePlacesDemos/Support/BaseDemoViewController.h"
 NSString *const kSearchBarAccessibilityIdentifier = @"searchBarAccessibilityIdentifier";
 
 @interface AutocompleteWithSearchViewController () <GMSAutocompleteResultsViewControllerDelegate,
@@ -41,7 +41,6 @@ NSString *const kSearchBarAccessibilityIdentifier = @"searchBarAccessibilityIden
 
   _acViewController = [[GMSAutocompleteResultsViewController alloc] init];
   _acViewController.autocompleteFilter = self.autocompleteFilter;
-  _acViewController.placeFields = self.placeFields;
   _acViewController.delegate = self;
 
   _searchController =
@@ -95,8 +94,7 @@ NSString *const kSearchBarAccessibilityIdentifier = @"searchBarAccessibilityIden
   [self autocompleteDidFail:error];
 }
 
-// Show and hide the network activity indicator when we start/stop loading results.
-
+/** Show and hide the network activity indicator when we start/stop loading results. */
 - (void)didRequestAutocompletePredictionsForResultsController:
     (GMSAutocompleteResultsViewController *)resultsController {
   [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;

@@ -37,7 +37,7 @@ extension MapView: View {
                         GoogleMapViewRepresentable(
                             userLocation: viewStore.userLocation,
                             mapViewIdleAtPosition: { position in
-                                viewStore.send(.onMapViewIdleAtPosition(position))
+                                // viewStore.send(.onMapViewIdleAtPosition(position))
                                 moving = false
                             },
                             mapViewWillMove: { gesture in

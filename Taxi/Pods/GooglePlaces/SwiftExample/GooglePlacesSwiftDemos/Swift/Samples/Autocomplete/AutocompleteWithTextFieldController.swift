@@ -24,12 +24,8 @@ class AutocompleteWithTextFieldController: AutocompleteBaseViewController {
     let searchField = UITextField(frame: .zero)
     searchField.translatesAutoresizingMaskIntoConstraints = false
     searchField.borderStyle = .none
-    if #available(iOS 13.0, *) {
-      searchField.textColor = .label
-      searchField.backgroundColor = .systemBackground
-    } else {
-      searchField.backgroundColor = .white
-    }
+    searchField.textColor = .label
+    searchField.backgroundColor = .systemBackground
     searchField.placeholder = NSLocalizedString(
       "Demo.Content.Autocomplete.EnterTextPrompt",
       comment: "Prompt to enter text for autocomplete demo")
@@ -49,7 +45,7 @@ class AutocompleteWithTextFieldController: AutocompleteBaseViewController {
 
   private lazy var tableDataSource: GMSAutocompleteTableDataSource = {
     let tableDataSource = GMSAutocompleteTableDataSource()
-    tableDataSource.tableCellBackgroundColor = .white
+    tableDataSource.tableCellBackgroundColor = .systemBackground
     tableDataSource.delegate = self
     if let config = autocompleteConfiguration {
       tableDataSource.autocompleteFilter = config.autocompleteFilter
@@ -61,15 +57,16 @@ class AutocompleteWithTextFieldController: AutocompleteBaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    view.backgroundColor = .white
     searchField.delegate = self
 
     view.addSubview(searchField)
     NSLayoutConstraint.activate([
       searchField.topAnchor.constraint(
-        equalTo: self.topLayoutGuide.bottomAnchor, constant: topPadding),
-      searchField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-      searchField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+        equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topPadding),
+      searchField.leadingAnchor.constraint(
+        equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding),
+      searchField.trailingAnchor.constraint(
+        equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding),
     ])
 
     tableDataSource.delegate = self
@@ -83,9 +80,9 @@ class AutocompleteWithTextFieldController: AutocompleteBaseViewController {
     view.addSubview(resultView)
     NSLayoutConstraint.activate([
       resultView.topAnchor.constraint(equalTo: searchField.bottomAnchor, constant: 0),
-      resultView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-      resultView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      resultView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      resultView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      resultView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+      resultView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
     ])
   }
 
