@@ -28,16 +28,9 @@ extension RequestRideView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             ZStack(alignment: .top) {
-                GoogleMapViewRepresentable(
-                    userLocation: nil,
+                RequestRideMapViewRepresentable(                    
                     polylinePoints: viewStore.polylinePoints,
-                    overviewPolylinePoint: viewStore.overviewPolylinePoint,
-                    mapViewIdleAtPosition: { position in
-                        
-                    },
-                    mapViewWillMove: { gesture in
-                        
-                    }
+                    overviewPolylinePoint: viewStore.overviewPolylinePoint
                 )
             }
             .ignoresSafeArea()

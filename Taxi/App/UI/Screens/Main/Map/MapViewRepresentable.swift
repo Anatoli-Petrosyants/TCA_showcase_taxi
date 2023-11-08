@@ -30,21 +30,15 @@ struct GoogleMapViewRepresentable: UIViewRepresentable {
     typealias UIViewType = GMSMapView
     
     var userLocation: CLLocation?
-    var polylinePoints: [String]?
-    var overviewPolylinePoint: String?
     var mapViewIdleAtPosition: (GMSCameraPosition) -> ()
     var mapViewWillMove: (Bool) -> ()
 
     init(userLocation: CLLocation?,
-         polylinePoints: [String]?,
-         overviewPolylinePoint: String?,
          mapViewIdleAtPosition: @escaping (GMSCameraPosition) -> Void,
          mapViewWillMove: @escaping (Bool) -> Void) {
         // Log.info("GoogleMapViewRepresentable init userLocation \(String(describing: userLocation))")
         
         self.userLocation = userLocation
-        self.polylinePoints = polylinePoints
-        self.overviewPolylinePoint = overviewPolylinePoint
         self.mapViewIdleAtPosition = mapViewIdleAtPosition
         self.mapViewWillMove = mapViewWillMove
     }
@@ -76,25 +70,6 @@ struct GoogleMapViewRepresentable: UIViewRepresentable {
         if let location = userLocation {
             mapView.animate(toLocation: location.coordinate)
             mapView.isMyLocationEnabled = true
-        }
-        
-        if let polylinePoints = polylinePoints, polylinePoints.count > 0 {
-            for point in polylinePoints {
-                let path = GMSPath(fromEncodedPath: point)
-                let polyline = GMSPolyline(path: path)
-                polyline.strokeColor = .white
-                polyline.strokeWidth = 3.0
-                polyline.map = mapView
-            }
-            
-            if let overviewPolylinePoint = overviewPolylinePoint {
-                if let overviewPolylinePath = GMSPath(fromEncodedPath: overviewPolylinePoint) {
-                    let bounds = GMSCoordinateBounds(path: overviewPolylinePath)
-                    let insets = UIEdgeInsets(top: 20, left: 40, bottom: 200, right: 40)
-                    let camera = GMSCameraUpdate.fit(bounds, with: insets)
-                    mapView.animate(with: camera)
-                }
-            }
         }
     }
     

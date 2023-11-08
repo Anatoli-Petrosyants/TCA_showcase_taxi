@@ -54,6 +54,7 @@
 		A95E758B29ACA1540081A170 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95E758A29ACA1540081A170 /* Logger.swift */; };
 		A95E758D29ACA1F50081A170 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95E758C29ACA1F50081A170 /* String+Extensions.swift */; };
 		A960AA202A49A867005CE9F9 /* OnLoadModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A960AA1F2A49A867005CE9F9 /* OnLoadModifier.swift */; };
+		A96235762AFB7414006D67B8 /* RequestRideMapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96235752AFB7414006D67B8 /* RequestRideMapViewRepresentable.swift */; };
 		A9637D2B2ADE732F006DBFAC /* LocationManagerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D2A2ADE732F006DBFAC /* LocationManagerClient.swift */; };
 		A9637D2D2ADEA893006DBFAC /* UserLocationFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D2C2ADEA893006DBFAC /* UserLocationFeature.swift */; };
 		A9637D2F2ADFC4C2006DBFAC /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9637D2E2ADFC4C2006DBFAC /* RoundedCornerShape.swift */; };
@@ -257,6 +258,7 @@
 		A95E758A29ACA1540081A170 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		A95E758C29ACA1F50081A170 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		A960AA1F2A49A867005CE9F9 /* OnLoadModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnLoadModifier.swift; sourceTree = "<group>"; };
+		A96235752AFB7414006D67B8 /* RequestRideMapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRideMapViewRepresentable.swift; sourceTree = "<group>"; };
 		A9637D2A2ADE732F006DBFAC /* LocationManagerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerClient.swift; sourceTree = "<group>"; };
 		A9637D2C2ADEA893006DBFAC /* UserLocationFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationFeature.swift; sourceTree = "<group>"; };
 		A9637D2E2ADFC4C2006DBFAC /* RoundedCornerShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerShape.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 				A9637D2C2ADEA893006DBFAC /* UserLocationFeature.swift */,
 				A91606A42AD5667A00E581A4 /* MapFeature.swift */,
 				A91606A62AD5668200E581A4 /* MapView.swift */,
+				A91606AE2AD6C65100E581A4 /* MapViewRepresentable.swift */,
 				A98931C92ADD192C00317BC7 /* Views */,
 			);
 			path = Map;
@@ -680,6 +683,7 @@
 				A98492DC2AEFBFCB00983441 /* DirectionsFeature.swift */,
 				A98492DE2AF0E5F500983441 /* RequestRideFeature.swift */,
 				A98492E02AF0E5FA00983441 /* RequestRideView.swift */,
+				A96235752AFB7414006D67B8 /* RequestRideMapViewRepresentable.swift */,
 			);
 			path = RequestRide;
 			sourceTree = "<group>";
@@ -871,7 +875,6 @@
 				A9947EED2A179D9B00FC7FB8 /* SFSafariViewRepresentable.swift */,
 				A9947EEF2A179DBF00FC7FB8 /* LottieViewRepresentable.swift */,
 				A9947EF12A179DD900FC7FB8 /* ActivityViewRepresentable.swift */,
-				A91606AE2AD6C65100E581A4 /* MapViewRepresentable.swift */,
 			);
 			path = Representables;
 			sourceTree = "<group>";
@@ -1355,6 +1358,7 @@
 				A96FBD8229AF6BA300DB1D61 /* ActivityIndicator.swift in Sources */,
 				A990E5272A41BABF0004F4F9 /* Binding+Extensions.swift in Sources */,
 				A9637D2F2ADFC4C2006DBFAC /* RoundedCornerShape.swift in Sources */,
+				A96235762AFB7414006D67B8 /* RequestRideMapViewRepresentable.swift in Sources */,
 				A9E9864829E7DA9A0028D5DB /* DevelopedByFeature.swift in Sources */,
 				A990E5442A42CB6F0004F4F9 /* ForgotPasswordView.swift in Sources */,
 				A971F15A2AA8707F00CCCC95 /* DictionaryDecoder.swift in Sources */,

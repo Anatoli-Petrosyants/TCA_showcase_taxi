@@ -36,8 +36,6 @@ extension MapView: View {
                     ZStack(alignment: .top) {
                         GoogleMapViewRepresentable(
                             userLocation: viewStore.userLocation,
-                            polylinePoints: nil,
-                            overviewPolylinePoint: nil,
                             mapViewIdleAtPosition: { position in
                                 viewStore.send(.onMapViewIdleAtPosition(position))
                                 moving = false
