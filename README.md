@@ -1,6 +1,6 @@
-# Taxi Application with TCA
+# [WiP] Taxi Application with TCA
 
-Welcome to the Shop Application project, a showcase of building a shopping app using The Composable Architecture (TCA). This project demonstrates the power of TCA, Core Data integration, and networking capabilities by fetching data from [fakestoreapi.com](https://fakestoreapi.com).
+Welcome to the Taxi Application project, a showcase of building a shopping app using The Composable Architecture (TCA). This project demonstrates the power of TCA, Core Data integration, and networking capabilities by fetching data from [fakestoreapi.com](https://fakestoreapi.com).
 
 ## Features
 
