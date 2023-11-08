@@ -12,10 +12,17 @@ struct RequestRideMapViewRepresentable: UIViewRepresentable {
     
     typealias UIViewType = GMSMapView
     
+    var startCoordinate: CLLocationCoordinate2D
+    var endCoordinate: CLLocationCoordinate2D
     var polylinePoints: [String]?
     var overviewPolylinePoint: String?
 
-    init(polylinePoints: [String]?, overviewPolylinePoint: String?) {
+    init(startCoordinate: CLLocationCoordinate2D,
+         endCoordinate: CLLocationCoordinate2D,
+         polylinePoints: [String]?,
+         overviewPolylinePoint: String?) {
+        self.startCoordinate = startCoordinate
+        self.endCoordinate = endCoordinate
         self.polylinePoints = polylinePoints
         self.overviewPolylinePoint = overviewPolylinePoint
     }
@@ -26,7 +33,6 @@ struct RequestRideMapViewRepresentable: UIViewRepresentable {
         mapView.mapType = .normal
         mapView.settings.rotateGestures = false
         mapView.settings.tiltGestures = false
-        mapView.delegate = context.coordinator
         
         do {
           if let styleURL = Bundle.main.url(forResource: "map_style", withExtension: "json") {
@@ -43,6 +49,12 @@ struct RequestRideMapViewRepresentable: UIViewRepresentable {
     
     func updateUIView(_ mapView: UIViewType , context: Self.Context) {
         if let polylinePoints = polylinePoints, polylinePoints.count > 0 {
+            let startMarker = startMarker(startCoordinate)
+            startMarker.map = mapView
+            
+            let endMarker = endMarker(endCoordinate)
+            endMarker.map = mapView
+            
             for point in polylinePoints {
                 let path = GMSPath(fromEncodedPath: point)
                 let polyline = GMSPolyline(path: path)
@@ -61,42 +73,52 @@ struct RequestRideMapViewRepresentable: UIViewRepresentable {
             }
         }
     }
+}
+
+private extension RequestRideMapViewRepresentable {
     
-    func makeCoordinator() -> GoogleMapCoordinator {
-        return GoogleMapCoordinator(self)
+    /// Create a square marker with an inner square view.
+    ///
+    /// - Parameters:
+    ///   - coordinate: The coordinates for the marker's position.
+    /// - Returns: A GMSMarker with a square icon.
+    func startMarker(_ coordinate: CLLocationCoordinate2D) -> GMSMarker {
+        let squareView = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        squareView.backgroundColor = .white
+        squareView.layer.cornerRadius = squareView.frame.size.width/2
+        squareView.clipsToBounds = true
+        
+        let innerSquareView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 5))
+        innerSquareView.center = CGPointMake(squareView.frame.size.width  / 2,
+                                             squareView.frame.size.height / 2)
+        innerSquareView.backgroundColor = .black
+        squareView.addSubview(innerSquareView)
+        
+        let marker = GMSMarker()
+        marker.position = coordinate
+        marker.iconView = squareView
+        return marker
+    }
+    
+    /// Create an end marker with a square view.
+    ///
+    /// - Parameters:
+    ///   - coordinate: The coordinates for the marker's position.
+    /// - Returns: A GMSMarker with a square icon.
+    func endMarker(_ coordinate: CLLocationCoordinate2D) -> GMSMarker {
+        let squareView = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        squareView.backgroundColor = .white
+        
+        let innerSquareView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 5))
+        innerSquareView.center = CGPointMake(squareView.frame.size.width  / 2,
+                                             squareView.frame.size.height / 2)
+        innerSquareView.backgroundColor = .black
+        squareView.addSubview(innerSquareView)
+        
+        let marker = GMSMarker()
+        marker.position = coordinate
+        marker.iconView = squareView
+        return marker
     }
 }
 
-extension RequestRideMapViewRepresentable {
-
-    class GoogleMapCoordinator: NSObject, GMSMapViewDelegate {
-
-        var parent: RequestRideMapViewRepresentable
-
-        init(_ parent: RequestRideMapViewRepresentable) {
-            self.parent = parent
-        }
-
-        // MARK: - MKMapViewDelegate
-        
-        func mapViewSnapshotReady(_ mapView: GMSMapView) {
-            // Log.info("mapViewSnapshotReady")
-        }
-        
-        func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
-            // Log.info("willMove gesture \(gesture)")
-        }
-        
-        func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-            // Log.info("didChange position \(position)")
-        }
-        
-        func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-            // Log.info("idleAt position \(position.target)")
-        }
-
-        func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-            // Log.info("didTapAt coordinate \(coordinate)")
-        }
-    }
-}

@@ -28,7 +28,9 @@ extension RequestRideView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             ZStack(alignment: .top) {
-                RequestRideMapViewRepresentable(                    
+                RequestRideMapViewRepresentable(
+                    startCoordinate: viewStore.startCoordinate,
+                    endCoordinate: viewStore.endCoordinate,
                     polylinePoints: viewStore.polylinePoints,
                     overviewPolylinePoint: viewStore.overviewPolylinePoint
                 )
