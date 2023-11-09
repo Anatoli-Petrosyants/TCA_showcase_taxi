@@ -11,7 +11,7 @@ import CoreLocation
 
 struct DirectionsFeature<State>: Reducer {
 
-    func reduce(into _: inout State, action: RequestRideFeature.Action) -> Effect<RequestRideFeature.Action> {
+    func reduce(into _: inout State, action: RequestMapFeature.Action) -> Effect<RequestMapFeature.Action> {
         switch action {
             
         case let .internal(internalAction):

@@ -54,16 +54,16 @@ struct MapFeature: Reducer {
     
     struct Path: Reducer {
         enum State: Equatable {
-            case requestRide(RequestRideFeature.State)
+            case requestRide(RequestMapFeature.State)
         }
         
         enum Action: Equatable {
-            case requestRide(RequestRideFeature.Action)
+            case requestRide(RequestMapFeature.Action)
         }
         
         var body: some Reducer<State, Action> {
             Scope(state: /State.requestRide, action: /Action.requestRide) {
-                RequestRideFeature()
+                RequestMapFeature()
             }
         }
     }

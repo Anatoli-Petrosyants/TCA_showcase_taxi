@@ -1,5 +1,5 @@
 //
-//  RequestRideFeature.swift
+//  RequestMapFeature.swift
 //  Taxi
 //
 //  Created by Anatoli Petrosyants on 31.10.23.
@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import CoreLocation
 
-struct RequestRideFeature: Reducer {
+struct RequestMapFeature: Reducer {
     
     struct State: Equatable {
         var startCoordinate: CLLocationCoordinate2D

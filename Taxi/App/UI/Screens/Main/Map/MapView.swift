@@ -91,7 +91,7 @@ extension MapView: View {
                 case .requestRide:
                     CaseLet(/MapFeature.Path.State.requestRide,
                         action: MapFeature.Path.Action.requestRide,
-                        then: RequestRideView.init(store:)
+                        then: RequestMapView.init(store:)
                     )
                 }
             }

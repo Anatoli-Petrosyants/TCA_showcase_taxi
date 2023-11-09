@@ -1,5 +1,5 @@
 //
-//  RequestRideView.swift
+//  RequestMapView.swift
 //  Taxi
 //
 //  Created by Anatoli Petrosyants on 31.10.23.
@@ -10,15 +10,15 @@ import ComposableArchitecture
 
 // MARK: - RequestRideView
 
-struct RequestRideView {
-    let store: StoreOf<RequestRideFeature>
+struct RequestMapView {
+    let store: StoreOf<RequestMapFeature>
     
     @State private var opacity: Double = 0.0
 }
 
 // MARK: - Views
 
-extension RequestRideView: View {
+extension RequestMapView: View {
     
     var body: some View {
         content
