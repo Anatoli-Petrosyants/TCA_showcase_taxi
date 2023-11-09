@@ -17,6 +17,8 @@ struct RequestMapFeature: Reducer {
         
         var polylinePoints: [String] = []
         var overviewPolylinePoint: String? = nil
+        
+        var requestRide = RequestRideFeature.State()
     }
     
     enum Action: Equatable {
@@ -31,11 +33,16 @@ struct RequestMapFeature: Reducer {
         
         case view(ViewAction)
         case `internal`(InternalAction)
+        case requestRide(RequestRideFeature.Action)
     }
     
     @Dependency(\.googleDirectionsClient) var googleDirectionsClient
     
     var body: some ReducerOf<Self> {
+        Scope(state: \.requestRide, action: /Action.requestRide) {
+            RequestRideFeature()
+        }
+        
         Reduce { state, action in
             switch action {
             // view actions
@@ -78,6 +85,9 @@ struct RequestMapFeature: Reducer {
                 return .none                
                 
             case .internal:
+                return .none
+                
+            case .requestRide:
                 return .none
             }
         }

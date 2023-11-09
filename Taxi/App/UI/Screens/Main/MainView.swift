@@ -35,21 +35,7 @@ extension MainView: View {
                             action: MainFeature.Action.map
                         )
                     )
-                    .ignoresSafeArea()                    
-//                        HStack {
-//                            Button {
-//                                viewStore.send(.view(.onMenuTap))
-//                            } label: {
-//                                Image(systemName: "line.3.horizontal")
-//                                    .tint(Color.white)
-//                            }
-//                            .padding(8)
-//                            .background(Color.primaryBlack)
-//                            .clipShape(RoundedRectangle(cornerRadius: 3))
-//
-//                            Spacer()
-//                        }
-//                        .padding(8)
+                    .ignoresSafeArea()
                 }
                 
                 SidebarView(
