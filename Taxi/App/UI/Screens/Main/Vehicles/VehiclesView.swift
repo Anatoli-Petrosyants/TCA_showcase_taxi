@@ -20,6 +20,9 @@ extension VehiclesView: View {
     
     var body: some View {
         content
+            .background(Color.secondaryGray)
+            .cornerRadius(16)
+            // .clipShape(Capsule())
             .onAppear { self.store.send(.onViewAppear) }
     }
     
@@ -28,15 +31,29 @@ extension VehiclesView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHGrid(rows: [.init(.flexible(), spacing: 0, alignment: .leading)]) {
                     ForEach(viewStore.vehicles, id: \.self) { vehicle in
-                        Text(vehicle.title)
-                            .frame(width: 100, height: 40, alignment: .center)
-                            .background(Color.green)
-                            .padding(.leading, 8)
+                        VStack(alignment: .center, spacing: 0) {
+                            Image(vehicle.icon)
+                                .renderingMode(.template)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)                                
+                                .foregroundColor(Color.white05)
+                                .frame(height: 40)
+                                .padding(.top, 4)
+                            
+                            Text(vehicle.title)
+                                .font(.footnote)
+                                .foregroundColor(Color.white05)
+                            
+                            Text("11.22$")
+                                .font(.footnote)
+                                .foregroundColor(Color.white05)
+                            
+                            Spacer()
+                        }
+                        .padding(8)
                     }
                 }
             }
-            .padding()
-            .background(Color.black)
         }
     }
 }

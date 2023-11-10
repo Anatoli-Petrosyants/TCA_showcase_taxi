@@ -32,6 +32,8 @@ extension RequestRideView: View {
                         action: RequestRideFeature.Action.vehicles
                     )
                 )
+                .frame(height: 80)
+                .padding(8)
                 
                 Spacer()
             }

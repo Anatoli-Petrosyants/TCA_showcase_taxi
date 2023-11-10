@@ -103,7 +103,18 @@ struct MapFeature: Reducer {
                     return .send(.internal(.updateLocation))
                     
                 case .onWhereToButtonTap:
-                    state.whereTo = WhereToFeature.State()
+                    // TODO: uncommment
+                    // state.whereTo = WhereToFeature.State()
+                    
+                    // TODO: remove
+                    // #dev: duplicated snipet. A.P.
+                    guard let start = state.startCoordinate else { return .none }
+                    let end = CLLocationCoordinate2D(latitude: 40.18514286462002,
+                                                     longitude: 44.50134689086195)
+                    state.path.append(
+                        .requestRide(.init(startCoordinate: start, endCoordinate: end))
+                    )
+                    
                     return .none
                     
                 case .onMapViewWillMove:

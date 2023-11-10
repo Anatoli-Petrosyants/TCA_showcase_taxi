@@ -28,14 +28,12 @@ extension RequestMapView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             ZStack(alignment: .bottomTrailing) {
-                ZStack(alignment: .top) {
-                    RequestRideMapViewRepresentable(
-                        startCoordinate: viewStore.startCoordinate,
-                        endCoordinate: viewStore.endCoordinate,
-                        polylinePoints: viewStore.polylinePoints,
-                        overviewPolylinePoint: viewStore.overviewPolylinePoint
-                    )
-                }
+                RequestRideMapViewRepresentable(
+                    startCoordinate: viewStore.startCoordinate,
+                    endCoordinate: viewStore.endCoordinate,
+                    polylinePoints: viewStore.polylinePoints,
+                    overviewPolylinePoint: viewStore.overviewPolylinePoint
+                )
                 
                 RequestRideView(
                     store: self.store.scope(
