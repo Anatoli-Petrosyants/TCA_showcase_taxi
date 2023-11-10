@@ -25,17 +25,18 @@ extension VehiclesView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            ScrollView(showsIndicators: false) {
-                LazyHGrid(rows: [.init(.flexible(), spacing: 8, alignment: .leading)]) {
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHGrid(rows: [.init(.flexible(), spacing: 0, alignment: .leading)]) {
                     ForEach(viewStore.vehicles, id: \.self) { vehicle in
-                        // Text(vehicle.title)
+                        Text(vehicle.title)
+                            .frame(width: 100, height: 40, alignment: .center)
+                            .background(Color.green)
+                            .padding(.leading, 8)
                     }
                 }
-//                .padding([.leading, .trailing], 8)
-//                .aspectRatio(1.0, contentMode: .fit)
             }
             .padding()
-            .background(Color.red)
+            .background(Color.black)
         }
     }
 }

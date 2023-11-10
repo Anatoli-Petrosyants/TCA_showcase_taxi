@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum VehicleType {
+/// Enum representing different types of vehicles.
+enum VehicleType: String, CaseIterable {
     case econom
     case comfort
     case business
@@ -16,56 +17,32 @@ enum VehicleType {
     case evacuator
 }
 
-//extension VehicleType {
-//    var icon: Image {
-//        switch self {
-//        case .econom:
-//            "Econom"
-//        case .comfort:
-//            "Comfort"
-//        case .business:
-//            "Business"
-//        case .minivan:
-//            "Minivan"
-//        case .truck:
-//            "Truck"
-//        case .evacuator:
-//            "Evacuator"
-//        }
-//    }
-//}
-
+/// Struct representing a vehicle with an ID and a type.
 struct Vehicle: Identifiable, Equatable, Hashable {
     var id = UUID()
     var type: VehicleType
 }
 
 extension Vehicle {
+    /// Computed property to get the human-readable title of the vehicle based on its type.
     var title: String {
         switch type {
-        case .econom:
-            "Econom"
-        case .comfort:
-            "Comfort"
-        case .business:
-            "Business"
-        case .minivan:
-            "Minivan"
-        case .truck:
-            "Truck"
-        case .evacuator:
-            "Evacuator"
+        case .econom: return "Econom"
+        case .comfort: return "Comfort"
+        case .business: return "Business"
+        case .minivan: return "Minivan"
+        case .truck: return "Truck"
+        case .evacuator: return "Evacuator"
         }
+    }
+    
+    /// Computed property to get the icon name of the vehicle based on its type.
+    var icon: String {
+        return "ic_vehicle_" + type.rawValue
     }
 }
 
 extension Vehicle {
-    
-    static let all: [Vehicle] = [Vehicle(type: .econom),
-                                 Vehicle(type: .comfort),
-                                 Vehicle(type: .business),
-                                 Vehicle(type: .minivan),
-                                 Vehicle(type: .truck),
-                                 Vehicle(type: .evacuator)
-    ]
+    /// Static property to get an array of all possible vehicles.
+    static let all: [Vehicle] = VehicleType.allCases.map { Vehicle(type: $0) }
 }
