@@ -1,5 +1,5 @@
 //
-//  RequestRideFeature.swift
+//  VehiclesFeature.swift
 //  Taxi
 //
 //  Created by Anatoli Petrosyants on 09.11.23.
@@ -8,24 +8,20 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct RequestRideFeature: Reducer {
+struct VehiclesFeature: Reducer {
     
     struct State: Equatable {
-        var vehicles = VehiclesFeature.State()
+        var vehicles = Vehicle.all
     }
     
     enum Action: Equatable {
-        case vehicles(VehiclesFeature.Action)
+        case onViewAppear
     }
     
     var body: some ReducerOf<Self> {
-        Scope(state: \.vehicles, action: /Action.vehicles) {
-            VehiclesFeature()
-        }
-        
         Reduce { state, action in
             switch action {
-            case .vehicles:
+            case .onViewAppear:
                 return .none
             }
         }

@@ -20,16 +20,22 @@ extension RequestRideView: View {
 
     var body: some View {
         content
-            .background(Color.black)
-            .onAppear { self.store.send(.onViewAppear) }
+            .background(Color.black)            
     }
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack {
-                Text("RequestRide View")
+            VStack(alignment: .leading) {
+                VehiclesView(
+                    store: self.store.scope(
+                        state: \.vehicles,
+                        action: RequestRideFeature.Action.vehicles
+                    )
+                )
+                
+                Spacer()
             }
-            .frame(maxWidth: .infinity, maxHeight: 120)
+            .frame(maxWidth: .infinity, maxHeight: 220)
             .background(Color.black)
         }
     }

@@ -16,9 +16,33 @@ enum VehicleType {
     case evacuator
 }
 
-extension VehicleType {
+//extension VehicleType {
+//    var icon: Image {
+//        switch self {
+//        case .econom:
+//            "Econom"
+//        case .comfort:
+//            "Comfort"
+//        case .business:
+//            "Business"
+//        case .minivan:
+//            "Minivan"
+//        case .truck:
+//            "Truck"
+//        case .evacuator:
+//            "Evacuator"
+//        }
+//    }
+//}
+
+struct Vehicle: Identifiable, Equatable, Hashable {
+    var id = UUID()
+    var type: VehicleType
+}
+
+extension Vehicle {
     var title: String {
-        switch self {
+        switch type {
         case .econom:
             "Econom"
         case .comfort:
@@ -35,7 +59,13 @@ extension VehicleType {
     }
 }
 
-struct Vehicle: Identifiable, Equatable, Hashable {
-    var id = UUID()
-    var type: String
+extension Vehicle {
+    
+    static let all: [Vehicle] = [Vehicle(type: .econom),
+                                 Vehicle(type: .comfort),
+                                 Vehicle(type: .business),
+                                 Vehicle(type: .minivan),
+                                 Vehicle(type: .truck),
+                                 Vehicle(type: .evacuator)
+    ]
 }

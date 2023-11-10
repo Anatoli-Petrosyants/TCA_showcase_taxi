@@ -28,7 +28,7 @@ extension SearchInputView: View {
         content
             .ignoresSafeArea()
             .background(Color.secondaryGray)
-            .cornerRadius(8)
+            .cornerRadius(4)
 //            .overlay(
 //                RoundedRectangle(cornerRadius: 8)
 //                    .stroke(Color.red, lineWidth: 1)
