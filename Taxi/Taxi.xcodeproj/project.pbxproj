@@ -143,6 +143,8 @@
 		A9AD20202AFD093F00BFA784 /* VehiclesFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD201F2AFD093F00BFA784 /* VehiclesFeature.swift */; };
 		A9AD20222AFD094600BFA784 /* VehiclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD20212AFD094600BFA784 /* VehiclesView.swift */; };
 		A9AD20252B020BF100BFA784 /* LocalAuthenticationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD20242B020BF100BFA784 /* LocalAuthenticationClient.swift */; };
+		A9AD202B2B021BB800BFA784 /* QuickActionsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD202A2B021BB800BFA784 /* QuickActionsHandler.swift */; };
+		A9AD202D2B021C1700BFA784 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD202C2B021C1700BFA784 /* SceneDelegate.swift */; };
 		A9AF26032A73E8A500631158 /* UIApplicationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF26022A73E8A500631158 /* UIApplicationClient.swift */; };
 		A9B4D7A32A4AD30600B102FB /* FeedbackGeneratorClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B4D7A22A4AD30600B102FB /* FeedbackGeneratorClient.swift */; };
 		A9BEED3529D1A946007ADC33 /* AppProgressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEED3429D1A946007ADC33 /* AppProgressStyle.swift */; };
@@ -343,6 +345,8 @@
 		A9AD201F2AFD093F00BFA784 /* VehiclesFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesFeature.swift; sourceTree = "<group>"; };
 		A9AD20212AFD094600BFA784 /* VehiclesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesView.swift; sourceTree = "<group>"; };
 		A9AD20242B020BF100BFA784 /* LocalAuthenticationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthenticationClient.swift; sourceTree = "<group>"; };
+		A9AD202A2B021BB800BFA784 /* QuickActionsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionsHandler.swift; sourceTree = "<group>"; };
+		A9AD202C2B021C1700BFA784 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A9AF26022A73E8A500631158 /* UIApplicationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationClient.swift; sourceTree = "<group>"; };
 		A9AF26042A77997900631158 /* Taxi-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Taxi-Info.plist"; sourceTree = "<group>"; };
 		A9AF260D2A78E8D400631158 /* Showcase.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Showcase.entitlements; sourceTree = "<group>"; };
@@ -788,6 +792,7 @@
 				A990E5342A41BE330004F4F9 /* ReachabilityManager.swift */,
 				A97C84272A7D00F8008054E0 /* Loadable.swift */,
 				A971F1592AA8707F00CCCC95 /* DictionaryDecoder.swift */,
+				A9AD202A2B021BB800BFA784 /* QuickActionsHandler.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1005,6 +1010,7 @@
 			isa = PBXGroup;
 			children = (
 				A9DED5C329AC96CF003EFA02 /* AppDelegate.swift */,
+				A9AD202C2B021C1700BFA784 /* SceneDelegate.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -1335,6 +1341,7 @@
 				A9AD201E2AFD07A800BFA784 /* Vehicle.swift in Sources */,
 				A9FAD6BF2A541981003A46F5 /* CoreData+Request.swift in Sources */,
 				A93B200A2AAAF5A900E05DD1 /* MoyaError+Extenstions.swift in Sources */,
+				A9AD202B2B021BB800BFA784 /* QuickActionsHandler.swift in Sources */,
 				A9AB4F242AF2744500E58D9A /* Localization+RideRequest.swift in Sources */,
 				A93B20152AAB082F00E05DD1 /* APIEndpoint.swift in Sources */,
 				A9637D312ADFCFAB006DBFAC /* PickupSpotFeature.swift in Sources */,
@@ -1399,6 +1406,7 @@
 				A93B200C2AAAFD1000E05DD1 /* APIProvider.swift in Sources */,
 				A98492DD2AEFBFCB00983441 /* DirectionsFeature.swift in Sources */,
 				A90110102A4434A800DD08C4 /* UserDefaultsClient.swift in Sources */,
+				A9AD202D2B021C1700BFA784 /* SceneDelegate.swift in Sources */,
 				A9A0CB6F29D41E6F0048A649 /* LocationManager.swift in Sources */,
 				A990E53F2A42C9B20004F4F9 /* Localization+Login.swift in Sources */,
 				A990E5252A41BA5C0004F4F9 /* UIApplication+Extensions.swift in Sources */,
