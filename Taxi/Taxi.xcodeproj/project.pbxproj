@@ -142,6 +142,7 @@
 		A9AD201E2AFD07A800BFA784 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD201D2AFD07A800BFA784 /* Vehicle.swift */; };
 		A9AD20202AFD093F00BFA784 /* VehiclesFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD201F2AFD093F00BFA784 /* VehiclesFeature.swift */; };
 		A9AD20222AFD094600BFA784 /* VehiclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD20212AFD094600BFA784 /* VehiclesView.swift */; };
+		A9AD20252B020BF100BFA784 /* LocalAuthenticationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD20242B020BF100BFA784 /* LocalAuthenticationClient.swift */; };
 		A9AF26032A73E8A500631158 /* UIApplicationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF26022A73E8A500631158 /* UIApplicationClient.swift */; };
 		A9B4D7A32A4AD30600B102FB /* FeedbackGeneratorClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B4D7A22A4AD30600B102FB /* FeedbackGeneratorClient.swift */; };
 		A9BEED3529D1A946007ADC33 /* AppProgressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEED3429D1A946007ADC33 /* AppProgressStyle.swift */; };
@@ -341,6 +342,7 @@
 		A9AD201D2AFD07A800BFA784 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		A9AD201F2AFD093F00BFA784 /* VehiclesFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesFeature.swift; sourceTree = "<group>"; };
 		A9AD20212AFD094600BFA784 /* VehiclesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesView.swift; sourceTree = "<group>"; };
+		A9AD20242B020BF100BFA784 /* LocalAuthenticationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthenticationClient.swift; sourceTree = "<group>"; };
 		A9AF26022A73E8A500631158 /* UIApplicationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationClient.swift; sourceTree = "<group>"; };
 		A9AF26042A77997900631158 /* Taxi-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Taxi-Info.plist"; sourceTree = "<group>"; };
 		A9AF260D2A78E8D400631158 /* Showcase.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Showcase.entitlements; sourceTree = "<group>"; };
@@ -834,6 +836,7 @@
 				A9A5CBDE2AE26A9000E1C12B /* AppleGeocoderClient.swift */,
 				A9A5CBEC2AE2AB5D00E1C12B /* GooglePlacesClient.swift */,
 				A98492D82AEFA50E00983441 /* GoogleDirectionsClient.swift */,
+				A9AD20242B020BF100BFA784 /* LocalAuthenticationClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -1343,6 +1346,7 @@
 				A98DD15E2A9F31DA00B39EDC /* Localization+LoginOptions.swift in Sources */,
 				A9DED5B129AC93BE003EFA02 /* Fonts.swift in Sources */,
 				A9AD20202AFD093F00BFA784 /* VehiclesFeature.swift in Sources */,
+				A9AD20252B020BF100BFA784 /* LocalAuthenticationClient.swift in Sources */,
 				A990E54A2A42F6910004F4F9 /* AppTextFieldStyle.swift in Sources */,
 				A95E758D29ACA1F50081A170 /* String+Extensions.swift in Sources */,
 				A93B200E2AAB069D00E05DD1 /* LoginEmailRequest.swift in Sources */,

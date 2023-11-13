@@ -35,6 +35,12 @@ extension RequestRideView: View {
                 .frame(height: 80)
                 .padding(8)
                 
+                Button("Verify", action: {
+                    viewStore.send(.view(.onVerifyTap))
+                })
+                .buttonStyle(.cta)
+                .padding(8)
+                
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: 220)
