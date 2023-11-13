@@ -20,13 +20,15 @@ struct RequestRideFeature: Reducer {
         }
         
         enum InternalAction: Equatable {
-            
+            case localAuthenticationResponse(TaskResult<Bool>)
         }
         
         case view(ViewAction)
         case `internal`(InternalAction)
         case vehicles(VehiclesFeature.Action)
     }
+    
+    @Dependency(\.localAuthenticationClient) var localAuthenticationClient
     
     var body: some ReducerOf<Self> {
         Scope(state: \.vehicles, action: /Action.vehicles) {
@@ -38,12 +40,31 @@ struct RequestRideFeature: Reducer {
             case let .view(viewAction):
                 switch viewAction {
                 case .onVerifyTap:
-                    // let reason = "We need to authentication you for payment."
-                    return .none
+                    return .run { send in
+                        await send(
+                            .internal(
+                                .localAuthenticationResponse(
+                                    await TaskResult {
+                                        try await self.localAuthenticationClient.authenticate(
+                                            "We need to authentication you for payment."
+                                        )
+                                    }
+                                )
+                            )
+                        )
+                    }
                 }
                 
-            case .internal:
-                return .none
+            case let .internal(internalAction):
+                switch internalAction {
+                case let .localAuthenticationResponse(.success(data)):
+                    Log.info("localAuthenticationResponse success: \(data)")
+                    return .none
+                    
+                case let .localAuthenticationResponse(.failure(error)):
+                    Log.error("localAuthenticationResponse failure: \(error)")
+                    return .none
+                }
                 
             case .vehicles:
                 return .none
