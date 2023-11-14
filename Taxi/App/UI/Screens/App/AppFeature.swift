@@ -93,7 +93,10 @@ struct AppFeature: Reducer {
                     return .none
                 }
                 
-            case .didChangeScenePhase(_):                
+            case let .didChangeScenePhase(phase):
+                if case .active = phase {
+                    // performQuickActionIfNeeded()
+                }
                 return .none
 
             case let .loading(action: .delegate(loadingAction)):
@@ -151,3 +154,27 @@ struct AppFeature: Reducer {
         }
     }
 }
+
+//extension AppFeature {
+//    /// A  method to perform actions based on the detected quick action.
+//    func performQuickActionIfNeeded() {
+//        Log.info("performQuickActionIfNeeded")
+//        
+//        let quickActionsHandler = QuickActionsHandler.shared
+//        
+//        // Check if a quick action is available
+//        guard let action = quickActionsHandler.action else { return }
+//        
+//        switch action {
+//        case .lastAddress:
+//            Log.info("performQuickActionIfNeeded lastAddress")
+//            // state = .main(MainFeature.State())
+//            break
+//        }
+//        
+//        // Reset the quick action to nil after processing
+//        quickActionsHandler.action = nil
+//    }
+//}
+
+

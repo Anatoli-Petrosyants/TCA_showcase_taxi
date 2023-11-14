@@ -12,6 +12,17 @@
 		<key>UISceneConfigurations</key>
 		<dict/>
 	</dict>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeLocation</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Go home</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>LastAddress</string>
+		</dict>
+	</array>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>
